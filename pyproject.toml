@@ -1,0 +1,56 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "quantavane-mcp"
+dynamic = ["version"]
+description = "MCP server for open problems with exact checkers: Quantavane's Open Problems Benchmark, verified results, replays and citations, offline."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE", "LICENSE-DATA.md"]
+authors = [{ name = "Arhan Canli" }]
+keywords = ["mcp", "model-context-protocol", "open-problems", "benchmark", "exact-verification", "combinatorics",
+            "ramsey", "spherical-codes", "covering-designs", "mathematics"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Scientific/Engineering :: Mathematics",
+    "Operating System :: MacOS",
+    "Operating System :: POSIX :: Linux",
+]
+dependencies = [
+    "mcp>=1.30,<2",
+    "pydantic>=2.11,<3",
+    "anyio>=4.5",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+
+[project.scripts]
+quantavane-mcp = "quantavane_mcp.server:main"
+
+[project.urls]
+Homepage = "https://quantavane.com"
+Benchmark = "https://github.com/arhancanli/quantavane-benchmark"
+Replays = "https://github.com/arhancanli/quantavane-replays"
+Dataset = "https://www.kaggle.com/datasets/arhancanli12/quantavane-verified-results"
+
+[tool.hatch.version]
+path = "src/quantavane_mcp/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/quantavane_mcp"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src", "tests", "scripts", "README.md", "LICENSE", "LICENSE-DATA.md", "CITATION.cff", "RELEASE_CHECKLIST.md",
+           "pyproject.toml"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["slow: checks that take more than a few seconds on a loaded machine"]

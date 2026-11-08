@@ -1,0 +1,3326 @@
+{
+ "about": "Independent exact replays of certificates submitted to the [optimization constants repository](https://github.com/teorth/optimizationproblems). Each replay uses our own code, written from the definition on the constant page. The certificates' own verifiers were neither read nor run, and we have no connection with any of the authors.",
+ "asterisk_index": {
+  "file": "ASTERISK_INDEX.md",
+  "rows": [
+   {
+    "bound": "≥ 0.4103333\\*",
+    "class": "a",
+    "constant": "1c",
+    "prs": [
+     261,
+     270,
+     292,
+     318,
+     323
+    ],
+    "tag": "Kos2026"
+   },
+   {
+    "bound": "≤ 1.463071582607559\\*",
+    "class": "a",
+    "constant": "1d",
+    "prs": [
+     224,
+     243
+    ],
+    "tag": "CERT2026"
+   },
+   {
+    "bound": "≤ 1.460217284022874\\*",
+    "class": "a",
+    "constant": "1d",
+    "prs": [
+     247,
+     309,
+     326
+    ],
+    "tag": "STEPS2026"
+   },
+   {
+    "bound": "≤ 1.459989046905384\\*",
+    "class": "a",
+    "constant": "1d",
+    "prs": [
+     248,
+     309,
+     326
+    ],
+    "tag": "AER2026"
+   },
+   {
+    "bound": "≤ 2.1562256466\\*",
+    "class": "a",
+    "constant": "16a",
+    "prs": [
+     242,
+     246,
+     270,
+     319
+    ],
+    "tag": "(upper)"
+   },
+   {
+    "bound": "≥ 2.1562247706\\*",
+    "class": "a",
+    "constant": "16a",
+    "prs": [
+     246,
+     270,
+     319,
+     325,
+     326
+    ],
+    "tag": "(lower)"
+   },
+   {
+    "bound": "≤ 0.825101\\*",
+    "class": "a",
+    "constant": "31a",
+    "prs": [
+     231,
+     249,
+     323
+    ],
+    "tag": "J2026"
+   },
+   {
+    "bound": "≤ 0.824120\\*",
+    "class": "a",
+    "constant": "31a",
+    "prs": [
+     231,
+     249,
+     323
+    ],
+    "tag": "J2026"
+   },
+   {
+    "bound": "≤ 4.3654674227\\*",
+    "class": "a",
+    "constant": "44a",
+    "prs": [
+     258,
+     294
+    ],
+    "tag": "Epi2026"
+   },
+   {
+    "bound": "≤ 4.3576549226\\*",
+    "class": "a",
+    "constant": "44a",
+    "prs": [
+     258,
+     294
+    ],
+    "tag": "P2026"
+   },
+   {
+    "bound": "≥ 1.5617847\\*",
+    "class": "a",
+    "constant": "49a",
+    "prs": [
+     200,
+     235,
+     323
+    ],
+    "tag": "IRSI2026 v1.0"
+   },
+   {
+    "bound": "≥ 1.5621220\\*",
+    "class": "a",
+    "constant": "49a",
+    "prs": [
+     200,
+     235,
+     323
+    ],
+    "tag": "IRSI2026 v1.1"
+   },
+   {
+    "bound": "≥ 1.5647730\\*",
+    "class": "a",
+    "constant": "49a",
+    "prs": [
+     200,
+     235,
+     323
+    ],
+    "tag": "IRSI2026 v1.2"
+   },
+   {
+    "bound": "≥ 1.5664286\\*",
+    "class": "a",
+    "constant": "49a",
+    "prs": [
+     220,
+     235,
+     309,
+     323
+    ],
+    "tag": "Cla2026 (F)"
+   },
+   {
+    "bound": "≥ 1.5666969\\*",
+    "class": "a",
+    "constant": "49a",
+    "prs": [
+     220,
+     235,
+     309,
+     323
+    ],
+    "tag": "Cla2026 (F and H)"
+   },
+   {
+    "bound": "≥ 1.5675517\\*",
+    "class": "a",
+    "constant": "49a",
+    "prs": [
+     237,
+     326
+    ],
+    "tag": "Syl2026 (unit chain)"
+   },
+   {
+    "bound": "≥ 1.5678015\\*",
+    "class": "a",
+    "constant": "49a",
+    "prs": [
+     237,
+     326
+    ],
+    "tag": "Syl2026 (B′)"
+   },
+   {
+    "bound": "≥ 1.5678599\\*",
+    "class": "a",
+    "constant": "49a",
+    "prs": [
+     260,
+     322
+    ],
+    "tag": "Kos2026"
+   },
+   {
+    "bound": "≥ 0.432\\*",
+    "class": "a",
+    "constant": "68a",
+    "prs": [
+     239,
+     274,
+     299
+    ],
+    "tag": "Pin2026"
+   },
+   {
+    "bound": "≥ 1.20194336\\*",
+    "class": "a",
+    "constant": "70a",
+    "prs": [
+     259,
+     326
+    ],
+    "tag": "Pin2026"
+   },
+   {
+    "bound": "≤ 0.2535744749068227\\*",
+    "class": "a",
+    "constant": "82a",
+    "prs": [
+     229,
+     242,
+     323
+    ],
+    "tag": "Epi26"
+   },
+   {
+    "bound": "≤ 0.2534449\\*",
+    "class": "a",
+    "constant": "82a",
+    "prs": [
+     229,
+     242,
+     280,
+     301,
+     323,
+     330
+    ],
+    "tag": "Pin26"
+   },
+   {
+    "bound": "≤ 1.8117251\\*",
+    "class": "a",
+    "constant": "86a",
+    "prs": [
+     227,
+     242,
+     323
+    ],
+    "tag": "Pin26"
+   },
+   {
+    "bound": "≤ 1.8084990\\*",
+    "class": "a",
+    "constant": "86a",
+    "prs": [
+     262,
+     270,
+     292,
+     298,
+     323
+    ],
+    "tag": "Kos2026"
+   },
+   {
+    "bound": "≤ 0.0301388794\\*",
+    "class": "a",
+    "constant": "89a",
+    "prs": [
+     255,
+     276
+    ],
+    "tag": "SK2026"
+   },
+   {
+    "bound": "≥ 1.292\\*",
+    "class": "b",
+    "constant": "1a",
+    "prs": [
+     89
+    ],
+    "tag": "PBV2026"
+   },
+   {
+    "bound": "≤ 1.457854884921989\\*",
+    "class": "b",
+    "constant": "1d",
+    "prs": [
+     247,
+     248,
+     269,
+     271,
+     286,
+     312
+    ],
+    "tag": "SCIEL2026"
+   },
+   {
+    "bound": "≥ 1.19230254\\*",
+    "class": "b",
+    "constant": "3a",
+    "prs": [
+     236
+    ],
+    "tag": "M2026"
+   },
+   {
+    "bound": "≥ 1.19281555\\*",
+    "class": "b",
+    "constant": "3a",
+    "prs": [
+     238
+    ],
+    "tag": "Syl2026"
+   },
+   {
+    "bound": "≥ 1.19359680\\*",
+    "class": "b",
+    "constant": "3a",
+    "prs": [
+     238
+    ],
+    "tag": "Syl2026"
+   },
+   {
+    "bound": "≤ 0.98173\\*",
+    "class": "b",
+    "constant": "5a",
+    "prs": [],
+    "tag": "St26"
+   },
+   {
+    "bound": "≤ 0.94325\\*",
+    "class": "b",
+    "constant": "5a",
+    "prs": [],
+    "tag": "Mad26"
+   },
+   {
+    "bound": "≤ 0.9428095\\*",
+    "class": "b",
+    "constant": "5a",
+    "prs": [],
+    "tag": "Akw26"
+   },
+   {
+    "bound": "≤ 1.7813\\*",
+    "class": "b",
+    "constant": "10a",
+    "prs": [
+     213,
+     300
+    ],
+    "tag": "P2026"
+   },
+   {
+    "bound": "≤ 0.8618\\*",
+    "class": "b",
+    "constant": "12a",
+    "prs": [
+     222
+    ],
+    "tag": "O2026"
+   },
+   {
+    "bound": "≥ 0.239\\*",
+    "class": "b",
+    "constant": "13a",
+    "prs": [
+     215,
+     314
+    ],
+    "tag": "K2026"
+   },
+   {
+    "bound": "≤ 0.4395\\*",
+    "class": "b",
+    "constant": "19a",
+    "prs": [
+     188
+    ],
+    "tag": "XL2026"
+   },
+   {
+    "bound": "≤ 0.423\\*",
+    "class": "b",
+    "constant": "19a",
+    "prs": [
+     188,
+     203,
+     287
+    ],
+    "tag": "Lin2026"
+   },
+   {
+    "bound": "≤ 0.1965\\*",
+    "class": "b",
+    "constant": "21a",
+    "prs": [
+     101,
+     291
+    ],
+    "tag": "MI2026"
+   },
+   {
+    "bound": "≤ 0.1875\\*",
+    "class": "b",
+    "constant": "21a",
+    "prs": [
+     126,
+     291
+    ],
+    "tag": "MI2026b"
+   },
+   {
+    "bound": "≤ 0.172422\\*",
+    "class": "b",
+    "constant": "21a",
+    "prs": [
+     180,
+     291
+    ],
+    "tag": "Kor2026"
+   },
+   {
+    "bound": "≤ 0.16\\*",
+    "class": "b",
+    "constant": "21a",
+    "prs": [
+     208,
+     291
+    ],
+    "tag": "MI2026c"
+   },
+   {
+    "bound": "≤ 0.1595\\*",
+    "class": "b",
+    "constant": "21a",
+    "prs": [
+     210,
+     291,
+     304
+    ],
+    "tag": "MI2026d"
+   },
+   {
+    "bound": "≤ 7.2012719\\*",
+    "class": "b",
+    "constant": "22b",
+    "prs": [
+     267,
+     324
+    ],
+    "tag": "Claude2026"
+   },
+   {
+    "bound": "≤ 9\\*",
+    "class": "b",
+    "constant": "28a",
+    "prs": [
+     217
+    ],
+    "tag": "OAI2026"
+   },
+   {
+    "bound": "≤ 0.6906538\\*",
+    "class": "b",
+    "constant": "42a",
+    "prs": [
+     85
+    ],
+    "tag": "Gri26"
+   },
+   {
+    "bound": "≤ 0.6888863712\\*",
+    "class": "b",
+    "constant": "42a",
+    "prs": [
+     251
+    ],
+    "tag": "Pin26"
+   },
+   {
+    "bound": "≤ 0.6873358063\\*",
+    "class": "b",
+    "constant": "42a",
+    "prs": [
+     184,
+     263,
+     302,
+     305,
+     327
+    ],
+    "tag": "Kos2026"
+   },
+   {
+    "bound": "≥ 0.860\\*",
+    "class": "b",
+    "constant": "43a",
+    "prs": [
+     159
+    ],
+    "tag": "S2026"
+   },
+   {
+    "bound": "≤ 0.65628589\\*",
+    "class": "b",
+    "constant": "57c",
+    "prs": [
+     245,
+     311
+    ],
+    "tag": "vS2026"
+   },
+   {
+    "bound": "≤ 3.99\\*",
+    "class": "b",
+    "constant": "65a",
+    "prs": [
+     205
+    ],
+    "tag": "Nas2026"
+   },
+   {
+    "bound": "≥ 1.0427\\*",
+    "class": "b",
+    "constant": "84a",
+    "prs": [
+     204
+    ],
+    "tag": "Nas2026"
+   },
+   {
+    "bound": "≥ 1.04317\\*",
+    "class": "b",
+    "constant": "84a",
+    "prs": [
+     204,
+     315
+    ],
+    "tag": "Nas2026b"
+   },
+   {
+    "bound": "≤ 0.0301388876\\*",
+    "class": "b",
+    "constant": "89a",
+    "prs": [
+     255
+    ],
+    "tag": "VSJ2026"
+   },
+   {
+    "bound": "≤ 0.0301388857\\*",
+    "class": "b",
+    "constant": "89a",
+    "prs": [
+     264,
+     270,
+     276
+    ],
+    "tag": "Kos2026"
+   },
+   {
+    "bound": "≥ 44\\*",
+    "class": "b",
+    "constant": "90a",
+    "prs": [
+     266
+    ],
+    "tag": "M2026"
+   },
+   {
+    "bound": "≤ 3√(2π) ≈ 7.5199\\*",
+    "class": "c",
+    "constant": "24a",
+    "prs": [
+     250
+    ],
+    "tag": "GFL2026a"
+   },
+   {
+    "bound": "≤ 6.9013\\*",
+    "class": "c",
+    "constant": "24a",
+    "prs": [
+     250
+    ],
+    "tag": "AS2026"
+   },
+   {
+    "bound": "≤ 2.2195\\*",
+    "class": "c",
+    "constant": "41a",
+    "prs": [
+     25
+    ],
+    "tag": "Baek2024"
+   },
+   {
+    "bound": "≤ 0.656319277272\\*",
+    "class": "c",
+    "constant": "57c",
+    "prs": [
+     245
+    ],
+    "tag": "OCP2010"
+   },
+   {
+    "bound": "≤ 2.4\\*",
+    "class": "c",
+    "constant": "65a",
+    "prs": [
+     205
+    ],
+    "tag": "OAI2026, IK2004"
+   },
+   {
+    "bound": "≤ 1.9993\\*",
+    "class": "c",
+    "constant": "84b",
+    "prs": [
+     257,
+     275
+    ],
+    "tag": "Al26"
+   },
+   {
+    "bound": "≤ 3.65\\*",
+    "class": "c",
+    "constant": "10c",
+    "prs": [],
+    "tag": "Bel2013 (Schmidt)"
+   },
+   {
+    "bound": "≤ 10.02\\*",
+    "class": "c",
+    "constant": "22a",
+    "prs": [],
+    "tag": "Klotz2026"
+   },
+   {
+    "bound": "≥ 0.79970\\*",
+    "class": "c",
+    "constant": "31a",
+    "prs": [],
+    "tag": "AA2026"
+   },
+   {
+    "bound": "≥ 0.833\\*",
+    "class": "c",
+    "constant": "80a",
+    "prs": [],
+    "tag": "DS2025, NS2023"
+   },
+   {
+    "bound": "≤ 0.833\\*",
+    "class": "c",
+    "constant": "80a",
+    "prs": [],
+    "tag": "H2024"
+   },
+   {
+    "bound": "≥ 1.173077\\*",
+    "class": "d",
+    "constant": "3a",
+    "prs": [],
+    "tag": "Z2025"
+   },
+   {
+    "bound": "≥ 1.187326127925948\\*",
+    "class": "d",
+    "constant": "3a",
+    "prs": [
+     131
+    ],
+    "tag": "Num2026"
+   },
+   {
+    "bound": "≥ 1.19102809\\*",
+    "class": "d",
+    "constant": "3a",
+    "prs": [
+     134,
+     146
+    ],
+    "tag": "K2026"
+   },
+   {
+    "bound": "≥ 1.19519192\\*",
+    "class": "d",
+    "constant": "3a",
+    "prs": [
+     146,
+     148
+    ],
+    "tag": "K2026b"
+   }
+  ],
+  "snapshot": "main at commit 87b4ebb (28 October 2026); pull requests and issues read on 5 November 2026 (#239, #270, #274, #280, #319 and #330 to 14:00 UTC)."
+ },
+ "commit": "1fbce3f8dfe34445bd1b9a415b3bc1c6b1237068",
+ "commit_date": "2026-11-08T17:28:34Z",
+ "repository": "https://github.com/arhancanli/quantavane-replays",
+ "reproduce": "./fetch.sh then ./run_all.sh in the folder (fetch.sh downloads the certificates at pinned commits and checks every SHA-256; Python 3.9+, standard library only)",
+ "sections": [
+  {
+   "anchor": "c1a-c1c-and-c1d-3-to-7-november-2026",
+   "constants": [
+    "1a",
+    "1c",
+    "1d"
+   ],
+   "dates": [
+    "2026-11-07"
+   ],
+   "files": {
+    ".": {
+     "checks": [
+      "autocorr_check.py"
+     ],
+     "fetch": true,
+     "results": [
+      "results/aer2026_n600.json.decimal.txt",
+      "results/aer2026_n600.json.txt",
+      "results/atris_c1a_construction.json.txt",
+      "results/cert2026_construction.json.decimal.txt",
+      "results/cert2026_construction.json.txt",
+      "results/echul_c_f10240.json.txt",
+      "results/huiihao_construction.json.decimal.txt",
+      "results/huiihao_construction.json.txt",
+      "results/julsgaard_c1c_K98304.json.txt",
+      "results/julsgaard_certificate.json.txt",
+      "results/kerem_c1d_n40960_1.4556234448.json.txt",
+      "results/koshta_K24576_0.4103333.json.txt",
+      "results/r2026_certificate.json.txt",
+      "results/steps_construction.json.decimal.txt",
+      "results/steps_construction.json.txt",
+      "results/vidigoat_c1a_n131072.json.txt",
+      "results/vidigoat_c1a_n262144.json.txt",
+      "results/vidigoat_c1c_K98304_v2.json.txt",
+      "results/vidigoat_c1c_K98304_v3.json.txt"
+     ],
+     "run_all": true
+    }
+   },
+   "folders": [
+    "."
+   ],
+   "heading": "C1a, C1c and C1d (3 to 7 November 2026)",
+   "kind": "section",
+   "method": "- $C_{1c}$: $f = \\sum_i w_i 1_{[i/K,(i+1)/K)}$ with non-negative integer weights. The autocorrelation is linear between\n  multiples of $1/K$, so the bound is $K \\min_{0 \\le k \\le K} A_k / S^2$ with $A_k = \\sum_i w_i w_{i+k}$ and\n  $S = \\sum_i w_i$ (we check $n > K$, so no $A_k$ in the range is an empty sum).\n- $C_{1d}$: $n$ equal cells on $[-1/4,1/4]$, so $h = 1/(2n)$. $f*f$ is linear between multiples of $h$ and equals\n  $h \\sum_{i+j=m-1} v_i v_j$ at the knots, so the bound is $2n \\max_m \\lvert c_m \\rvert / S^2$ with $c = v * v$.\n- $C_{1a}$: the same knot formula for a non-negative step function on $[-1/4,1/4]$ (non-negativity is checked), since\n  $\\max_t (f*f)(t) \\ge C_{1a}(\\int f)^2$ for every such $f$ gives $C_{1a} \\le 2n \\max_m c_m / S^2$.\n- All sums are exact integers: every $A_k$ (or $c_m$) comes from one big-integer product (Kronecker substitution;\n  positive and negative parts packed separately for signed values). The whole sequence is then confirmed by a\n  polynomial identity at four random points modulo $2^{61}-1$, and the deciding lag is summed again directly.\n- Red controls, each run on every certificate: one corrupted coefficient is rejected by the identity; the old\n  coefficients are rejected after one weight changes by 1; scaling every value by 3 leaves the bound unchanged.",
+   "prs": [
+    224,
+    232,
+    243,
+    269,
+    270,
+    271,
+    286,
+    292,
+    312,
+    318,
+    326
+   ],
+   "rows": [
+    {
+     "prs": [
+      292
+     ],
+     "tags": [],
+     "text": "| $C_{1c} \\geq$ | [#292](https://github.com/teorth/optimizationproblems/pull/292) (Koshta's row) | DennisKoshta/c1c-autocorrelation-certificate @ `a4ee94ef29ff`, `K24576_0.4103333.json`, `963cb727...c9e` | 134648548624804778248790016 / 328144294688458468928334649 = 0.41033335274849333953..., minimum at k = 21264 only | 0.4103333, below the exact value |"
+    },
+    {
+     "prs": [
+      318
+     ],
+     "tags": [],
+     "text": "| $C_{1c} \\geq$ | [#318](https://github.com/teorth/optimizationproblems/pull/318) | Julsgaard/c1c-certificate @ `91e47b1a`, `cert/certificate.json` (K = 98,304, 98,368 weights), `fe11336b...52d2` | 2582127846607416062611587072/6292441470965870058830439361 = 0.4103538918115781099..., minimum only at k = 47318: the printed 0.4103538918 is a valid rounding down |"
+    },
+    {
+     "prs": [
+      270
+     ],
+     "tags": [],
+     "text": "| $C_{1c} \\geq$ | [#270](https://github.com/teorth/optimizationproblems/pull/270) (update of 4 Nov) | vidigoat/optimization-records @ `9f82508a`, `tao/certificates/c1c_v2/c1c_K98304_v2.json` (K = 98,304), `3bba62b0...4729` (no hash stated; this is the file at that commit) | 645458795582745374892957696/1572931393892132517694378321 = 0.4103540676275733581..., minimum only at k = 93282: the printed 0.4103540676 is a valid rounding down |"
+    },
+    {
+     "prs": [
+      270
+     ],
+     "tags": [],
+     "text": "| $C_{1c} \\geq$ | [#270](https://github.com/teorth/optimizationproblems/pull/270) (update of 5 Nov) | vidigoat/optimization-records @ `42d6a89f`, `tao/certificates/c1c_v3/c1c_K98304_v3.json` (K = 98,304, 98,368 weights), `e0786a59...ec66` | 640823574552569898220412928/1561614482809354047911104009 = 0.4103596512499835112..., minimum only at k = 98301: the printed 0.4103596512 is a valid rounding down |"
+    },
+    {
+     "prs": [
+      270
+     ],
+     "tags": [],
+     "text": "| $C_{1a} \\leq$ | [#270](https://github.com/teorth/optimizationproblems/pull/270) | vidigoat/optimization-records @ `9f82508a`, `tao/certificates/c1a/c1a_n262144.json` (262,144 cells, decimal strings read exactly), `1848a920...f3de` | 3756858380445445962687721679242267976826786797829957539923492864000000000000/2500000000000000227858304266031237715040682299126697825903032255969919203361 = 1.50274335217817824811..., maximum only at m = 100329 | 1.5027433522, above the exact value |"
+    },
+    {
+     "prs": [
+      270
+     ],
+     "tags": [],
+     "text": "| $C_{1a} \\leq$ | #270 (its first refinement) | same commit, `c1a_n131072.json` (131,072 cells), `ad1b7ff4...8bef` | 88396668012481333418540698869863464003678707923912272976102136217600000/58823529411764719617703895028066775569135640608648734518121194077814337 = 1.50274335621218231722..., maximum only at m = 131071 | 1.502743356212 (its README), above |"
+    },
+    {
+     "prs": [
+      312
+     ],
+     "tags": [],
+     "text": "| $C_{1d} \\leq$ | [#312](https://github.com/teorth/optimizationproblems/pull/312) | Julsgaard/c1d-certificate @ `cc455ca0`, `cert/certificate.json` (81,920 cells), `04c9c759...237` | 9900630255081376929482866688 / 6805830738283663732311831361 = 1.45472766452875064884..., maximum only at i + j = 29124 | 1.454727664528751, above the exact value |"
+    },
+    {
+     "prs": [
+      271
+     ],
+     "tags": [],
+     "text": "| $C_{1d} \\leq$ | [#271](https://github.com/teorth/optimizationproblems/pull/271) | Keremozdemirra/tao-1c-1d-certificates @ `408f8d0b`, `c1d_n40960_1.4556234448.json` (40,960 cells), `be35060a...2da` | 279676466330630562685427712000 / 192135175720687825901095191121 = 1.45562344470022455281..., maximum only at i + j = 15313 | 1.4556234448, above |"
+    },
+    {
+     "prs": [
+      269
+     ],
+     "tags": [],
+     "text": "| $C_{1d} \\leq$ | [#269](https://github.com/teorth/optimizationproblems/pull/269) | echul-seal/c1d-upper-bound @ `2be42dfd`, `ub/c_f10240.json` from `c1d_records.tgz` (10,240 cells), `30d501e1...973` | 76358168487433178963290071040 / 52455219864513498497744894329 = 1.45568293650581519488..., maximum only at i + j = 3168 | 1.455682936505816, above |"
+    },
+    {
+     "prs": [
+      286
+     ],
+     "tags": [],
+     "text": "| $C_{1d} \\leq$ | [#286](https://github.com/teorth/optimizationproblems/pull/286) | huiihao/c1d-certificate @ `302817dc`, `construction.json` (400 cells, JSON floats), `c489b46b...8df` | read as binary64: 4563650116209721766004955898613711667200 / 3127595284199802099438492053245424408273 = 1.45915622115964902113...; read as the printed decimals: 1.45915622115964903535... | 1.4591562211596491, above both |"
+    },
+    {
+     "prs": [
+      326
+     ],
+     "tags": [],
+     "text": "| $C_{1d} \\leq$ | [#326](https://github.com/teorth/optimizationproblems/pull/326) (the STEPS2026 row) | steps-re/c1d-certificate @ `9a091494`, `construction.json` (600 cells, JSON floats), `3dd39fae...a28c` | read as binary64: 698746209786798359455483373677229695641600 / 478522078482569620433992386249161163190849 = 1.46021728402287398524...; read as the printed decimals: 1.46021728402287397507... | 1.460217284022874, above both |"
+    },
+    {
+     "prs": [
+      326
+     ],
+     "tags": [],
+     "text": "| $C_{1d} \\leq$ | [#326](https://github.com/teorth/optimizationproblems/pull/326) (the AER2026 row) | unclegareth-create/alphaevolve_repository_of_problems @ `4b3bbd2a`, `.../problem_4_signed_autoconvolution_bounds.py`, `1a290ad1...54b2`: the list `STEP_FUNCTION_C4_PRIME_N600` (600 cells), read from the file with Python's `ast` parser and never run | read as binary64: 1.45998904690538324315...; read as the printed decimals: 1.45998904690538314495... | 1.459989046905384, above both |"
+    },
+    {
+     "prs": [
+      224,
+      243
+     ],
+     "tags": [],
+     "text": "| $C_{1d} \\leq$ | [#224](https://github.com/teorth/optimizationproblems/pull/224) and [#243](https://github.com/teorth/optimizationproblems/pull/243) (the two CERT2026 rows; 7 November) | extremal-values-registry @ `50520b9`, `certificates/third_autocorrelation_abs_inside/construction.json` (300 cells, JSON floats; its values equal those printed in #224), `51f864ee...0a0e` (as the 1d page states) | read as binary64: 2039224160683882663565441886346340189798400 / 1393796574908163689489385839036226787118881 = 1.46307158260755932746..., the fraction #224 states, maximum only at m = 414; read as the printed decimals: 1.46307158260755929963... | the starred 1.463071582607559 is below both, so it is not an upper bound as printed; #243's 1.4630715826075594 is above both |"
+    },
+    {
+     "prs": [
+      243
+     ],
+     "tags": [
+      "R2026"
+     ],
+     "text": "| $C_{1c} \\geq$ | [#243](https://github.com/teorth/optimizationproblems/pull/243) (the [R2026] row, whose asterisk came off on one replay; 7 November) | rozetyp/barnard-steinerberger-lower-bound @ `19f3971`, `certificate.json` (K = 6,144, 6,148 integer weights), `62ac49dd...fd0e` (as the 1c page states) | 21072342208353792 / 51354782902387969 = 0.41032871754918741449..., the page's fraction, minimum only at k = 4665 | 0.4103287, below the exact value |"
+    },
+    {
+     "prs": [
+      232
+     ],
+     "tags": [
+      "A2026"
+     ],
+     "text": "| $C_{1a} \\leq$ | [#232](https://github.com/teorth/optimizationproblems/pull/232) (the [A2026] row, whose asterisk came off on one replay; 7 November) | atrislabs/records @ `1fa857a0`, `1a-sidon-autocorrelation/construction.json` (65,536 non-negative rational heights), `7387452d...7abf` (the page states `7387452d1da7`) | 645423412969467179759478160871915520 / 429496729600000035389440000000000729 = 1.50274348670958337974..., the fraction of the repository's `score_output.json`, maximum only at m = 25072 | 1.5027434868, above the exact value |"
+    }
+   ],
+   "summary": "All sums are exact integers: every $A_k$ (or $c_m$) comes from one big-integer product (Kronecker substitution; positive and negative parts packed separately for signed values). The whole sequence is then confirmed by a polynomial identity at four random points modulo $2^{61}-1$, and the deciding lag is summed again directly.",
+   "tags": [
+    "A2026",
+    "R2026"
+   ]
+  },
+  {
+   "anchor": "c15b-the-dual-matrix-multiplication-exponent-6-november-2026",
+   "constants": [
+    "15b"
+   ],
+   "dates": [
+    "2026-11-06"
+   ],
+   "files": {
+    "c15b": {
+     "checks": [
+      "c15b_check.py"
+     ],
+     "fetch": true,
+     "results": [
+      "results/longer.txt",
+      "results/var2026.txt"
+     ],
+     "run_all": true
+    }
+   },
+   "folders": [
+    "c15b"
+   ],
+   "heading": "C15b: the dual matrix multiplication exponent (6 November 2026)",
+   "kind": "section",
+   "prs": [
+    337
+   ],
+   "rows": [
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| the 15-step script | sizes multiply to $b = 147456$, as the certificate says |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| $2D/\\log 2$, reduced recurrence (12.9) and full Lemma 12.1, which agree | $0.466525061423431426876062217\\ldots$ (enclosure width $6 \\times 10^{-131}$) |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| the claim | $2D/\\log 2 > 23326253/50000000$, by exact comparison of the interval ends |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| the paper's script (12.8) | $2D/\\log 2 = 0.466101554898471852177\\ldots > 0.465$; centres B, A, C, B, C, B, A as stated |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| the certified information after (12.9) and the chain (12.10) | all eleven statements hold ($\\rho$ exactly, as a dyadic rational), and the chain equals $1548637/3327360 > 0.465$ |"
+    }
+   ],
+   "summary": "`c15b/c15b_check.py`, standard library only, interval arithmetic of our own (fixed point with 448 fractional bits, outward rounding, exp and log by series with explicit remainders): the two rows proposed for the 15b page in [#337](https://github.com/teorth/optimizationproblems/pull/337), $\\alpha > 0.465$\\* ([OAI2026], the seven-step completion script (12.8)) and $\\alpha > 0.46652506$\\* ([Var2026], a 15-step script, `dual-alpha-witness` @d2868fa, `certificate.json`, `8a81020f...d345`), written from Section 12.1 of the preprint and the certificate data alone (Varlamov's `verify.py` was neither read nor run). Base two, distinguished side $X$ and its colour $B$; each completion of size $m$ updates $(\\rho, b, h_A, h_B, h_C)$ by Lemma 12.1, and $\\alpha \\ge \\min\\{1, 2D/\\log 2\\}$ with $D = (\\rho h_B + (1-\\rho)\\max(h_A, h_C))/b$.",
+   "tags": [
+    "OAI2026",
+    "Var2026"
+   ]
+  },
+  {
+   "anchor": "c5a-a-sidon-set-constant-erdős-problem-30-6-november-2026",
+   "constants": [
+    "5a"
+   ],
+   "dates": [
+    "2026-11-06"
+   ],
+   "files": {
+    "c5a": {
+     "checks": [
+      "c5a_check.py"
+     ],
+     "fetch": true,
+     "results": [
+      "results/var2026.txt"
+     ],
+     "run_all": true
+    }
+   },
+   "folders": [
+    "c5a"
+   ],
+   "heading": "C5a: a Sidon set constant, Erdős problem 30 (6 November 2026)",
+   "kind": "section",
+   "prs": [
+    335
+   ],
+   "rows": [
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| kernels and weights | nonnegative, symmetric, masses 1, $\\sum_\\ell \\lambda_\\ell = 1$ |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| covering inequalities, $0 \\le q \\le M = 12288$, over the denominator $2n^4D$ | all 12,289 hold; the least sum is exactly 1, at $q = M$ only |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| $a$, $b$ | $a = 349525/262144$, $b = 0.666667938238285\\ldots > 0$, both equal to the note's exact fractions |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| bound | $\\sqrt{ab} = 0.94280949115162893061\\ldots$, so $ab \\le 0.942809491151629^2 < 0.9428095^2$ by cross-multiplication |"
+    }
+   ],
+   "summary": "`c5a/c5a_check.py`, standard library only, exact integer and rational arithmetic: the bound $C_{5a} \\le 0.9428095$\\* ([Akw26] on the 5a page) through the independent certificate of [#335](https://github.com/teorth/optimizationproblems/pull/335) (A. Varlamov, `sidon-c5a-certificate` @091844e, `certificate.json`, `fece8394...80ab`), written from its `PROOF.md` alone (its `verify.py`, `audit_checker.py`, `build_certificate.py` and `reproduce.py` were neither read nor run). Hou and Zhao's vector-valued smoothing in the symmetric case: centred uniform kernels $p^{(\\ell)}$ on $[n-\\ell, n+\\ell)$ with weights $\\lambda_\\ell = 4\\ell^3/n^4$ ($\\ell < n$) and $(2n-1)/n^2$, $n = 512$, $m = 1024$, boundary depth $L = 12$, and boundary weights $W^{(\\ell)}_j = \\lfloor \\ell^{-1}\\sum V_k \\rfloor + r$ rebuilt from the 6,144 integers $V_k$ and $r = 43922$ (our window sums use prefix sums over the even sites).",
+   "tags": [
+    "Akw26"
+   ]
+  },
+  {
+   "anchor": "c49-the-3-sunflower-free-capacity-4-november-2026",
+   "constants": [
+    "49"
+   ],
+   "dates": [
+    "2026-11-04"
+   ],
+   "files": {
+    "c49": {
+     "checks": [
+      "sunflower_check.py"
+     ],
+     "fetch": true,
+     "results": [
+      "results/cla_F.txt",
+      "results/cla_FH.txt",
+      "results/irsi_degkm.txt",
+      "results/irsi_v10.txt",
+      "results/irsi_v11.txt",
+      "results/irsi_v12.txt",
+      "results/kos.txt",
+      "results/kos322.txt",
+      "results/lemma.txt",
+      "results/selftest.txt",
+      "results/syl_Bprime.txt",
+      "results/syl_unit.txt"
+     ],
+     "run_all": true
+    }
+   },
+   "folders": [
+    "c49"
+   ],
+   "heading": "C49: the 3-sunflower-free capacity (4 November 2026)",
+   "kind": "section",
+   "prs": [
+    260
+   ],
+   "rows": [
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| IRSI v1.0, 1.5617847 | `cert_c49_chain20.json` (`c30a74fe...715b`), 6,127 sets on 20 points | rho^(1/18) = 1.56178470895053727967... |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| IRSI v1.1, 1.5621220 | `cert_c49_chain20_s17.json` (`c12d0dd6...fc7b`), 6,150 sets | 1.56212205600681534404... |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| IRSI v1.2, 1.5647730 | `cert_c49_chain20_v12.json` (`7472112c...4e82e`), 6,341 sets | 1.56477309608283129921... |"
+    },
+    {
+     "prs": [],
+     "tags": [
+      "Cla2026"
+     ],
+     "text": "| [Cla2026] F, 1.5664286 | F rebuilt from the page, equal to `k5_family_masks.txt` (`34cab736...7659`), 75 sets | rho = 20 + 2 sqrt(66), rho^(1/8) = 1.56642866225003666041... |"
+    },
+    {
+     "prs": [],
+     "tags": [
+      "Cla2026"
+     ],
+     "text": "| [Cla2026] F and H, 1.5666969 | H rebuilt from the page, equal to `z11_family_masks.txt` (`09c02bec...a807`), 121 sets | rho^(1/17) = 1.56669697875431533092... |"
+    },
+    {
+     "prs": [],
+     "tags": [
+      "Syl2026"
+     ],
+     "text": "| [Syl2026] unit chain, 1.5675517 | `F.txt`, `H.txt`, `B.txt` (hashes as in their SHA256SUMS); gadget G (250,659 sets on 28 points) rebuilt from the page | rho^(1/60) = 1.56755175575818821977... |"
+    },
+    {
+     "prs": [],
+     "tags": [
+      "Syl2026"
+     ],
+     "text": "| [Syl2026] B', 1.5678015 | `Bprime.txt` (`2a723857...5cec`), 4,364 sets | rho = 1127 + sqrt(925536), rho^(1/17) = 1.56780152016874834047... |"
+    },
+    {
+     "prs": [],
+     "tags": [
+      "Kos2026"
+     ],
+     "text": "| [Kos2026], 1.5678599 | `two_pendant_extra_1.5678599.txt` (`10ee18f9...4838`), 252,292 sets on 28 points | rho = 64728 + sqrt(3018723123), rho^(1/26) = 1.56785990242458988585... |"
+    }
+   ],
+   "summary": "`c49/sunflower_check.py`, our own code: every base family is checked Sperner and 3-sunflower-free exhaustively (a pivot method and a pair method, plus a box method for the two 250,000-set families; all agree with brute force on 3,400 random and glued test families), the port counts and transfer matrix are recomputed, and the rate is enclosed by exact integer comparisons. Every printed bound is the 7-decimal truncation of the exact value.",
+   "tags": [
+    "Cla2026",
+    "Kos2026",
+    "Syl2026"
+   ]
+  },
+  {
+   "anchor": "c86-the-schur-siegel-smyth-trace-constant-4-november-2026",
+   "constants": [
+    "86"
+   ],
+   "dates": [
+    "2026-11-04"
+   ],
+   "files": {
+    "c86": {
+     "checks": [
+      "c86_check.py",
+      "c86_lower.c",
+      "c86_lower.py"
+     ],
+     "fetch": true,
+     "results": [
+      "results/kos.txt",
+      "results/ng.txt",
+      "results/p298.txt",
+      "results/pin.txt",
+      "results/vid.txt",
+      "results/vid2.txt",
+      "results/vid3.txt"
+     ],
+     "run_all": true
+    }
+   },
+   "folders": [
+    "c86"
+   ],
+   "heading": "C86: the Schur-Siegel-Smyth trace constant (4 November 2026)",
+   "kind": "section",
+   "prs": [
+    270,
+    298,
+    315
+   ],
+   "rows": [
+    {
+     "prs": [],
+     "tags": [
+      "Kos2026"
+     ],
+     "text": "| [Kos2026], 1.8084990 | `certificate/c86_A19d7_robust_1.8084990.json` @90c57242 (`1a9e108e...845c`) | 19 auxiliary polynomials pass E2; E3 ratio 0.83542405; smallest E4 integral 1.99999997804e-6; E5: f >= 1.01159e-6 on all 633 cells (4,403 pieces), min f in [1.011592e-6, 1.011601e-6] near x = 2.869309284; T/m = 144679917840593158601/79999999999999881200 = 1.80849897300741716813... |"
+    },
+    {
+     "prs": [],
+     "tags": [
+      "Pin2026"
+     ],
+     "text": "| [Pin2026], 1.8117251 | `cert_n1200_A11.json` @116a58f (`722a287b...e53d`) | 11 polynomials pass E2; E3 ratio 0.82977960; smallest E4 9.99999986901e-5; E5: f >= 5.03972e-5 on all 629 cells, min f near x = 0.709342054; T/m = 144938007612277893/79999999999994000 = 1.81172509515360954188... |"
+    },
+    {
+     "prs": [
+      270
+     ],
+     "tags": [],
+     "text": "| #270, 1.8077686 | `c86_deg8_h400_1.807768536863.json` (`7ca02d70...1134`) | 19 polynomials (two of degree 8) pass E2; E3 ratio 0.84520107; smallest E4 9.98933032188e-11 (thin but rigorous); E5: f >= 4.86106e-7 on all 1,243 cells; T/m = 578485931795944337659/319999999999999303200 = 1.80776853686232999160... |"
+    },
+    {
+     "prs": [
+      298
+     ],
+     "tags": [],
+     "text": "| #298, 1.80560940 | `c86/adaptive-cone/certificate.json` @0d82162 (`10d68ec2...0dad5`) | 28 polynomials (10 with nonreal roots, degree up to 21) pass E2; E3 ratio 0.8950913258; smallest E4 8.94715228390e-8 (x^2 - 4x + 2); E5: f >= 5.57254e-7 on all 3,791 support cells (118,757 pieces), min f in [5.5725403e-7, 5.5725405e-7] near x = 0.285640644; T/m = 288897505229428473/160000001279369600 = 1.80560939324616691129... |"
+    }
+   ],
+   "summary": "`c86/c86_check.py`, our own code, standard library only: the six finite conditions of Smith's criterion as the 86a page states them. E1 (density, support, mass m), E3 and E6 in exact rationals; E2 (primitive, irreducible over Q by a mod-p factor-degree sieve and by an exact root-subset test, totally real by exact Sturm counts); E4 (integral of log|Q| d mu) from rigorous logarithms at scale 2^-128 and isolated roots; E5 (U_mu(x) - sum b_Q log|Q(x)| >= c on the support) by per-cell Taylor models with explicit remainder bounds, exact handling of each cell's edge cusps and nearby roots, and adaptive bisection. Floats only choose split and tangent points; they never decide anything.",
+   "tags": [
+    "Kos2026",
+    "Pin2026"
+   ]
+  },
+  {
+   "anchor": "c44-and-c70-4-november-2026",
+   "constants": [
+    "44",
+    "70"
+   ],
+   "dates": [
+    "2026-11-04"
+   ],
+   "files": {
+    "c44": {
+     "checks": [
+      "c44_check.py"
+     ],
+     "fetch": true,
+     "results": [
+      "results/pin.txt"
+     ],
+     "run_all": true
+    },
+    "c70": {
+     "checks": [
+      "c70_check.py"
+     ],
+     "fetch": true,
+     "results": [
+      "results/pin.txt"
+     ],
+     "run_all": true
+    }
+   },
+   "folders": [
+    "c44",
+    "c70"
+   ],
+   "heading": "C44 and C70 (4 November 2026)",
+   "kind": "section",
+   "prs": [],
+   "rows": [],
+   "summary": "`c44/c44_check.py`: Pinho's C44 <= 4.3576549226 (rpinho/c44-certificate @f3fb25d). The paper's recurrence U(b,d) = min(c_d, d 2^-d + max_{k<=d} U(min(b-1, B_k), k)), caps c_d = d/2 and c_3 = 5/4, with B_d from the 48 degree certificates (each checked exactly: integer nodes, moment identities, positivity) intersected with Wellens's 3b(b-1) <= 2(d^4-d^2) to degree 96, plus Wellens's tail 233045/2^95, computed exactly three ways: the bound is 172624496193406565421448533795/39614081257132168796771975168 = 4.35765492257445791338..., the page's rational, and the printed value is it rounded up. As a function of the degree-3 cap c the bound is this value + clamp(c - 173/128, 0, 1/128), so the claim needs only D <= 173/128 at degree 3 (a cap of 11/8, from R_3 <= 11, returns Epi's bound).",
+   "tags": []
+  },
+  {
+   "anchor": "c82-the-essential-minimum-of-the-zhang-zagier-height-4-november-2026",
+   "constants": [
+    "82"
+   ],
+   "dates": [
+    "2026-11-04"
+   ],
+   "files": {
+    "c82": {
+     "checks": [
+      "c82_check.py"
+     ],
+     "fetch": true,
+     "results": [
+      "results/doche.txt",
+      "results/epi.txt",
+      "results/pin.txt",
+      "results/pr280.txt",
+      "results/pr280b.txt",
+      "results/pr280c.txt",
+      "results/pr280d.txt",
+      "results/pr301.txt",
+      "results/pr301a.txt",
+      "results/pr330.txt",
+      "results/pr330b.txt",
+      "results/pr330c.txt",
+      "results/pr330d.txt",
+      "results/selftest.txt"
+     ],
+     "run_all": true
+    }
+   },
+   "folders": [
+    "c82"
+   ],
+   "heading": "C82: the essential minimum of the Zhang-Zagier height (4 November 2026)",
+   "kind": "section",
+   "prs": [
+    280,
+    301,
+    330
+   ],
+   "rows": [
+    {
+     "prs": [],
+     "tags": [
+      "Pin26"
+     ],
+     "text": "| [Pin26] | rpinho/c82-height-certificate @69d8964 `certificate.json` (`b33626f3...0fce`) | [0.2534446873318462, 0.2534446873318463] | 0.2534449 |"
+    },
+    {
+     "prs": [],
+     "tags": [
+      "Epi26"
+     ],
+     "text": "| [Epi26] | BakeLab/Epi-results @97fa6a4 `construction.json` (`e85e26fa...e559`) | [0.2535689302577047, 0.2535689302831411] | 0.2535744749068227 (valid, 5.5e-6 loose) |"
+    },
+    {
+     "prs": [
+      280
+     ],
+     "tags": [],
+     "text": "| #280 | vidigoat/optimization-records @32898ac (`557da3e3...5fe0`) | [0.2534350401279890, 0.2534350401279891] | 0.2534350402 |"
+    },
+    {
+     "prs": [
+      301
+     ],
+     "tags": [],
+     "text": "| #301 | rpinho @6d4e80c `degree44-denominators-v2` (`adfca075...7ac2`) | [0.2530918335514613, 0.2530918335514614] | 0.253091834 |"
+    },
+    {
+     "prs": [
+      301
+     ],
+     "tags": [],
+     "text": "| #301 first filing | rpinho @6d4e80c `degree44-denominators` (`6a24d45c...f056`) | [0.2531232746206604, 0.2531232746206605] | 0.253123275 |"
+    },
+    {
+     "prs": [
+      330
+     ],
+     "tags": [],
+     "text": "| #330 | rpinho/math-certificates @5461d49 `c82/degree104-cvp/certificate.json` (`27a4e611...d3f9`) | [0.2524048059550536, 0.2524048059550537] | 0.252404806 |"
+    },
+    {
+     "prs": [
+      330
+     ],
+     "tags": [],
+     "text": "| #330, updated 5 Nov | rpinho/math-certificates @98208a4 `c82/degree104-joint/certificate.json` (`a4061273...e36e`) | [0.2520179247552093, 0.2520179247552094] | 0.2520179248 |"
+    },
+    {
+     "prs": [
+      330
+     ],
+     "tags": [],
+     "text": "| #330, final certificate (5 Nov) | rpinho/math-certificates @3be6b2f `c82/degree104-joint/certificate.json` (`b71150bb...4171`) | [0.2519964889882011, 0.2519964889882012] | 0.2519964890 |"
+    },
+    {
+     "prs": [
+      330
+     ],
+     "tags": [],
+     "text": "| #330, update of 5 Nov evening | rpinho/math-certificates @a12c362 `c82/degree104-joint/certificate.json` (`ee9622b5...fdd5`, as in its SHA256SUMS) | [0.2519923409720083, 0.2519923409720084], inside the stated [0.25199234097200838698, 0.25199234097200839540] | 0.2519923410 |"
+    },
+    {
+     "prs": [
+      280
+     ],
+     "tags": [],
+     "text": "| #280 v4, 5 Nov | vidigoat/optimization-records @79ce0df `tao/certificates/c82/v4/certificate.json` (`c1981f1c...c72f`) | [0.2520079723284296, 0.2520079723284297] | 0.2520079724 |"
+    },
+    {
+     "prs": [],
+     "tags": [
+      "Pin26"
+     ],
+     "text": "| control: Doche 2001 | [Pin26] `controls/doche2001.json` (`835a10b9...7fc2`) | [0.2544361553, 0.2544361561] | 0.25444 |"
+    }
+   ],
+   "summary": "`c82/c82_check.py`, standard library only: the bound B = [sum_j m_j log M(R_j o T) + int_0^1 max(0, g) dt] / D with T(z) = z(1 - z). The hypotheses (integer coefficients, monic denominators, deg A < D, coprimality of every pair) are checked exactly; every root of every composed factor is enclosed in a disc of radius at most 2^-303 by Gershgorin's theorem on the Weierstrass matrix; the integral is enclosed on an adaptive dyadic tiling with per-root series and rigorous remainders; the comparison with the printed bound is exact.",
+   "tags": [
+    "Epi26",
+    "Pin26"
+   ]
+  },
+  {
+   "anchor": "c16-the-brezis-gallouet-wainger-remainder-constant-on-the-torus-5-november-2026",
+   "constants": [
+    "16"
+   ],
+   "dates": [
+    "2026-11-05"
+   ],
+   "files": {
+    "c16": {
+     "checks": [
+      "c16_boxes_check.py",
+      "c16_check.py",
+      "c16_trunc_check.py"
+     ],
+     "fetch": true,
+     "results": [
+      "results/julsgaard_319.txt",
+      "results/maxr_trunc.txt",
+      "results/maxr_upper.txt",
+      "results/vid.txt",
+      "results/vid2.txt"
+     ],
+     "run_all": true
+    }
+   },
+   "folders": [
+    "c16"
+   ],
+   "heading": "C16: the Brezis-Gallouet-Wainger remainder constant on the torus (5 November 2026)",
+   "kind": "section",
+   "prs": [
+    246,
+    270,
+    319,
+    325,
+    326
+   ],
+   "rows": [
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| Side | Certificate (SHA-256) | Our result | Printed bound |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| upper | vidigoat/optimization-records @5da2dc1 `tao/certificates/c16_pinned/certificate.json` (`2783dfb9...c88b`; no hash stated, this is the file at that commit) | largest interval-end value 2.15622552815421974 (2.6e-16 below the printed bound); tail $\\delta \\ge 2^{18}$ at most 2.0163 | 2.15622552815422 |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| lower | the trial function above | 2.15622552815421292 (enclosure width 2.7e-17; $\\delta$ = 3.928836059681948) | 2.1562255281542128 |"
+    },
+    {
+     "prs": [
+      319
+     ],
+     "tags": [],
+     "text": "| lower, [#319](https://github.com/teorth/optimizationproblems/pull/319) (Julsgaard) | the same family at $\\mu = 128042/2^{20}$ | [2.15622552815420610, 2.15622552815420614] ($\\delta$ = 3.928838101027620) | 2.156225528 (stated enclosure 2.1562255281542061 $\\pm$ 6.1e-17) |"
+    },
+    {
+     "prs": [
+      270
+     ],
+     "tags": [],
+     "text": "| upper, #270 night update (18 digits) | vidigoat/optimization-records @1e8e786 `tao/certificates/c16_pinned_v2/certificate.json` (`8c13abbb...05e8`, as in its SHA256SUMS) | all 383 intervals hold: the largest interval-end value is 2.15622552815421295831 (G bracket width 2.0e-21 there), 1.7e-18 below the printed bound | 2.15622552815421296 |"
+    },
+    {
+     "prs": [
+      270
+     ],
+     "tags": [],
+     "text": "| lower, #270 night update | the same family at $\\mu$ = `0x1.f42a1bd5af466p-4` | 2.15622552815421295612 (enclosure width 6.7e-21; 262,144 explicit rows) | 2.156225528154212956 |"
+    },
+    {
+     "prs": [
+      326
+     ],
+     "tags": [],
+     "text": "| lower, the 16a row of [#326](https://github.com/teorth/optimizationproblems/pull/326) (maximusrufus) | the trial function truncated at $0 < \\lvert k\\rvert \\le 4000$, $\\mu = 1221/10000$ (maximusrufus/c16-bgw-certificates @ `0c570700`, `lower_certificate.json`, `de314c10...6991`: only $R$ and $\\mu$ used), `c16_trunc_check.py`: the three sums over the disc in integers at the scale $2^{256}$, every term rounded both ways | 2.15622477064423579034; the certificate's three sum enclosures overlap ours | 2.1562247706 |"
+    },
+    {
+     "prs": [
+      246,
+      326
+     ],
+     "tags": [],
+     "text": "| upper, the 16a row of [#246](https://github.com/teorth/optimizationproblems/pull/246) (maximusrufus; 7 November) | maximusrufus/c16-bgw-certificates @ `0c570700`, `upper_certificate.json` (`f46adc04...25a3`; no hash stated, this is the file at the commit #326 cites): 84 boxes tiling $[1, 4.9 \\cdot 10^8]$ exactly, each with its own $\\mu$ (read exactly from its decimal string). `c16_boxes_check.py` checks the 82 boxes that start below $2^{18}$ with their own $\\mu$ (each endpoint rounded outward; the one that crosses $2^{18}$ up to $2^{18}$); for $\\delta \\ge 2^{18}$ our own tail bound replaces the certificate's | largest endpoint value 2.15622564574899300283, on the box $[3.928106, 3.931069]$ ($\\mu$ = 0.12206997134993264), $8.5 \\cdot 10^{-10}$ below the printed bound; tail at most 2.0163. Controls: the bound $10^{-15}$ below that value, one $\\mu$ raised by 1%, and one box removed are each refused | 2.1562256466 |"
+    }
+   ],
+   "summary": "`c16/c16_check.py`, standard library only, written from the definition on the 16a page ($\\mathbb T^2 = [0, 2\\pi]^2$, unnormalized $L^2$ norms). Both sides of the update of 4 November in [#270](https://github.com/teorth/optimizationproblems/pull/270):",
+   "tags": []
+  },
+  {
+   "anchor": "c68-korenblums-constant-5-november-2026",
+   "constants": [
+    "68"
+   ],
+   "dates": [
+    "2026-11-05"
+   ],
+   "files": {
+    "c68": {
+     "checks": [
+      "c68_check.py",
+      "row_check.py"
+     ],
+     "fetch": true,
+     "results": [
+      "results/pin.txt",
+      "results/pin0447.txt",
+      "results/vid0446.txt",
+      "results/vid044605.txt"
+     ],
+     "run_all": true
+    }
+   },
+   "folders": [
+    "c68"
+   ],
+   "heading": "C68: Korenblum's constant (5 November 2026)",
+   "kind": "section",
+   "prs": [
+    239,
+    274
+   ],
+   "rows": [
+    {
+     "prs": [],
+     "tags": [
+      "Pin2026"
+     ],
+     "text": "| [Pin2026] | rpinho/korenblum-c68-certificate @9d48de6 `certificate-jung.json` (`80a056f2...002b`, as stated) | all hypotheses hold: slope $l$ = 0.02563746486913 below the analytic bound 0.025637464869136; first family $k \\le 31278$ explicit (smallest margin $A_k/(R^{k+1}/(k+1))$ = 2.0961e-6, at $k$ = 5714), then the atom at $R$; second family $k \\le 23999$ explicit (smallest margin $B_k/(R^{k+1}/(k+1))$ = 2.2848e-7, at $k$ = 8502), then the strip (gap 2.1063e-12) | 0.432 |"
+    },
+    {
+     "prs": [
+      274
+     ],
+     "tags": [],
+     "text": "| #274 | vidigoat/optimization-records @1a76f9d `tao/certificates/c68/certificate-c0446.json` (`2b04f03e...d019`, as in its SHA256SUMS) | all hypotheses hold: $A$ = 12.2233841499591, $\\Psi$ = 25436.8054244252, $\\mathrm{sech}^2(A/2) < 1/3$, $8\\cosh^4(A/6) < \\Psi$; first family $k \\le 5806$ explicit (smallest margin 6.9901e-6, at $k$ = 407), then the atom at $R$; second family $k \\le 1322$ explicit (smallest margin 6.9824e-6, at $k$ = 44), then one tail piece alone from $k$ = 1323 | 0.446 |"
+    },
+    {
+     "prs": [
+      274
+     ],
+     "tags": [],
+     "text": "| #274, supplementary | same commit, `certificate-c044605.json` (`b8ea516b...054d`, as in its SHA256SUMS) | all hypotheses hold; margins 8.4733e-7 (at $k$ = 9) and 8.1559e-7 (at $k$ = 44); one tail piece alone from $k$ = 1324 | 0.44605 |"
+    }
+   ],
+   "summary": "`c68/c68_check.py`, standard library only: the quantitative hypotheses of the 68a row [Pin2026], $C_{68} \\ge 54/125$ (added in [#239](https://github.com/teorth/optimizationproblems/pull/239)), and of the two certificates of [#274](https://github.com/teorth/optimizationproblems/pull/274) (0.446 and 0.44605). Wikström's moment lemma (arXiv:2607.17748, Lemma 3.1, as the certificate's NOTE.md recalls it) needs a probability measure $\\mu$ on $[c^2, 1]$ with no atom at 1 and $\\int t^k\\,d\\mu \\ge 1/(k+1)$ for $k \\ge 0$, $\\int \\beta\\, t^k\\,d\\mu \\le 1/(k+1)$ for $k \\ge 1$, where $\\beta = 1 - g$ and $g = 1/G$ is the envelope of the certificate's GEOMETRIC_LEMMA.md. We check, from the exact rationals of `certificate-jung.json`: the measure (support, positive weights, total mass exactly 1); the admissible range of the linear slope $l$ with $g(t) \\ge l(1-t)$ on $[R, 1]$, re-derived ($y \\ge a(1-t)^2$ from $-\\log t \\ge 1-t$ and $\\sin v \\ge v - v^3/6$; $g$ increasing in $y$); $\\beta$ at the twelve atoms; both moment families at every finite index in 320-bit fixed point with outward rounding; and both infinite tails (the atom at $R$ for the first family; the strip $[t_0, t_1]$ for the second).",
+   "tags": [
+    "Pin2026"
+   ]
+  },
+  {
+   "anchor": "ramsey-lower-bounds-since-small-ramsey-numbers-revision-18-4-november-2026",
+   "constants": [],
+   "dates": [
+    "2026-11-04"
+   ],
+   "files": {
+    "ramsey-rev19": {
+     "checks": [
+      "controls.py",
+      "nbhd.py",
+      "recursions.py",
+      "relabel.py",
+      "summarize.py",
+      "to_matrix.py",
+      "yu_gprime.py"
+     ],
+     "fetch": true,
+     "results": [
+      "results/coniglio_R3_24_n150.check.log",
+      "results/coniglio_R3_24_n150.indep.log",
+      "results/coniglio_R3_24_n150.nbhd0.check.log",
+      "results/coniglio_R3_24_n150.nbhd1.check.log",
+      "results/coniglio_R3_25_n159.indep.log",
+      "results/coniglio_R3_25_n159.nbhd0.check.log",
+      "results/coniglio_R3_25_n159.nbhd1.check.log",
+      "results/coniglio_R3_26_n162.indep.log",
+      "results/coniglio_R3_26_n162.nbhd0.check.log",
+      "results/coniglio_R3_26_n162.nbhd1.check.log",
+      "results/coniglio_R3_28_n180.indep.log",
+      "results/coniglio_R3_28_n180.nbhd0.check.log",
+      "results/coniglio_R3_28_n180.nbhd1.check.log",
+      "results/coniglio_R3_29_n193.indep.log",
+      "results/coniglio_R3_29_n193.nbhd0.check.log",
+      "results/coniglio_R3_29_n193.nbhd1.check.log",
+      "results/coniglio_R3_30_n198.indep.log",
+      "results/coniglio_R3_30_n198.nbhd0.check.log",
+      "results/coniglio_R3_30_n198.nbhd1.check.log",
+      "results/coniglio_R3_31_n209.indep.log",
+      "results/coniglio_R3_31_n209.nbhd0.check.log",
+      "results/coniglio_R3_31_n209.nbhd1.check.log",
+      "results/coniglio_R3_32_n218.indep.log",
+      "results/coniglio_R3_32_n218.nbhd0.check.log",
+      "results/coniglio_R3_32_n218.nbhd1.check.log",
+      "results/coniglio_R3_33_n229.indep.log",
+      "results/coniglio_R3_33_n229.nbhd0.check.log",
+      "results/coniglio_R3_33_n229.nbhd1.check.log",
+      "results/coniglio_R3_34_n238.indep.log",
+      "results/coniglio_R3_34_n238.nbhd0.check.log",
+      "results/coniglio_R3_34_n238.nbhd1.check.log",
+      "results/convert.txt",
+      "results/convert_yu.txt",
+      "results/cremer_R6_8_n134.check.log",
+      "results/cremer_R6_8_n134.ctrl_blue.check.log",
+      "results/cremer_R6_8_n134.ctrl_blue.indep.log",
+      "results/cremer_R6_8_n134.ctrl_red.check.log",
+      "results/cremer_R6_8_n134.ctrl_red.indep.log",
+      "results/cremer_R6_8_n134.indep.log",
+      "results/cremer_R8_10_n344_1.check.log"
+     ],
+     "run_all": true
+    }
+   },
+   "folders": [
+    "ramsey-rev19"
+   ],
+   "heading": "Ramsey lower bounds since Small Ramsey Numbers revision 18 (4 November 2026)",
+   "kind": "section",
+   "prs": [],
+   "rows": [],
+   "summary": "`ramsey-rev19/`: every new lower bound for a classical two-colour Ramsey number R(s,t) since revision 18 (24 April 2026) of Radziszowski's survey, each witness taken from its authors' own repository or data record and checked by two exact clique programs (`ramsey_check`, Bron-Kerbosch with Tomita's pivot; `ramsey_indep`, MCQ branch and bound), with one-edge red controls. Results, notes and the witnesses still too large for our budget are in [`ramsey-rev19/README.md`](ramsey-rev19/README.md).",
+   "tags": []
+  },
+  {
+   "anchor": "c3a-the-gyarmati-hennecart-ruzsa-sum-difference-constant-5-november-2026",
+   "constants": [
+    "3a"
+   ],
+   "dates": [
+    "2026-11-05"
+   ],
+   "files": {
+    "c3a": {
+     "checks": [
+      "c3a_check.py",
+      "c3a_hist.c",
+      "c3a_hist3.c",
+      "o2026_check.py"
+     ],
+     "fetch": true,
+     "results": [
+      "results/k2026b.txt",
+      "results/m2026.txt",
+      "results/m2026b.txt",
+      "results/o2026.txt",
+      "results/syl2.txt",
+      "results/syl3.txt"
+     ],
+     "run_all": true
+    }
+   },
+   "folders": [
+    "c3a"
+   ],
+   "heading": "C3a: the Gyarmati-Hennecart-Ruzsa sum-difference constant (5 November 2026)",
+   "kind": "section",
+   "prs": [
+    236,
+    238
+   ],
+   "rows": [
+    {
+     "prs": [],
+     "tags": [
+      "Syl2026"
+     ],
+     "text": "| 3a [Syl2026] $k = 2$ | xSyllaa/c3a-controlled-carry-k2 @5ca7cb8 `proof/THEOREM.md` (the histogram file `4d16010f...6c63` only compared) | $\\theta \\ge 1.1928155570929862489856\\ldots$; every certified quantity agrees with the note to the digits it prints | 1.19281555 |"
+    },
+    {
+     "prs": [],
+     "tags": [
+      "Syl2026"
+     ],
+     "text": "| 3a [Syl2026] $k = 3$ | xSyllaa/c3a-controlled-carry-k2 @5ca7cb8 `k3/proof/THEOREM_k.md` (the histogram `3186f6e2...5c63` only compared) | the min-cost histogram of all $q^3 = 19{,}731{,}153{,}214{,}648$ residues by `c3a_hist3.c` (Lemma 0's carry automaton; equal to a plain triple loop and to a scatter of $D^3$ on seven small cases), byte-identical to the package's; $N_0 = 5794476231064238$ and $C = 39290318538006294714264853344$ exactly as stated, every $N_r \\ge 1$; $\\theta \\ge 1.19359680912973029490196359640645\\ldots$, every bound agreeing with the note to the digits it prints | 1.19359680 |"
+    },
+    {
+     "prs": [],
+     "tags": [
+      "M2026"
+     ],
+     "text": "| 3a [M2026], $B = 17086$, $q = 27995$, $N = 10^{13}$ | mizopl/ghr-c3a-odd-base-finite-bound @464ceda `object/` (`b1230dd4...1fe21` and the mask, sum-support and pruned-difference files, hashes as in its README) | $M$, $M + M$ and all 13,997 rows of the pruned table ($r$, $d$, $\\kappa(d)$, both residues, $n_d$) equal ours; a complete residue system mod $q$; $n_0$ and $L$ as stated; $\\theta \\ge 1.19230254070568368329\\ldots$ | 1.19230254 (row comment 1.1923025406835) |"
+    },
+    {
+     "prs": [],
+     "tags": [
+      "K2026",
+      "M2026"
+     ],
+     "text": "| 3a [M2026] on the [K2026] mask, $B = 17032$, $q = 27995$ | `finite_certificate_17032_27995.json` (`db1517d0...ad04b`) only compared | $n_0$ and $L$ as stated; $\\theta \\ge 1.19229904840497896133\\ldots$ | 1.1922990483828 |"
+    },
+    {
+     "prs": [],
+     "tags": [
+      "K2026b"
+     ],
+     "text": "| control: [K2026b]'s finite certificate, $B = 17032$, $Q = 2B + 1 = 34065$ | `kleinwaks_finite_certificate_17032_34065.json` (`5c85a63a...8d9b`) only compared | $n_0$ and $L$ as stated; $\\theta \\ge 1.19102809427254087548\\ldots$ | 1.19102809 |"
+    }
+   ],
+   "summary": "`c3a/c3a_check.py` with `c3a_hist.c`: the finite $k = 2$ controlled-carry bound of [Syl2026] ($C_{3a} > 1.19281555$\\*, [#238](https://github.com/teorth/optimizationproblems/pull/238)), rebuilt from its theorem note alone (mask $\\langle 1971, 2016, 2100, 2628, 2688, 2800\\rangle \\cap [0, 26972]$, $q = 27022$, $x$ = `0x1.ffde1bafccc06p-1`, $\\ell = 10^{18}$): - $M$ and $M + M$, and the min-cost histogram of all $q^2 = 730{,}188{,}484$ residues. Each residue is a min over at most four digit pairs, since $B < q$; a full scatter of $D \\times D$ gives the same histogram on small cases. The histogram is byte-identical to the package's `k2_cost_hist.tsv`. - $Z_2(x)$, the type counts and $C$ in exact integer arithmetic: $N_0 = 3362808316958$ and $C = 26096544438312721237750$, as stated, and every $N_r \\ge 1$. - The bound in 90-digit decimal interval arithmetic with Robbins' bounds on $\\ln n!$.",
+   "tags": [
+    "GHR2007",
+    "K2026",
+    "K2026b",
+    "M2026",
+    "Syl2026"
+   ]
+  },
+  {
+   "anchor": "c89b-and-c89c-ramsey-multiplicity-of-k_5-and-k_6-5-november-2026",
+   "constants": [
+    "89b",
+    "89c"
+   ],
+   "dates": [
+    "2026-11-05"
+   ],
+   "files": {
+    "c89": {
+     "checks": [
+      "c89_check.py",
+      "c89_multiset.c",
+      "c89_refine.c",
+      "c89b_check.py",
+      "c89b_count.c",
+      "c89b_general.c"
+     ],
+     "fetch": true,
+     "results": [
+      "results/ppss.txt",
+      "results/pr277.txt",
+      "results/pr307.txt",
+      "results/sciel2026.txt",
+      "results/selftest.txt",
+      "results/selftest_b.txt",
+      "results/sk2026.txt"
+     ],
+     "run_all": true
+    }
+   },
+   "folders": [
+    "c89"
+   ],
+   "heading": "C89b and C89c: Ramsey multiplicity of $K_5$ and $K_6$ (5 November 2026)",
+   "kind": "section",
+   "prs": [
+    277,
+    279,
+    307,
+    331
+   ],
+   "rows": [
+    {
+     "prs": [
+      279
+     ],
+     "tags": [
+      "SK2026"
+     ],
+     "text": "| 89c [SK2026], [#279](https://github.com/teorth/optimizationproblems/pull/279) | JeetuSK0808/tao-constants-certificates @98b6ee3 `construction.json` (`f90cc190...ac49`, as in its SHA256SUMS.txt) | identical to the stated fraction: $0.742254861593625\\ldots \\cdot 2^{-14}$ | $0.7422548616 \\cdot 2^{-14}$ |"
+    },
+    {
+     "prs": [
+      331
+     ],
+     "tags": [
+      "SCIEL2026"
+     ],
+     "text": "| 89c [SCIEL2026], [#331](https://github.com/teorth/optimizationproblems/pull/331) | the eleven $n_w / 2^{32}$ stated in the pull request (the Zenodo record is restricted) | identical to the stated fraction: $0.742204211528050\\ldots \\cdot 2^{-14}$ | $0.7422042116 \\cdot 2^{-14}$ |"
+    },
+    {
+     "prs": [
+      307
+     ],
+     "tags": [],
+     "text": "| 89b round 4, [#307](https://github.com/teorth/optimizationproblems/pull/307) | rpinho/math-certificates @1d38853 `c89b/round4/certificates/c5_cayley256_fine.json.gz` (`78978a9f...0125`, as in its SHA256SUMS) | identical to the stated fraction 15058298592194934908767847/9131939205947984819238469632 $= 0.0016489705256017\\ldots$; as a polynomial in $p$, exactly the stated $(8734 - 5530p + \\ldots + 10p^6)/2^{22}$; at $p = 19/29$ the stated simpler alternative | 0.001648970526 |"
+    },
+    {
+     "prs": [
+      277
+     ],
+     "tags": [
+      "SK2026"
+     ],
+     "text": "| 89b [SK2026], [#277](https://github.com/teorth/optimizationproblems/pull/277) | JeetuSK0808/tao-constants-certificates @82a6e4d `c89b_stepgraphon_m192_D20.json.gz` (`19c43354...bc06`, as in its SHA256SUMS.txt) | identical to the stated fraction: $0.0016870051344094\\ldots$ | 0.0016870052 |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| control: Franek 2002 | red iff $\\lvert x \\oplus y\\rvert \\in \\{0, 1, 3, 4, 7, 8, 10\\}$ | exactly $51162598917 / 2^{50}$, as published | |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| control: Parczyk-Pokutta-Spiegel-Szabo 2024 | their 192-vertex graph, `c5.graph6.txt` in Zenodo record 6602512 (`graphs.zip`, `6ff8a249...ec89`) | exactly $2320651 \\cdot 2^{-24} \\cdot 3^{-4}$, as their Theorem 1.2 states | |"
+    }
+   ],
+   "summary": "The minimum density of monochromatic $K_t$ over 2-coloured graphons; an upper bound is the exact density of one step graphon, $t(K_t, W) + t(K_t, 1 - W)$ with repeated blocks counted.",
+   "tags": [
+    "SCIEL2026",
+    "SK2026"
+   ]
+  },
+  {
+   "anchor": "c3e-a-sums-and-differences-constant-6-november-2026",
+   "constants": [
+    "3e"
+   ],
+   "dates": [
+    "2026-11-06"
+   ],
+   "files": {
+    "c3e": {
+     "checks": [
+      "c3e_check.py"
+     ],
+     "fetch": true,
+     "results": [
+      "results/c3e_check_controls.txt"
+     ],
+     "run_all": true
+    }
+   },
+   "folders": [
+    "c3e"
+   ],
+   "heading": "C3e: a sums-and-differences constant (6 November 2026)",
+   "kind": "section",
+   "prs": [
+    339
+   ],
+   "rows": [],
+   "summary": "`c3e/c3e_check.py`, standard library only: mizopl's finite carry-free lower bounds $C_{3e} > 1.27255802$ ($B = 160$) and $1.27255796$ ($B = 80$) from Theorems C1-C3 of their certificate folder's README alone (posted on [#339](https://github.com/teorth/optimizationproblems/pull/339)). The counts $n_d$, $n_0$ and $L$ in exact integers, $\\log D_N$ from Robbins' bounds and $\\log S_N(y)$ in decimal interval arithmetic at 90 digits: $1.27255802020997507810\\ldots$ and $1.27255796845856979212\\ldots$. Theorems C1-C3 are also checked by brute force on small cases ($B = 15$), with five red controls. Reproduce: `cd c3e && ./fetch.sh && ./run_all.sh`.",
+   "tags": []
+  },
+  {
+   "anchor": "c59-the-bohr-radius-of-the-bidisc-6-november-2026",
+   "constants": [
+    "59"
+   ],
+   "dates": [
+    "2026-11-06"
+   ],
+   "files": {
+    "c59": {
+     "checks": [
+      "c59_check.py"
+     ],
+     "fetch": true,
+     "results": [
+      "results/c59_check_controls.txt"
+     ],
+     "run_all": true
+    }
+   },
+   "folders": [
+    "c59"
+   ],
+   "heading": "C59: the Bohr radius of the bidisc (6 November 2026)",
+   "kind": "section",
+   "prs": [
+    297
+   ],
+   "rows": [],
+   "summary": "`c59/c59_check.py`, standard library only, integers only: the certificate of [#297](https://github.com/teorth/optimizationproblems/pull/297), $K_2 < 0.302825279490988$. $U^*U = UU^* = I$ exactly for the $3 \\times 3$ Gaussian-rational colligation, so the transfer function is in the Schur class; its 1,681 coefficients $f_{jk}$ ($j, k \\le 40$) as exact Gaussian integers, checked against the closed form at two points; and the finite Bohr sum minus 1 in $[2.2259 \\cdot 10^{-42}, 2.2259 \\cdot 10^{-42}]$ by integer square roots. Red controls: $r$ lowered to 0.30282527949097 (the sum falls below 1), one matrix entry changed by one unit (refused by unitarity), the sum cut at $N = 20$ (below 1). Reproduce: `cd c59 && ./fetch.sh && ./run_all.sh` (about a minute).",
+   "tags": []
+  },
+  {
+   "anchor": "c42-turáns-pure-power-sum-constant-6-november-2026",
+   "constants": [
+    "42"
+   ],
+   "dates": [
+    "2026-11-06"
+   ],
+   "files": {
+    "c42": {
+     "checks": [
+      "biro_check.py",
+      "c42_check.py",
+      "kos_check.py",
+      "thmA_check.py"
+     ],
+     "fetch": true,
+     "results": [
+      "results/c42_biro_pin26c.txt",
+      "results/c42_check_controls.txt",
+      "results/c42_kos2026.txt",
+      "results/thmA_302_bak2026.txt",
+      "results/thmA_305_pin2026b.txt",
+      "results/thmA_327_vat2026.txt",
+      "results/thmA_controls.txt",
+      "results/thmA_selftest.txt"
+     ],
+     "run_all": true
+    }
+   },
+   "folders": [
+    "c42"
+   ],
+   "heading": "C42: Turán's pure power-sum constant (6 November 2026)",
+   "kind": "section",
+   "prs": [
+    85,
+    251,
+    263
+   ],
+   "rows": [
+    {
+     "prs": [],
+     "tags": [
+      "Gri26"
+     ],
+     "text": "| [Gri26] | sebastian-griego/turan-c42-certificate @ `c8ddce14` (v1.0.0), `certificate/turan42_certificate.json` (`a76e9132...3a81`, as its .sha256 file states) | $\\lvert Y\\rvert/D \\le 0.69065369515163118444\\ldots$, $C^2D^2 - \\lvert Y\\rvert^2 \\ge 1.550 \\cdot 10^{-7}$; our $K$, $D$ and $Y$ overlap the certificate's printed enclosures | 0.6906538 |"
+    },
+    {
+     "prs": [],
+     "tags": [
+      "Pin26"
+     ],
+     "text": "| [Pin26] | rpinho/c42-certificate @ `a8a9bc30`, `certificates/c42_256.json` (`705a7291...afcab`, as the page states; 256 blocks, 16,512 pairs) | $\\lvert Y\\rvert/D \\le 0.68888637098346564582276780\\ldots$, $C^2D^2 - \\lvert Y\\rvert^2 \\ge 2.3747 \\cdot 10^{-10}$, both as the paper prints; $D$ to 30 digits as printed | 0.6888863712 |"
+    },
+    {
+     "prs": [],
+     "tags": [
+      "Kos2026"
+     ],
+     "text": "| [Kos2026] | DennisKoshta/c42-turan-power-sum-certificate @ `8e1797e0`, `certificates/c42_tau41_200_M64_0.6873358063.json` (`be0c406f...cbef`, as the note states; 64 blocks; 1,056 pairs, 2,443 triples and 609 quadruples with sum below 1) | $\\lvert Y\\rvert/D = 0.687335806186516616249961526259099396\\ldots$ (enclosure width $1.4 \\cdot 10^{-44}$), $C^2D^2 - \\lvert Y\\rvert^2 = 4.348178358021 \\cdot 10^{-11}$; the note's 30 decimals of $\\lvert Y\\rvert/D$, its margin $4.348178358 \\cdot 10^{-11}$ and its four-fold sum $1.214 \\cdot 10^{-5} - 3.45 \\cdot 10^{-6} i$ all agree | 0.6873358063 |"
+    }
+   ],
+   "summary": "`c42/c42_check.py`, standard library only: the two rows whose first-block cut-off is $\\tau \\ge 1/3$, Griego's $C_{42} \\le 0.6906538$ [Gri26] (added in [#85](https://github.com/teorth/optimizationproblems/pull/85)) and Pinho's $0.6888863712$ [Pin26] ([#251](https://github.com/teorth/optimizationproblems/pull/251)), from the criterion as Griego's note (section 4) and Pinho's paper (section 2) state it: with $K = I_\\alpha(\\tau)$, $D = I_a(\\tau)$, $I_A(x) = \\int_0^x v^{A-1}/(1-v)\\,dv$ and the pair integrals $J(t, r)$, $Y = 1 + sK - \\sum_j \\delta_j (I_\\alpha(1 - t_j) - K) + \\tfrac12 \\sum_{i,j} \\delta_i \\delta_j J(t_i, t_j)$, and the bound holds if $|s| < C$, every $|\\eta_j| < C$ and $|Y| < CD$. The radius conditions in exact rationals; $I$ and $J$ by their power series with explicit tails, in decimal interval arithmetic at 50 digits ($x^\\alpha$ through $e^{a \\ln x}$ and Taylor series for sine and cosine with bounded remainders).",
+   "tags": [
+    "Gri26",
+    "Kos2026",
+    "Pin26"
+   ]
+  },
+  {
+   "anchor": "c42-three-bounds-on-bakeass-theorem-a-7-november-2026",
+   "constants": [
+    "42"
+   ],
+   "dates": [
+    "2026-11-07"
+   ],
+   "files": {
+    "c42": {
+     "checks": [
+      "biro_check.py",
+      "c42_check.py",
+      "kos_check.py",
+      "thmA_check.py"
+     ],
+     "fetch": true,
+     "results": [
+      "results/c42_biro_pin26c.txt",
+      "results/c42_check_controls.txt",
+      "results/c42_kos2026.txt",
+      "results/thmA_302_bak2026.txt",
+      "results/thmA_305_pin2026b.txt",
+      "results/thmA_327_vat2026.txt",
+      "results/thmA_controls.txt",
+      "results/thmA_selftest.txt"
+     ],
+     "run_all": true
+    }
+   },
+   "folders": [
+    "c42"
+   ],
+   "heading": "C42: three bounds on Bakeas's Theorem A (7 November 2026)",
+   "kind": "section",
+   "prs": [
+    302,
+    305,
+    310,
+    327
+   ],
+   "rows": [
+    {
+     "prs": [
+      302
+     ],
+     "tags": [
+      "Bak26"
+     ],
+     "text": "| [Bak26] ([#302](https://github.com/teorth/optimizationproblems/pull/302)) | Bakeas/turan-c42-bound @ `dc9c491c` (v1.1.0), `c42_profile_0.68637.json` (`dcea4edb...d395`, as #302 and the note state; 25 knots $j/48$; $a = 0.1660999$, $E = 0.7753$) | $N = 384$, $P = 10$; $4.8 \\cdot 10^{-12}$ | 0.6863600829166 (0.6863600828267) | 0.68637: $C - F \\ge 9.9 \\cdot 10^{-6}$ |"
+    },
+    {
+     "prs": [
+      305
+     ],
+     "tags": [
+      "Pin26b"
+     ],
+     "text": "| [Pin26b] ([#305](https://github.com/teorth/optimizationproblems/pull/305)) | rpinho/c42-certificate @ `009120a8`, `volterra-quadratic-knots/certificates/C42_compact_best.json` (`ac8d052d...5765`, as its README states; 49 knots $j^2/4608$; $a = 0.1118266$, $E = 0.8561$) | $N = 9216$, $P = 10$; $2.4 \\cdot 10^{-9}$ | 0.6863607440170 (0.6863607438702) | 0.6863607950: $C - F \\ge 5.09 \\cdot 10^{-8}$ |"
+    },
+    {
+     "prs": [
+      327
+     ],
+     "tags": [
+      "Vat26"
+     ],
+     "text": "| [Vat26] ([#327](https://github.com/teorth/optimizationproblems/pull/327)) | NikosVat/turan-c42 @ `9668a60e`, `certificate/c42_profile_0.686360751.json` (`d015a829...5652`, as #327 states; 34 knots, least common denominator 18432; $a = 0.1016540$, $E = 0.8709$) | $N = 18432$, $P = 14$; $2.1 \\cdot 10^{-9}$ | 0.6863607495095 (0.6863607477240) | 0.686360751: $C - F \\ge 1.49 \\cdot 10^{-9}$ |"
+    }
+   ],
+   "summary": "Three pending rows rest on one limit theorem: Bakeas's $C_{42} \\le 0.68637$ [Bak26] ([#302](https://github.com/teorth/optimizationproblems/pull/302)), Pinho's $0.6863607950$ [Pin26b] ([#305](https://github.com/teorth/optimizationproblems/pull/305)) and Vatopoulos's $0.686360751$ [Vat26] ([#327](https://github.com/teorth/optimizationproblems/pull/327)). With $T > 0$, a phase $\\varphi$ piecewise linear through knots $0 = u_0 < \\dots < u_K = \\tfrac12$, $g = Te^{i\\varphi}$, $\\gamma = g(0)$, $a = \\mathrm{Re}\\,\\gamma$, and $d = \\gamma - g$ on $(0, \\tfrac12]$, $d = \\gamma$ on $(\\tfrac12, 1]$, Theorem A of Bakeas's `NOTES.md` (v1.1.0) says: if $\\kappa = \\sup \\lvert d\\rvert < 1$ and $a \\ge 0$, then $\\limsup R_n \\le \\max(T, F)$, where $F = \\lvert p(1)\\rvert / \\int_0^{1/2} \\lvert p(t)\\rvert\\,dt/(1-t)$, $p(t) = t^{-\\gamma} + \\int_0^t (t-v)^{-\\gamma}\\rho(v)\\,dv$ and $\\rho$ is the bounded solution of $t\\rho(t) = d(t) + \\int_0^t d(u)\\rho(t-u)\\,du$. Each row takes $T = C$ and needs $F < C$. ([#310](https://github.com/teorth/optimizationproblems/pull/310), the explicit lower bound, does not bear on these rows.)",
+   "tags": [
+    "Bak26",
+    "Pin26b",
+    "Vat26"
+   ]
+  },
+  {
+   "anchor": "c12a-the-euclidean-travelling-salesman-constant-6-november-2026",
+   "constants": [
+    "12a"
+   ],
+   "dates": [
+    "2026-11-06"
+   ],
+   "files": {
+    "c12a": {
+     "checks": [
+      "c12a_check.c"
+     ],
+     "fetch": true,
+     "results": [
+      "results/bhh.log",
+      "results/bhh.txt",
+      "results/bhh_orders.log",
+      "results/bhh_orders.txt",
+      "results/controls.txt",
+      "results/k4.log",
+      "results/k4.txt",
+      "results/k4_orders.log",
+      "results/k4_orders.txt",
+      "results/k5.log",
+      "results/k5.txt",
+      "results/k5_orders.log",
+      "results/k5_orders.txt",
+      "results/k6.log",
+      "results/k6.txt",
+      "results/k6_orders.log",
+      "results/k6_orders.txt",
+      "results/k7.log",
+      "results/k7.txt",
+      "results/k7_hk.log",
+      "results/k7_hk.txt",
+      "results/k8.log",
+      "results/k8.txt",
+      "results/k8_hk.log",
+      "results/k8_hk.txt",
+      "results/k9.log",
+      "results/k9.txt",
+      "results/k9_hk.txt",
+      "results/rounding.log",
+      "results/rounding.txt",
+      "results/rounding_orders.log",
+      "results/rounding_orders.txt",
+      "results/tiny.log",
+      "results/tiny.txt",
+      "results/tiny_orders.log",
+      "results/tiny_orders.txt"
+     ],
+     "run_all": true
+    }
+   },
+   "folders": [
+    "c12a"
+   ],
+   "heading": "C12a: the Euclidean travelling salesman constant (6 November 2026)",
+   "kind": "section",
+   "prs": [
+    222
+   ],
+   "rows": [
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| Spec | Numbers compared | Total $A_0$ | Bound (rounded up) | Threshold |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| `k5.txt` | 2,280, all equal | 1761033937996622 | 0.878820870371 | 8789/10000 |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| `k6.txt` | 6,192, all equal | 12593568504391125 | 0.872868757138 | 8729/10000 |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| `k7.txt` | 19,680, all equal | 92054418307910785 | 0.868075379727 | 8681/10000 |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| `k8.txt` | 70,482, all equal | 628708228549677266 | 0.864607001369 | 8647/10000 |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| `k9.txt` | 269,290, all equal | 4430997795015293889 | 0.861715646305 | 8618/10000 |"
+    }
+   ],
+   "summary": "`c12a/c12a_check.c`, C11 with 128-bit integers: the computation behind $\\beta \\le 0.8618$ [O2026] ([#222](https://github.com/teorth/optimizationproblems/pull/222)), written from `RECIPE.md` of devinokeefe/travelling-sales-person-constant-bounds @ `69b864b9` alone (its three checkers were neither read nor run). Every integer of Sections 2 to 8 is recomputed from the parameters of a spec file and compared with its values file (the masses, the tail term, every table line, every cell sum and the total), then the test $A_0 h_2 \\theta_2 \\le \\theta_1 n^{k+1} F k h_1$. The cell sums (Section 7; for $k = 9$, $4^9 \\cdot 6^{10}$ cells, each the least cost over $8!$ orders) use the shared-paths identity, with $H$ built in nested loops over the middle heights (Held-Karp path costs over subsets, then the two-path covers), the reversal and the reflection on $a_1$ only. Without any of the three identities, all cell sums of `tiny` to `k6` were also recomputed by all orders in every cell, and seven each of `k7`, `k8` and `k9` by Held-Karp in every cell.",
+   "tags": [
+    "O2026"
+   ]
+  },
+  {
+   "anchor": "c47-the-centred-maximal-constant-over-squares-in-the-plane-7-november-2026",
+   "constants": [
+    "47"
+   ],
+   "dates": [
+    "2026-11-07"
+   ],
+   "files": {
+    "c47": {
+     "checks": [
+      "c47_check.py"
+     ],
+     "fetch": true,
+     "results": [
+      "results/pr321.txt",
+      "results/pr341.txt",
+      "results/selftest.txt",
+      "results/tom2026.txt"
+     ],
+     "run_all": true
+    }
+   },
+   "folders": [
+    "c47"
+   ],
+   "heading": "C47: the centred maximal constant over squares in the plane (7 November 2026)",
+   "kind": "section",
+   "prs": [
+    321,
+    341
+   ],
+   "rows": [
+    {
+     "prs": [
+      321
+     ],
+     "tags": [
+      "Tom2026"
+     ],
+     "text": "| [Tom2026], Theorem 1.3 (row added by [#321](https://github.com/teorth/optimizationproblems/pull/321)) | tejasvi/square-maximal-weak-type @ `3af09fc` (v5; the same file is in Zenodo 10.5281/zenodo.23716078), `lowerbound/c2lower_1p70272.json` (`e2ca1616...9888`, 50 atoms) | 482167717377842991882283179477574801392641890014291050323/283174368139841919615520431313000857449005056000000000000 $= 1.70272373359629370268\\ldots$, the 16 decimals #321 states; the level set itself gives $1.70272373360313336487\\ldots$ | 1.7027237335 |"
+    },
+    {
+     "prs": [
+      321,
+      341
+     ],
+     "tags": [],
+     "text": "| [#321](https://github.com/teorth/optimizationproblems/pull/321) | rpinho/math-certificates @ `3d4cd55`, `c47/round1/certificates/half59-measure.json` (`64585e1f...4b16`, 59 atoms) and `half59.json` (`b4d88847...ba99`) | identical to the stated fraction, $1.70311634551278326393\\ldots$; the certificate's 559 witnesses, each checked, give the same union; the level set itself gives $1.70311634551668029559\\ldots$ | 1.70311 (the row), 1.70311634 (#341's table) |"
+    },
+    {
+     "prs": [
+      341
+     ],
+     "tags": [],
+     "text": "| [#341](https://github.com/teorth/optimizationproblems/pull/341) | `construction.json` (`5f7a8d9d...310b`) in Zenodo 10.5281/zenodo.24022791, which is restricted (HTTP 403): not replayed | stated: 3132581668909806427917067970204393210052649/1839223215401194968772738622942534413844480 $= 1.70320907363410346949\\ldots$ | 1.7032090736 (implied by the stated fraction) |"
+    },
+    {
+     "prs": [],
+     "tags": [
+      "Lin2026"
+     ],
+     "text": "| control: Lin's lattice [Lin2026] | $u = (2 + \\sqrt{22})/3$ to 60 digits, radii on $2^{-300}$, every box up to $L^*$ | $\\Phi$ to $1.3 \\cdot 10^{-62}$; the uncovered set is exactly the four $a \\times b$ slots, with $M\\mu < 1$ at their centres | 1.6855099933 |"
+    }
+   ],
+   "summary": "The weak type (1,1) constant $c_2$ of the centred maximal operator over axis-parallel squares. A lower bound is $\\lambda \\lvert U \\cap C\\rvert/\\mu(C)$ for a measure $\\mu$ with finitely many atoms in each cell $C$ of the lattice $P_x\\mathbb Z \\times P_y\\mathbb Z$ (Tomar's Lemma 6.2, after Lin): $U$ is the union of the lattice translates of rectangles $R_i \\subset \\bigcap_{p \\in S_i} Q(p, \\rho_i)$, each with a finite set $S_i$ of atoms and $0 < \\rho_i < \\sqrt{\\mu(S_i)/(4\\lambda)}$. We re-derived the lemma (truncate $\\mu$ to $N \\times N$ cells, spread each atom over $Q(p, \\varepsilon)$, apply the weak type inequality to that function, let $N \\to \\infty$) and checked each step of its proof in the paper.",
+   "tags": [
+    "Lin2026",
+    "Tom2026"
+   ]
+  },
+  {
+   "anchor": "c42-röhrigs-eight-step-profile-7-november-2026",
+   "constants": [
+    "42"
+   ],
+   "dates": [
+    "2026-11-07"
+   ],
+   "files": {
+    "c42": {
+     "checks": [
+      "biro_check.py",
+      "c42_check.py",
+      "kos_check.py",
+      "thmA_check.py"
+     ],
+     "fetch": true,
+     "results": [
+      "results/c42_biro_pin26c.txt",
+      "results/c42_check_controls.txt",
+      "results/c42_kos2026.txt",
+      "results/thmA_302_bak2026.txt",
+      "results/thmA_305_pin2026b.txt",
+      "results/thmA_327_vat2026.txt",
+      "results/thmA_controls.txt",
+      "results/thmA_selftest.txt"
+     ],
+     "run_all": true
+    }
+   },
+   "folders": [
+    "c42"
+   ],
+   "heading": "C42: Röhrig's eight-step profile (7 November 2026)",
+   "kind": "section",
+   "prs": [
+    184
+   ],
+   "rows": [
+    {
+     "prs": [],
+     "tags": [
+      "R2026a"
+     ],
+     "text": "| [R2026a] | AndreRoehrig/optimization-constants-certificates @ `ed638739` (v1.0.2), `certificates/turan.json` (`18c20906...30f4`, as its MANIFEST states) | $\\lvert s\\rvert, \\lvert\\eta_j\\rvert < C$ exactly (least $C^2 - \\lvert\\cdot\\rvert^2 = 1.242\\cdot10^{-6}$); $D \\in [0.888190650452511954178223193231, \\ldots232]$, $\\lvert Y\\rvert/D \\le 0.68898209850406074850512099758364\\ldots$, $C^2D^2 - \\lvert Y\\rvert^2 = 9.7997362463618\\cdot10^{-7}$: all three 30-decimal enclosures of the note agree | 0.688983 |"
+    }
+   ],
+   "summary": "`c42/c42_check.py` (the code of the C42 section above) now also replays Röhrig's $C_{42} \\le 0.688983$\\* [R2026a], the C42 row of [#184](https://github.com/teorth/optimizationproblems/pull/184), from the criterion as his `notes/turan.md` states it (Griego's, with eight middle values on the breaks $t_j = (8+j)/24$, $\\tau = 1/3$) and `certificates/turan.json` alone (`certify_turan.py` and `audit.py` were neither read nor run).",
+   "tags": [
+    "R2026a"
+   ]
+  },
+  {
+   "anchor": "c51-the-erdős-maximum-term-constant-7-november-2026",
+   "constants": [
+    "51"
+   ],
+   "dates": [
+    "2026-11-07"
+   ],
+   "files": {
+    "c51": {
+     "checks": [
+      "c51_check.py"
+     ],
+     "fetch": true,
+     "results": [
+      "results/ht2026.txt",
+      "results/r2026b.txt",
+      "results/s2026.txt",
+      "results/selftest.txt"
+     ],
+     "run_all": true
+    }
+   },
+   "folders": [
+    "c51"
+   ],
+   "heading": "C51: the Erdős maximum-term constant (7 November 2026)",
+   "kind": "section",
+   "prs": [
+    184
+   ],
+   "rows": [
+    {
+     "prs": [],
+     "tags": [
+      "R2026b"
+     ],
+     "text": "| [R2026b] | AndreRoehrig/optimization-constants-certificates @ `ed638739` (v1.0.2), `certificates/maximum_term.json` (`dcf9d1bc...3683`, as its MANIFEST states): $K$ = 3.5681854310698435, $\\alpha$ = 3.9615431126097391 | $A \\in [1.709171425067672530527823486722, \\ldots824486723]$, so $\\beta \\in [0.585078819674513477028433803123, 0.585078819674513477028434145442]$. The maximum is interior ($\\theta \\approx 0.6455415545$), $1.16\\cdot10^{-15}$ above $\\lvert P(0)\\rvert$; 1,050 cells | 0.5850788196744 (margin $1.13\\cdot10^{-13}$) |"
+    },
+    {
+     "prs": [],
+     "tags": [
+      "S2026"
+     ],
+     "text": "| control: [S2026]'s parameters | $K$ = 3.568182317714, $\\alpha$ = 3.961543335688 (as the note states them) | $\\beta \\in [0.585078819653352950854632279223, \\ldots621542]$, maximum at $\\theta = 0$ | 0.585078819653 holds; so does the note's $\\beta(f_{\\mathrm{old}}) < 0.585078819653352950854632621542$ |"
+    },
+    {
+     "prs": [],
+     "tags": [
+      "HT2026"
+     ],
+     "text": "| control: [HT2026]'s parameters | $K_0$ = 7137/2000, $\\alpha_0$ = 198074929/50000000 | $A \\in [1.709176397414446527842885593498, \\ldots886593499]$, $\\beta$ = 0.5850771175595...; their mesh value at $j$ = 1794536 ($N = 5$) recomputed: 1.709176397414741464507875377..., equal to all 25 digits they print | 0.58507 |"
+    }
+   ],
+   "summary": "`c51/c51_check.py`, standard library only: Röhrig's $C_{51} \\ge 0.5850788196744$\\* [R2026b], the C51 row of [#184](https://github.com/teorth/optimizationproblems/pull/184), from He and Tang's reduction (arXiv:2602.12217, Theorem 2.8 and Lemma 3.1; we read Lemmas 2.1 to 2.7 and found no gap) and the two exact parameters alone (`certify_maximum_term.py` and `audit.py` were neither read nor run). For $K > 1$ and $\\varepsilon = e^{i\\alpha}$, $\\beta(f_{K,\\varepsilon}) = 1/A$ with $A = \\max_\\theta\\lvert P(\\theta)\\rvert$, $P(\\theta) = 2\\sum_{n\\ge0}K^{-T_n}e^{i\\alpha T_n}\\cos((2n+1)\\theta)$, $T_n = n(n+1)/2$. Our method is neither the note's (Bernstein subdivision in $x = \\cos^2\\theta$) nor He and Tang's (a mesh and a Lipschitz bound): - $P = P_{12} + R_{12}$ with $\\lvert R_{12}\\rvert \\le 2K^{-91}/(1 - K^{-14})$ ($1.1\\cdot10^{-50}$), an exact rational; - $F = \\lvert P_{12}\\rvert^2$ on $[0, 1.5708] \\supset [0, \\pi/2]$ (enough, as $P(-\\theta) = P(\\theta)$ and $P(\\pi - \\theta) = -P(\\theta)$; $\\pi$ from Machin's formula). On a cell, $F(m+u) \\le F(m) + F'(m)u + F''(m)u^2/2 + G_3\\lvert u\\rvert^3/6$ with $G_3 = 2(g_0g_3 + 3g_1g_2) \\ge \\sup\\lvert F'''\\rvert$ and $g_k = \\sum_n 2K^{-T_n}(2n+1)^k$ (Cauchy-Schwarz on the derivative vectors). $F$, $F'$, $F''$ are taken in 60-digit decimal interval arithmetic with outward rounding, with $e^{i\\alpha T_n}$ as powers of $e^{i\\alpha}$, so no reduction modulo $2\\pi$. The quadratic's maximum and every comparison are exact rationals. Cells above the target are bisected; - a lower bound at the maxima, located in floating point and evaluated in intervals.",
+   "tags": [
+    "HT2026",
+    "R2026b",
+    "S2026"
+   ]
+  },
+  {
+   "anchor": "3b-the-katz-tao-sum-difference-constant-7-november-2026",
+   "constants": [
+    "3b"
+   ],
+   "dates": [
+    "2026-11-07"
+   ],
+   "files": {
+    "c3b": {
+     "checks": [
+      "c3b_check.py"
+     ],
+     "fetch": true,
+     "results": [
+      "results/c3b_check.txt",
+      "results/selftest.txt"
+     ],
+     "run_all": true
+    }
+   },
+   "folders": [
+    "c3b"
+   ],
+   "heading": "3b: the Katz-Tao sum-difference constant (7 November 2026)",
+   "kind": "section",
+   "prs": [
+    329
+   ],
+   "rows": [
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| Certificate (SHA-256) | Library | Configuration | Rows | Result |"
+    },
+    {
+     "prs": [
+      329
+     ],
+     "tags": [],
+     "text": "| `record.json` (`12e2e356...6a70`, as the 3b row and the index state) in Zenodo 10.5281/zenodo.23714415, `source-and-certificates.zip` (`29c07851...2f158`, as #329 states) | 72 lemmas, 1,797 proof rows, all verified | 42 vertices, 9 copies, 78 cross forms; relation rank 71, quotient dimension 13, as the paper states | 519 sub, 9 ci, 12 lemma; 167 equal laws (480 gens kept, 707 moved); 1,643 tuples | all 519 classes cancel exactly: $a + b + c = 209357544569848128/114631769327023765 = 1.8263483657186587536748\\ldots$ |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| `all-groups.json` (`79848549...03f1`) | 77 lemmas (five DFZ rule instances added), 1,877 rows | 42 vertices, 9 copies, 85 cross forms; rank 71, dimension 13 | 566 sub, 1 mono, 9 ci, 11 lemma; 179 equal laws (511 kept, 754 moved); 1,775 tuples | all 573 classes cancel: $10304335425987192362/5641833174538280329 = 1.8264161855212042214076\\ldots$ |"
+    }
+   ],
+   "summary": "`c3b/c3b_check.py`, standard library only: Farnamfar's $C_{3b} \\le 209357544569848128/114631769327023765 = 1.82634836\\ldots$\\* [F2026] ([#329](https://github.com/teorth/optimizationproblems/pull/329)) and the paper's all-groups certificate ($10304335425987192362/5641833174538280329 = 1.82641618\\ldots$), from the paper (`main.tex`, Sections 2 to 5) and the certificate data alone. The package's `verify_group.py`, `stackcheck.py`, `ring_lattice.py`, `check630*.py` and `negative_controls.py` were neither read nor run (`fetch.sh` extracts only the JSON certificates). The certificate is a stacked conditional-copy entropy proof. Vertices are pairs with the law of a difference-injective $(X, Y)$, built by conditional copies (Lemma 4). Entropy terms are named by rational closures of labelled linear forms: $x, y, x+y, x-y$ at every vertex, plus the cross forms. Rows are Shannon (sub, mono), copy identities (ci) and applications of library lemmas; equal laws identify the tuples on a source and their images on the copy. We rebuilt: - each library lemma from its own conditional-copy proof (sub, equal-law, ci and apply rows in abstract variables; a lemma is applied only after it is verified): the rows sum exactly to the lemma. The Matúš family $M_1, \\ldots, M_{62}$ and the DFZ inequalities are therefore not taken from the literature; - the relation module step by step: at each copy, the forms supported on the source that lie in span(cl $V$) + Rel, with prefix closures over $\\mathbb Q$ and the difference-injectivity rule; - the name of every queried tuple. Membership in the quotient is decided modulo a Mersenne prime $p$ on integer image vectors, which is exact because $p$ exceeds Hadamard's bound for every minor (checked). We also re-derive which equal-law gens are determined by the glue at their prefix (kept) and which are moved to the copy (their image must be a labelled form); - the identity $\\sum_r m_r R_r = a\\,h(x_0) + b\\,h(y_0) + c\\,h(x_0+y_0) - h(x_0, y_0)$: every class must cancel after the equal-law identifications.",
+   "tags": [
+    "F2026"
+   ]
+  },
+  {
+   "anchor": "c3a-the-finite-inputs-of-the-121418-bound-7-november-2026",
+   "constants": [
+    "3a"
+   ],
+   "dates": [
+    "2026-11-07"
+   ],
+   "files": {
+    "c3a": {
+     "checks": [
+      "c3a_check.py",
+      "c3a_hist.c",
+      "c3a_hist3.c",
+      "o2026_check.py"
+     ],
+     "fetch": true,
+     "results": [
+      "results/k2026b.txt",
+      "results/m2026.txt",
+      "results/m2026b.txt",
+      "results/o2026.txt",
+      "results/syl2.txt",
+      "results/syl3.txt"
+     ],
+     "run_all": true
+    }
+   },
+   "folders": [
+    "c3a"
+   ],
+   "heading": "C3a: the finite inputs of the 1.21418 bound (7 November 2026)",
+   "kind": "section",
+   "prs": [
+    148
+   ],
+   "rows": [
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| $M$, $M \\pm M$, $\\kappa$ | $\\lvert M\\rvert = 75$, $\\lvert M + M\\rvert = 155$, $M - M = [-80, 80]$; $\\kappa(d) = d$ on $M$ and 9, 18, 13, 14, 17, 19 at the gaps 1, 2, 3, 6, 7, 11, as stated |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| counts (exact integers) | $n_0 = 1917647564302$ and $2L = 76435323145630$, as stated; every $n_d \\ge 148290$ |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| $\\log\\lvert W\\rvert = \\log N! - \\sum_d \\log n_d!$ (Robbins' bounds) | $\\ge 32160395410643.4068 \\ge a = 32160395000000$ |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| $\\log\\lvert\\mathcal V + \\mathcal V\\rvert \\le N\\log P_+(y) - 2L\\log y$ | $\\le 25272243943117.8189 \\le b = 25272245000000$ |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| $\\log\\lvert\\mathcal V - \\mathcal V\\rvert \\le N\\log Z - 2L\\log x$ | $\\le 32160395412376.7043 \\le r = 32160396000000$ |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| (6.1) $\\alpha(r + 8) + b + 2 < a$, $\\alpha = 10709/50000$ | slack exactly $227404476791/6250 = 36384716.28656$, as stated |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| our own enclosures in the same final step | $1 + (\\log\\lvert W\\rvert - \\log 4 - \\log\\lvert\\mathcal V+\\mathcal V\\rvert)/(\\log 1296 + \\log\\lvert\\mathcal V-\\mathcal V\\rvert) \\ge 1.214181180897$ |"
+    }
+   ],
+   "summary": "`c3a/o2026_check.py`, standard library only: the finite numbers behind Olafson's $C_{3a} > 1.21418$ [O2026] ([#148](https://github.com/teorth/optimizationproblems/pull/148); the Lean proof of the finite bound is registered as Palomar entry PALOMAR-2026-10-29-000038), from section 6 of `c3a_two_temperature_proof.md` (carson-olaf/c3a-two-temperature-bound @ `033952dc`) alone. The package's Python and GMP verifiers, its small-model test and its Lean files were neither read nor run. The alphabet is $M = \\langle 4, 5\\rangle \\cap [0, 80]$, $D = M - M$, $\\kappa(d) = \\min\\{a + b : a - b = d\\}$, with $N = 10^{13}$, $x = 8149/10000$ and $y = 42571/50000$; these are the same $M$, $N$, $x$ and $y$ as the $B = 80$ row of our C3e replay. The counts are $n_d = n_{-d} = \\lfloor Nx^{\\kappa(d)}/Z\\rfloor$, $n_0 = N - 2\\sum n_d$ and $L = \\sum_{d>0} n_d\\kappa(d)$; $W$ is the type class with these counts and $\\mathcal V = \\{a \\in M^N : \\sum a_i \\le L\\}$.",
+   "tags": [
+    "O2026"
+   ]
+  },
+  {
+   "anchor": "c89-the-ramsey-multiplicity-of-k_4-7-november-2026",
+   "constants": [
+    "89"
+   ],
+   "dates": [
+    "2026-11-07"
+   ],
+   "files": {
+    "c89a": {
+     "checks": [
+      "k4_block.c",
+      "k4_check.py",
+      "k4_dense.c"
+     ],
+     "fetch": true,
+     "results": [
+      "results/kos.txt",
+      "results/selftest.txt",
+      "results/sk.txt",
+      "results/vid.txt",
+      "results/vid1.txt",
+      "results/vsj.txt"
+     ],
+     "run_all": true
+    }
+   },
+   "folders": [
+    "c89a"
+   ],
+   "heading": "C89: the Ramsey multiplicity of $K_4$ (7 November 2026)",
+   "kind": "section",
+   "prs": [
+    255,
+    264,
+    270
+   ],
+   "rows": [
+    {
+     "prs": [],
+     "tags": [
+      "VSJ2026"
+     ],
+     "text": "| [VSJ2026] | lukevs/k4-ramsey @ `2cf216b`, `data/constructions/final3840.json.gz` (`d7fd4c92...7370`; the JSON inside, `05302cbc...1a29`, as VSJ state) | the page's fraction exactly, $0.0301388875664972218\\ldots$; $N_{\\rm red} + N_{\\rm blue} = 519196432373018212667371525712277942005760$, the integer of VSJ's Lean certificate | 0.0301388876 (margin $3.4 \\cdot 10^{-11}$) |"
+    },
+    {
+     "prs": [],
+     "tags": [
+      "SK2026"
+     ],
+     "text": "| [SK2026] | JeetuSK0808/tao-constants-certificates @ `3d9431a`, `c89_stepgraphon_D20.json.gz` (`82c28f77...631a`, as its SHA256SUMS.txt states) | the page's fraction exactly, $0.0301388793132559809\\ldots$ | 0.0301388794 ($8.7 \\cdot 10^{-11}$) |"
+    },
+    {
+     "prs": [],
+     "tags": [
+      "Kos2026",
+      "VSJ2026"
+     ],
+     "text": "| [Kos2026] | DennisKoshta/c89-k4-ramsey-multiplicity-certificate @ `4fdbe0c`, the amplitudes `delta/c89_sign3_crude_0.03013888570.delta.json.gz` (`514adc3a...d7ad3`, as its SHA256SUMS states), with VSJ's table | the page's fraction exactly, $0.0301388856953920524\\ldots$, $1.87 \\cdot 10^{-9}$ below [VSJ2026]; $N_{\\rm red} + N_{\\rm blue} = 8307142402237973815060289107446603942297600$, the $S$ its README states (249,480 amplitude entries; the witness's dense SHA-256 as the delta states) | 0.0301388857 ($4.6 \\cdot 10^{-12}$) |"
+    },
+    {
+     "prs": [
+      270
+     ],
+     "tags": [
+      "Pat2026"
+     ],
+     "text": "| #270 [Pat2026] | vidigoat/optimization-records @ `fb80010`, `tao/certificates/c89/c89_stepgraphon_D30_round2.json.gz` (`60ebbced...e7d8`, as the row states) | the row's fraction exactly, $0.0301388584652867313\\ldots$; the first round (`c89_stepgraphon_D30.json.gz`, `079b0d0f...8480`) gives the fraction of the folder's README exactly, $0.0301388617423003\\ldots$, as the row's parenthesis says | 0.0301388585 ($3.5 \\cdot 10^{-11}$) |"
+    }
+   ],
+   "summary": "`c89a/k4_check.py` with `k4_block.c` and `k4_dense.c`: the four upper bounds on the 89a page and in [#270](https://github.com/teorth/optimizationproblems/pull/270) that come with a public step graphon, [VSJ2026] $0.0301388876$\\* and [SK2026] $0.0301388794$\\* (added in [#255](https://github.com/teorth/optimizationproblems/pull/255)), [Kos2026] $0.0301388857$\\* ([#264](https://github.com/teorth/optimizationproblems/pull/264)) and #270's [Pat2026] $0.0301388585$\\*, written from the definition on the 89a page. None of the repositories' programs was read or run (lukevs/k4-ramsey's Lean and Python; `exact_eval.py`, `float_eval.py` and `refine.py`; `rebuild.py` and the `verifier/` folder; `exact89.py` and `refine_lbfgs.py`). For an equal-weight step graphon $W = M/D$ on $n$ classes the density is $(N_{\\rm red} + N_{\\rm blue})/(n^4D^6)$, where $N_X = \\sum_{a,b,c,d} X_{ab}X_{ac}X_{ad}X_{bc}X_{bd}X_{cd} = \\sum_a \\operatorname{tr}((XD_a)^3)$ runs over all ordered 4-tuples, repeats included ($X = M$ or $D - M$, $D_a = \\operatorname{diag}(X_{a\\cdot})$).",
+   "tags": [
+    "Kos2026",
+    "Pat2026",
+    "SK2026",
+    "VSJ2026"
+   ]
+  },
+  {
+   "anchor": "c91-the-average-edit-distance-of-two-random-binary-strings-7-november-2026",
+   "constants": [
+    "91"
+   ],
+   "dates": [
+    "2026-11-07"
+   ],
+   "files": {
+    "c91a": {
+     "checks": [
+      "ed_check.py"
+     ],
+     "fetch": true,
+     "results": [
+      "results/j2026.txt",
+      "results/selftest.txt"
+     ],
+     "run_all": true
+    }
+   },
+   "folders": [
+    "c91a"
+   ],
+   "heading": "C91: the average edit distance of two random binary strings (7 November 2026)",
+   "kind": "section",
+   "prs": [
+    273
+   ],
+   "rows": [
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| canonical form: the least cost over rule-obeying alignments (our dynamic programme over rule states) against the edit distance | equal for all 262,144 binary pairs of sizes $(8, 8)$, $(7, 9)$, $(6, 10)$ and $(4, 12)$ |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| each move sequence obeying the three sequence rules: its probability, by enumeration of every letter assignment, against the product of block factors | equal for all 139 sequences of sizes $(3, 3)$, $(4, 4)$, $(3, 5)$, $(2, 6)$, $(5, 2)$ |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| our automaton (uncapped) against the sum of block products and the brute-force expected counts over all string pairs, by cost | equal at sizes $(5, 5)$, $(4, 6)$, $(6, 6)$, $(7, 5)$, $(3, 8)$ |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| the certificate: $k = 2$, $R = 32$, $x = 1178119585379/950178956526$, $t = 86841948745/634295171877$ | a rational $v > 0$ with $(Av)_i < v_i$ on all 132 states, exactly: $\\max_i (Av)_i/v_i = 0.999999998115539$ (the log prints 0.999999998116). Second method: the run states eliminated in closed form, a $4 \\times 4$ nonnegative matrix whose spectral radius is below 1 exactly when $\\rho(A)$ is, certified the same way (0.999999997869369) |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| $a^* = -2\\ln x/\\ln t$, 60-digit decimal arithmetic with error bounds | $0.2162762712874192826\\ldots$: $C_{91} \\ge 0.216276$ holds with margin $2.7 \\cdot 10^{-7}$ |"
+    }
+   ],
+   "summary": "`c91a/ed_check.py`, standard library only: [J2026]'s $C_{91} \\ge 0.216276$\\*, the lower bound of the new 91a page in [#273](https://github.com/teorth/optimizationproblems/pull/273), from the argument in its README alone and the two numbers $x$, $t$ of `certify_rule5_R32.log` (leandrejack-afk/chvatal-sankoff-bound @ `574220e`, `edit-distance-lower/`, `7bb076dd...3fc9`). Its `certify_*.py`, `count_check*.py`, `canon_check*.c` and the review code were neither read nor run. Every pair of strings has an optimal alignment obeying five local rules: no I next to a D; no S right after an indel; the match ending a run avoids the run's letters; no single match between a D and an I; a run right after a substitution avoids the substituted letter. We re-derived the rewriting argument. The expected number of rule-obeying valid alignments of cost at most $an$ is at most $x^{-2n}t^{-an}G(x, t)$, and $G$ is finite when the transfer matrix $A(x, t)$ of an automaton with run lengths capped at $R$ has spectral radius below 1 (capping only raises the weights). So $\\rho(A) < 1$ and $x^2t^a > 1$ give $C_{91} \\ge a$.",
+   "tags": [
+    "J2026"
+   ]
+  },
+  {
+   "anchor": "c42-an-explicit-value-of-birós-lower-bound-8-november-2026",
+   "constants": [
+    "42"
+   ],
+   "dates": [
+    "2026-11-08"
+   ],
+   "files": {
+    "c42": {
+     "checks": [
+      "biro_check.py",
+      "c42_check.py",
+      "kos_check.py",
+      "thmA_check.py"
+     ],
+     "fetch": true,
+     "results": [
+      "results/c42_biro_pin26c.txt",
+      "results/c42_check_controls.txt",
+      "results/c42_kos2026.txt",
+      "results/thmA_302_bak2026.txt",
+      "results/thmA_305_pin2026b.txt",
+      "results/thmA_327_vat2026.txt",
+      "results/thmA_controls.txt",
+      "results/thmA_selftest.txt"
+     ],
+     "run_all": true
+    }
+   },
+   "folders": [
+    "c42"
+   ],
+   "heading": "C42: an explicit value of Biró's lower bound (8 November 2026)",
+   "kind": "section",
+   "prs": [
+    310
+   ],
+   "rows": [],
+   "summary": "`c42/biro_check.py`, standard library only: [Pin26c]'s $C_{42} \\ge 1/2 + 2^{-4096}$\\* of [#310](https://github.com/teorth/optimizationproblems/pull/310), from `LOWER_PROOF.md` and `inputs/lower_certificate.json` (rpinho/math-certificates @ `36325fa`, `c42/biro-explicit-lower`; the hashes of its `lower_manifest.json`). Its `verify_lower_exact.py` was neither read nor run. We re-derived sections 1 to 8 of the proof (Biró's first escape of the $b$ increments, radial balance, the summed coefficients becoming parallel, the transfer back to $b$) and found no false step. The program checks every numerical step, (5) to (32), exactly: inequalities in $r = 1/\\sqrt 2$ and $\\cos(\\pi/8)$ in $\\mathbb{Q}(\\sqrt 2)$, square roots by squaring, all parameters the file's powers of two. Each stated intermediate exponent is shown to follow ($t_0 > 2^{1021}$ with $2^{0.5}$ to spare, $k/t_0 > 2^{1022}$, $b \\le 2^{-254}$, the product below $2^{-340}$, $E/A < 0.0386 < 1/16$ against $r(r-1/2) = 0.1464\\ldots$). The identities behind (11), (15), (23) and (29) are expanded exactly, and (1) and (3) are checked on 40 random tuples of Gaussian rationals. Red controls, all refused: the claim strengthened to $1/2 + 2^{-4094}$ with the same auxiliaries, $\\eta = 2^{-200}$, $\\lambda = 2^{-4000}$, $Z = 2^{-256}$, $\\varepsilon = 2^{-252}$, $\\sigma = 2^{-8}$, final error $1/32$, product bound $2^{-341}$, and a perturbed $b_1$ in the identities. What rests on mathematics: the geometric and analytic steps (read, not formalized). Reproduce: `cd c42 && ./fetch.sh && python3 -I biro_check.py certs --controls`.",
+   "tags": [
+    "Pin26c"
+   ]
+  },
+  {
+   "anchor": "c68-the-contact-row-certificate-for-0447-8-november-2026",
+   "constants": [
+    "68"
+   ],
+   "dates": [
+    "2026-11-08"
+   ],
+   "files": {
+    "c68": {
+     "checks": [
+      "c68_check.py",
+      "row_check.py"
+     ],
+     "fetch": true,
+     "results": [
+      "results/pin.txt",
+      "results/pin0447.txt",
+      "results/vid0446.txt",
+      "results/vid044605.txt"
+     ],
+     "run_all": true
+    }
+   },
+   "folders": [
+    "c68"
+   ],
+   "heading": "C68: the contact-row certificate for 0.447 (8 November 2026)",
+   "kind": "section",
+   "prs": [
+    299
+   ],
+   "rows": [
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| section 1 at $c = 447/1000$ (110-digit decimal) | $\\Psi = 26316.4966 > 6$; $\\mathrm{sech}^2(A/2) < 1/3$; $16\\sinh^2(A/4) = 1827.35 < 2(1-8\\kappa)\\Psi = 2105.32$; $\\tanh^2(A/8) = 0.82955 > (1+8\\kappa)\\pi^2/64$; $\\mathrm{sech}^2(A/8) = 0.17045 < (1-4\\kappa)/2$ |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| the row cover for (5), $z = 23/200$ | outside the root box $S > z$ exactly; the tree tiles $[0,17/50]^2 \\times [7/10,1]$ (287 leaves); 17 PSD leaves fail (6) at their low corner and 4 constant leaves have $\\max(S,J) > z$ (exact rationals); 265 grid leaves (4,096 to 32,768 cells; outward-rounded binary64, `Decimal.ln`) satisfy $\\exp(\\mathrm{mean}\\, l_j) > z(1+D^2)$, smallest ratio 0.11502033 (the cover's `proposal_min`) |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| the small leaf | 8,704 bins, masses bounded below by $1/(2\\sqrt{X(1-X)})$: $\\log(\\ell/16) + \\sum \\mathrm{mass}\\log\\gamma_v = -2.147125 > \\log z = -2.162823$ |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| section 5 (320-bit fixed point) | $A_k \\ge 0$ for $k \\le 5998$ (smallest relative margin $7.8656 \\cdot 10^{-6}$ at $k = 172$), then the atom at $R$; $B_k \\ge 0$ for $k \\le 1322$ with the atomic $\\varepsilon$ term at $k = 1$ ($B_1 \\ge 3.854 \\cdot 10^{-6}$), then one piece of $[R,1]$ alone; our own slope bounds $g \\ge l_i(1-t)$ on 42 pieces |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| the contact-row lemma, sanity test | 20,000 random two- and three-contact configurations: $\\max_i T(\\theta_i) \\ge J$, (6) to rounding, (7) equals $a(q_0+a)/(1+a)$ |"
+    }
+   ],
+   "summary": "`c68/row_check.py`, standard library only: $C_{68} \\ge 447/1000$\\* of [#299](https://github.com/teorth/optimizationproblems/pull/299) (the contact-row model), from `PROOF.md`, `CONTACT_ROW_LEMMA.md` and the two data files `certificate-0447.json` and `row-cover.json` (rpinho/math-certificates @ `09c8423`, `c68/contact-row/certificates`; `d9dd308f...2afe`, `fda0aa14...fc27`). Its `verify_measure.py` and `verify_row.py` were neither read nor run.",
+   "tags": []
+  },
+  {
+   "anchor": "c84a-the-unit-distance-exponent-sawins-criterion-8-november-2026",
+   "constants": [
+    "84a"
+   ],
+   "dates": [
+    "2026-11-08"
+   ],
+   "files": {
+    "c84a": {
+     "checks": [
+      "sawin_check.py"
+     ],
+     "fetch": true,
+     "results": [
+      "results/emm2026.txt"
+     ],
+     "run_all": true
+    }
+   },
+   "folders": [
+    "c84a"
+   ],
+   "heading": "C84a: the unit distance exponent, Sawin's criterion (8 November 2026)",
+   "kind": "section",
+   "prs": [
+    315
+   ],
+   "rows": [
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| Certificate | $\\#S_{\\mathbb Q}$ (ramified, inert, split) | budget | $\\delta$ |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| Sawin's published example, $R = 72$ | 22 (10, 12, 0) | 36 = 36 | 0.01411442867849823889... (his .014114...) |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| greedy, $R = 66.72240803$ | 22 (2, 20, 0) | 36 = 36 | 0.01517180563721325854... |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| evolution strategy, $R = 66.72416$ | 22 (3, 19, 0) | 36 = 36 | 0.01526166106841929424... |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| with discrete recombination, $R = 66.72416$ (the row) | 22 (3, 19, 0) | 36 = 36 | 0.01526286881700719166... > 0.0152 |"
+    }
+   ],
+   "summary": "`c84a/sawin_check.py`, standard library only: the 84a row $C_{84} \\ge 1.0152$\\* of [#315](https://github.com/teorth/optimizationproblems/pull/315) (Emmerich, arXiv:2606.03419v5), from the data file `certificate_verification_all_v23.json` (emmerichmtm/UnitDistanceProblemOptimizationOfSawinsLowerBound @ `2279d0a`, `15fb28e3...ef86`; its parameters are those printed in Appendix B of v5). The repository's verify and optimize scripts were neither read nor run. The criterion is Sawin's (arXiv:2605.20579, proof of Theorem 1 with Lemmas 11 and 12 and Proposition 10): $T$ odd primes with an odd number $\\equiv 3 \\bmod 4$; every $p \\in S_{\\mathbb Q}$ either $1 \\bmod 4$ or inert in some $\\mathbb{Q}(\\sqrt q)$, $q \\in T$; the budget $\\#T + \\#S_{\\mathbb Q} + \\#\\{\\text{split}\\} + 1 \\le (\\#T-1)^2/4$ in $Q = \\mathbb{Q}(\\sqrt{\\prod T})$; then formula (11). Splitting is decided by our own Legendre and Kronecker symbols, and $\\delta$ is enclosed in 60-digit decimal arithmetic.",
+   "tags": []
+  },
+  {
+   "anchor": "c63-and-c64-the-li-yang-exponent-theta-8-november-2026",
+   "constants": [
+    "63",
+    "64"
+   ],
+   "dates": [
+    "2026-11-08"
+   ],
+   "files": {
+    "c63": {
+     "checks": [
+      "theta_check.py"
+     ],
+     "fetch": true,
+     "results": [
+      "results/ly2023.txt"
+     ],
+     "run_all": true
+    },
+    "c64": {
+     "checks": [],
+     "fetch": true,
+     "results": [
+      "results/ly2023.txt"
+     ],
+     "run_all": true
+    }
+   },
+   "folders": [
+    "c63",
+    "c64"
+   ],
+   "heading": "C63 and C64: the Li-Yang exponent $\\theta^*$ (8 November 2026)",
+   "kind": "section",
+   "prs": [
+    313,
+    315
+   ],
+   "rows": [
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| route A, exact algebra | (1.4) is $uv = -\\tfrac{182}{5}x - \\tfrac{37}{5}$; squared, $27524x^2 + 13168x + 1419 = 0$; of its two roots only $x = -(3292 + 25\\sqrt{1717})/13762$ lies in the interval with $uv \\ge 0$, and the residual is exactly zero |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| route B, interval arithmetic ($2^{-400}$ fixed point, outward rounding) | $f' \\in [0.942, 1.127]$ on the whole interval, so at most one root; a sign change at the ends; the bisection enclosure contains route A's root |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| $\\theta^*$ | $(3292 + 25\\sqrt{1717})/13762 = 0.31448317597406140673\\ldots$ |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| 63a, printed $0.3144831759741$ | above $\\theta^*$: a valid upper bound as printed (the paper's \"$0.3144831759741\\cdots$\" is a rounding, not a truncation) |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| 64a, README cell $0.6289663519$ | below $2\\theta^* = 0.62896635194812281347\\ldots$: not an upper bound as printed; $0.6289663520$ is |"
+    }
+   ],
+   "summary": "`c63/theta_check.py`, standard library only, exact: the rows $C_{63} \\le 0.3144831759741\\ldots$ of [#313](https://github.com/teorth/optimizationproblems/pull/313) and $C_{64} \\le 2\\theta^* = 0.6289663519\\ldots$ of [#315](https://github.com/teorth/optimizationproblems/pull/315), both from Li and Yang (arXiv:2308.14859v2), whose Definition 1.1 makes $-\\theta^*$ the unique solution on $[-0.35, -0.3]$ of $-\\tfrac{8}{25}x - \\tfrac{1}{200}\\big(\\sqrt{2(1-14x)} - 5\\sqrt{-1-8x}\\big)^2 + \\tfrac{51}{200} = -x$. The equation is read from the paper's LaTeX source (the arXiv e-print, `6fe6f9c0...93de`) and compared with our transcription first.",
+   "tags": []
+  },
+  {
+   "anchor": "c87-martinets-totally-real-tower-4sqrt70035-8-november-2026",
+   "constants": [
+    "87"
+   ],
+   "dates": [
+    "2026-11-08"
+   ],
+   "files": {
+    "c87": {
+     "checks": [
+      "martinet_check.py"
+     ],
+     "fetch": false,
+     "results": [
+      "results/mar1978.txt"
+     ],
+     "run_all": true
+    }
+   },
+   "folders": [
+    "c87"
+   ],
+   "heading": "C87: Martinet's totally real tower, $4\\sqrt{70035}$ (8 November 2026)",
+   "kind": "section",
+   "prs": [
+    332
+   ],
+   "rows": [
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| Proposition 4.1 (i)-(iii) | $29 \\equiv 1 \\bmod 4$; $m = 2415 \\equiv -1 \\bmod 4$; $7$ and $23$ are $\\pm 1 \\bmod 8$ with $(q/29) = +1$ |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| $\\mathrm{disc}(k')$ | $8 \\cdot 280140 \\cdot 560280 = 2^8 \\cdot 70035^2$, so $\\mathrm{rd}(k') = 4\\sqrt{70035}$ |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| $K/k'$ | unramified at every prime ($e_\\ell(K) = e_\\ell(k')$ for $\\ell \\mid 2 \\cdot 70035$), all fields totally real |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| primes of $k$ ramified in $K$ | 1 above 2, 2 above 3, 2 above 5, 4 above 7, 4 above 23 (none above 29): $r = 13 \\ge n + 3 + 2\\sqrt{2n+1} = 13$ |"
+    },
+    {
+     "prs": [
+      332
+     ],
+     "tags": [],
+     "text": "| $4\\sqrt{70035}$ | $1058.565066493316696961\\ldots$; the old printed $1058.565$ is below it, as #332 says |"
+    }
+   ],
+   "summary": "`c87/martinet_check.py`, standard library only, exact: the 87a row as [#332](https://github.com/teorth/optimizationproblems/pull/332) restates it, from Martinet (Invent. Math. 44 (1978), Proposition 4.1 and Example 4.2, p. 69): $k = \\mathbb{Q}(\\sqrt{29}, \\sqrt 2)$, $K = k(\\sqrt{3 \\cdot 5 \\cdot 7 \\cdot 23})$ and $k' = \\mathbb{Q}(\\sqrt 2, \\sqrt{70035})$. Every ramification and splitting number comes from the $\\mathbb{F}_2$-space of quadratic subfields (inertia and decomposition fields as spans of the subfields unramified at $\\ell$, resp. split at $\\ell$), and the counts in $k$ above $3, 5, 7, 23$ again from Dedekind-Kummer, with a defining polynomial whose index is checked prime to $\\ell$.",
+   "tags": []
+  },
+  {
+   "anchor": "c1a-and-c1b-eleven-step-function-rows-8-november-2026",
+   "constants": [
+    "1a",
+    "1b"
+   ],
+   "dates": [
+    "2026-11-08"
+   ],
+   "files": {
+    "c1ab": {
+     "checks": [
+      "extract_values.py"
+     ],
+     "fetch": true,
+     "results": [
+      "results/atris_c1b_construction.decimal.txt",
+      "results/atris_c1b_construction.txt",
+      "results/c1a_alphaevolve_2025.decimal.txt",
+      "results/c1a_alphaevolve_2025.txt",
+      "results/c1a_alphaevolve_dec2025.decimal.txt",
+      "results/c1a_alphaevolve_dec2025.txt",
+      "results/c1a_ea2026_2603.decimal.txt",
+      "results/c1a_ea2026_2603.txt",
+      "results/c1b_alphaevolve_2025.decimal.txt",
+      "results/c1b_alphaevolve_2025.txt",
+      "results/c1b_ea2026_2507.decimal.txt",
+      "results/c1b_ea2026_2507.txt",
+      "results/c1b_haugland_2016.decimal.txt",
+      "results/c1b_together_ai_2026.decimal.txt",
+      "results/c1b_together_ai_2026.txt",
+      "results/tog_c1a_ours_2026.decimal.txt",
+      "results/tog_c1a_ours_2026.txt",
+      "results/ttt_ac1_sequence.decimal.txt",
+      "results/ttt_ac1_sequence.txt",
+      "results/ttt_erdos_sequence.decimal.txt",
+      "results/ttt_erdos_sequence.txt"
+     ],
+     "run_all": true
+    }
+   },
+   "folders": [
+    "c1ab"
+   ],
+   "heading": "C1a and C1b: eleven step-function rows (8 November 2026)",
+   "kind": "section",
+   "prs": [
+    158,
+    232
+   ],
+   "rows": [
+    {
+     "prs": [],
+     "tags": [
+      "GGSWT2025"
+     ],
+     "text": "| 1a [GGSWT2025] May 2025 | google-deepmind/alphaevolve_results @ `4226acb`, notebook cell 53 | 600 | 1.50529396844016080772...; 1.50529396844016081649... | 1.5053, valid |"
+    },
+    {
+     "prs": [],
+     "tags": [
+      "GGSWT2025"
+     ],
+     "text": "| 1a [GGSWT2025] Dec 2025 | alphaevolve_repository_of_problems @ `8f44745`, notebook cell 60 | 1319 | 1.50316355468156091584...; 1.50316355468156092083... | 1.503164, valid |"
+    },
+    {
+     "prs": [],
+     "tags": [
+      "YKLBMWKCZGS2026"
+     ],
+     "text": "| 1a [YKLBMWKCZGS2026] | test-time-training/discover @ `6c40e82`, `ttt_ac1_sequence.json` | 30000 | 1.50286289825582656290...; 1.50286289825582656243... | 1.502870, valid |"
+    },
+    {
+     "prs": [],
+     "tags": [
+      "T2026"
+     ],
+     "text": "| 1a [T2026] | togethercomputer/EinsteinArena-new-SOTA @ `c388c6f`, `ours_2026.json` | 30000 | 1.50286285870531082009...; 1.50286285870531082455... | **1.502862, below the exact value** |"
+    },
+    {
+     "prs": [],
+     "tags": [
+      "EA2026"
+     ],
+     "text": "| 1a [EA2026] | EinsteinArena solution 2603 (fetched 8 Nov) | 65536 | 1.50274353195395969900...; 1.50274353195395970066... | 1.5027435320, valid |"
+    },
+    {
+     "prs": [],
+     "tags": [
+      "GGSWT2025"
+     ],
+     "text": "| 1b [GGSWT2025] | alphaevolve_results @ `4226acb`, cell 78: 48 numbers, mirrored to 95 steps | 95 | 0.38092303510845014962...; 0.38092303510845014897... (rescaled) | 0.380924, valid |"
+    },
+    {
+     "prs": [],
+     "tags": [
+      "YKLBMWKCZGS2026"
+     ],
+     "text": "| 1b [YKLBMWKCZGS2026] | discover @ `6c40e82`, `ttt_erdos_sequence.json` | 600 | 0.38087532321771874649...; 0.38087532321771874864... (rescaled) | 0.380876, valid |"
+    },
+    {
+     "prs": [],
+     "tags": [
+      "T2026"
+     ],
+     "text": "| 1b [T2026] | EinsteinArena-new-SOTA @ `c388c6f`, `together_ai_2026.py` | 600 | 0.38087031058621990349...; 0.38087031058621990370... (rescaled) | 0.380871, valid |"
+    },
+    {
+     "prs": [],
+     "tags": [
+      "EA2026"
+     ],
+     "text": "| 1b [EA2026] | EinsteinArena solution 2507 (fetched 8 Nov) | 3584 | 0.38085857485785830914...; 0.38085857485785830932... (rescaled) | 0.3808585749, valid |"
+    },
+    {
+     "prs": [],
+     "tags": [
+      "A2026"
+     ],
+     "text": "| 1b [A2026] | atrislabs/records @ `1fa857a`, `construction.json` (`62a976fa...`) | 114688 | 0.38085855031642856010... (exact rationals) | 0.3808585504, valid |"
+    },
+    {
+     "prs": [],
+     "tags": [
+      "H2016"
+     ],
+     "text": "| 1b [H2016] | Haugland, arXiv:1609.08000, the 51-step function of section 2 (printed decimals) | 51 | 0.38092685343308697464... (the paper: 0.3809268534330870) | **0.380926, below the exact value** |"
+    }
+   ],
+   "summary": "`../autocorr_check.py` (a `1b` mode added: $(2/n)\\max_m \\sum_i h_i(1 - h_{i+m})$ over every grid shift, with $0 \\le h \\le 1$ and $\\sum h = n/2$ checked exactly; the autocorrelation from one big-integer product), on the heights of eleven rows, each from the source its row cites; `c1ab/extract_values.py` copies the numbers out as text (Python files and notebook cells with `ast`, the LaTeX with a regular expression; nothing downloaded is run). Both readings of the decimals are run: as binary64 and as printed.",
+   "tags": [
+    "A2026",
+    "EA2026",
+    "GGSWT2025",
+    "H2016",
+    "T2026",
+    "YKLBMWKCZGS2026"
+   ]
+  },
+  {
+   "anchor": "c24-the-komlós-constant-of-akbas-and-sra-8-november-2026",
+   "constants": [
+    "24"
+   ],
+   "dates": [
+    "2026-11-08"
+   ],
+   "files": {
+    "c24": {
+     "checks": [
+      "komlos_check.py"
+     ],
+     "fetch": true,
+     "results": [
+      "results/as2026.txt"
+     ],
+     "run_all": true
+    }
+   },
+   "folders": [
+    "c24"
+   ],
+   "heading": "C24: the Komlós constant of Akbas and Sra (8 November 2026)",
+   "kind": "section",
+   "prs": [
+    250
+   ],
+   "rows": [
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| $F(6) - 1$ | $+0.12191512\\ldots$ (both routes) |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| $F(6.9012574) - 1$, $F(6.9012575) - 1$ | $+1.856 \\cdot 10^{-10}$, $-1.201 \\cdot 10^{-8}$: the paper's enclosure $(6.9012574, 6.9012575)$ holds |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| $F(6.9013) - 1$ | $-5.196 \\cdot 10^{-6}$: $C_{\\cos} < 6.9013$, the row |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| $C_{\\cos}$ by bisection | $6.901257401521836873264072186907\\ldots$ (width $8 \\cdot 10^{-38}$; route B agrees at both ends) |"
+    }
+   ],
+   "summary": "`c24/komlos_check.py`, standard library only: the row $C_{24} \\le 6.9013$\\* of [#250](https://github.com/teorth/optimizationproblems/pull/250), from Theorem 2.4 of Akbas and Sra (arXiv:2609.27172v2), whose constant $C_{\\cos}$ is the unique solution of $F(C) = \\tfrac{3\\sqrt{2\\pi}}{C}\\int_0^3 (1 - r/3)^2 e^{-\\pi^2 r^2/(2C^2)}\\,dr = 1$. The equation is read from the paper's LaTeX source (`komlos-paper.tex`, `386c47a6...92a2`) and compared with our transcription first. $F$ is strictly decreasing in $C$ (our own one-line argument: with $s = \\pi/C$, $dF/ds$ is a positive multiple of $\\int_0^{3s} w(u) e^{-u^2/2}(1 - u^2)\\,du$ with $w$ non-negative and decreasing, which is at least $w(1) \\cdot 3s\\,e^{-9s^2/2} > 0$), so $C_{\\cos} < c$ exactly when $F(c) < 1$. Two evaluations in $2^{-400}$ fixed-point interval arithmetic, with $\\pi$ from Gauss's arctangent formula: the term-by-term alternating series (route A) and the error-function form with positive-term series (route B).",
+   "tags": []
+  },
+  {
+   "anchor": "c9-the-134753-vertex-independent-set-of-ircr2026-8-november-2026",
+   "constants": [
+    "9"
+   ],
+   "dates": [
+    "2026-11-08"
+   ],
+   "files": {
+    "c9": {
+     "checks": [
+      "gao_check.py",
+      "strong_check.c"
+     ],
+     "fetch": true,
+     "results": [
+      "results/gao2026.txt",
+      "results/ircr2026.txt"
+     ],
+     "run_all": true
+    }
+   },
+   "folders": [
+    "c9"
+   ],
+   "heading": "C9: the 134,753-vertex independent set of [IRCR2026] (8 November 2026)",
+   "kind": "section",
+   "prs": [
+    174
+   ],
+   "rows": [
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| the file | 134,753 lines of ten values in $\\{0, \\ldots, 6\\}$, no duplicates |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| adjacent ordered pairs | 0 in route 1, 0 in route 2: the set is independent, so $\\alpha(\\mathcal{C}_7^{\\boxtimes 10}) \\ge 134753$ |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| the printed value | $3.258020^{10} \\le 134753 < 3.258021^{10}$ exactly; $134753^{1/10} = 3.25802073729324535952\\ldots$ |"
+    }
+   ],
+   "summary": "`c9/strong_check.c`, our own C program: the 9a row $134753^{1/10} \\approx 3.258020$ (Itty, Rosin, Carstensen and Reichman, arXiv:2607.21517; added in [#174](https://github.com/teorth/optimizationproblems/pull/174)), from the data file `c7/CC_10_7_134753.txt` of nathanielitty/lower-bounds-for-shannon-capacity @ `fe89660` (`60fb7b0a...755a`); the repository's `verifier.py` and construction scripts were neither read nor run. Two members $x \\ne y$ of $\\mathcal{C}_7^{\\boxtimes 10}$ are adjacent when every coordinate differs by $0$ or $\\pm 1 \\bmod 7$. Route 1 looks up all $3^{10} - 1 = 59048$ neighbours of every member in a bitmap of the $7^{10}$ vertices; route 2 groups the members by their first five coordinates and compares each member with the members of the $3^5$ adjacent or equal groups on the last five.",
+   "tags": []
+  },
+  {
+   "anchor": "c84b-althoefers-chain-for-the-sum-product-exponent-8-november-2026",
+   "constants": [
+    "84b"
+   ],
+   "dates": [
+    "2026-11-08"
+   ],
+   "files": {
+    "c84b": {
+     "checks": [
+      "althoefer_check.py"
+     ],
+     "fetch": true,
+     "results": [
+      "results/al26.txt"
+     ],
+     "run_all": true
+    }
+   },
+   "folders": [
+    "c84b"
+   ],
+   "heading": "C84b: Althoefer's chain for the sum-product exponent (8 November 2026)",
+   "kind": "section",
+   "prs": [
+    275
+   ],
+   "rows": [
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| the note's chain at $s_0 = 1.371966384$, $\\rho = 103$, $Y = 1415$, $X = \\lfloor e^{1423}\\rfloor$ | $\\rho(s_0) = 101.95607583\\ldots \\le 103$; $515/Y = 0.36395760 < 0.364$; $M_1e^Y/(XY^2) \\le 0.13523948 < 0.136$; $M_2/(X^2Y^2) < 10^{-1000}$; $L \\le 1431.1139758 \\le 1432$; $-\\log 0.364 = 1.010601 > 0.0007 \\cdot 1432$: $c \\ge 0.0007$, the exponent $1.9993$ |"
+    },
+    {
+     "prs": [
+      275
+     ],
+     "tags": [
+      "T2026"
+     ],
+     "text": "| $c$ at the note's choice, unrounded | $0.000706245573\\ldots$ (#275 and [T2026]: about 0.000706) |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| the ceiling over every $s > 1$, $X, Y > 0$ | $\\rho(s) \\ge 101.953216$ for all $s > 1$ (5,115 cells); $c \\le \\log(Y/(5\\rho))/(Y + \\log(8(1+\\varepsilon)\\rho C_2/\\varepsilon))$ for every $X$; so $c \\le 0.000713944$, which the chain approaches to $4.5 \\cdot 10^{-8}$ ($Y = 1400.8$) |"
+    }
+   ],
+   "summary": "`c84b/althoefer_check.py`, standard library only: the 84b row $C_{84b} \\le 1.9993$\\* ([Al26], Althoefer's note on [BSSZ2026, §5]) and the ceiling that [#275](https://github.com/teorth/optimizationproblems/pull/275) restates, from the note's TeX alone (`improved_constant_052.tex`, `2f6bbdcb...5568`; its numbers are read from the file and compared). The chain: $c = -\\log\\max(5\\rho/Y,\\ M_1e^Y/(XY^2) + M_2/(X^2Y^2)) / L$ with $L > \\log(5Y+1) + \\log(2\\varepsilon X + 1)$, $\\varepsilon = (\\varphi-1)/(\\varphi+1)$, $M_2 = \\rho^2C_2/\\varepsilon^2$, $M_1 = 4(1+\\varepsilon)M_2$, $C_2 = 857.57$, and $\\rho(s) = \\zeta(s)\\Gamma(s/2)C_2^{s/2}/(2\\pi^{s/2})$ bounding the regulator. $\\zeta$ by Euler-Maclaurin and $\\log\\Gamma$ by Stirling's series, both with the first omitted term as the remainder bound, in 50-digit decimals.",
+   "tags": [
+    "Al26",
+    "T2026"
+   ]
+  },
+  {
+   "anchor": null,
+   "constants": [
+    "13a"
+   ],
+   "dates": [
+    "2026-11-08"
+   ],
+   "files": {
+    "c13a": {
+     "checks": [
+      "quad_check.py"
+     ],
+     "fetch": true,
+     "results": [
+      "results/k2026.txt"
+     ],
+     "run_all": true
+    }
+   },
+   "folders": [
+    "c13a"
+   ],
+   "heading": "C13a: replay in c13a/ (2026-11-08; the README section is not written yet)",
+   "kind": "folder",
+   "prs": [
+    314
+   ],
+   "rows": [],
+   "summary": "Replay of the 13a upper-bound row [K2026] (PR #314): Keller's quadrilateral K from the side data in the paper's LaTeX source, exact rational arithmetic, with red controls; one output file in results/. Usage: ./run_all.sh [CERTS_ROOT]   (default: ./certs). Python 3.9+, standard library only; under a second.",
+   "tags": [
+    "K2026"
+   ]
+  },
+  {
+   "anchor": null,
+   "constants": [
+    "17"
+   ],
+   "dates": [
+    "2026-11-08"
+   ],
+   "files": {
+    "c17": {
+     "checks": [
+      "ramsey_check.py"
+     ],
+     "fetch": true,
+     "results": [
+      "results/gri26.txt",
+      "results/wmr2026.txt"
+     ],
+     "run_all": true
+    }
+   },
+   "folders": [
+    "c17"
+   ],
+   "heading": "C17: replay in c17/ (2026-11-08; the README section is not written yet)",
+   "kind": "folder",
+   "prs": [
+    127,
+    313
+   ],
+   "rows": [],
+   "summary": "Replays of two 17a rows inside the theorem they rely on (Gupta-Ndiaye-Norin-Wei), with the region a bound certifies (both orders of k and l): [WMR2026] C_17 <= 3.6960839126* (PR #313; lambda = 1) and [Gri26] C_17 <= 3.791993699438612 (PR #127; Lemma 14 of v1 against Lemma 15 of v2, lambda = 0.01); red controls. One output file per row in results/. Usage: ./run_all.sh [CERTS_ROOT]   (default: ./certs). Python 3.9+, standard library only; about 15 seconds.",
+   "tags": [
+    "Gri26",
+    "WMR2026"
+   ]
+  },
+  {
+   "anchor": null,
+   "constants": [
+    "18"
+   ],
+   "dates": [
+    "2026-11-08"
+   ],
+   "files": {
+    "c18": {
+     "checks": [
+      "hamming_check.py"
+     ],
+     "fetch": true,
+     "results": [
+      "results/gt2009.txt"
+     ],
+     "run_all": true
+    }
+   },
+   "folders": [
+    "c18"
+   ],
+   "heading": "C18: replay in c18/ (2026-11-08; the README section is not written yet)",
+   "kind": "folder",
+   "prs": [
+    202
+   ],
+   "rows": [],
+   "summary": "Replay of the 18a row [GT2009], C_18 >= 1.46601 (added in PR #202): the Hamming-ball ratio of Green and Tao's Section 5 enclosed in interval arithmetic of our own, with controls. One output file in results/. Usage: ./run_all.sh [CERTS_ROOT]   (default: ./certs). Python 3.9+, standard library only; about a minute.",
+   "tags": [
+    "GT2009"
+   ]
+  },
+  {
+   "anchor": null,
+   "constants": [
+    "30"
+   ],
+   "dates": [
+    "2026-11-08"
+   ],
+   "files": {
+    "c30": {
+     "checks": [
+      "norton_check.py"
+     ],
+     "fetch": true,
+     "results": [
+      "results/n2026.txt",
+      "results/pin2026.txt"
+     ],
+     "run_all": true
+    }
+   },
+   "folders": [
+    "c30"
+   ],
+   "heading": "C30: replay in c30/ (2026-11-08; the README section is not written yet)",
+   "kind": "folder",
+   "prs": [
+    313,
+    317
+   ],
+   "rows": [],
+   "summary": "Replays of two 30a rows: [N2026] gr(Av(1324)) >= 10.412263 (PR #313), the evaluation of Norton's Table 1 from the paper's LaTeX source (strip functions differentiated exactly and compared with (H2), (H3); profile; interval evaluation of the bracket, its slopes and the tangent bound; Phi > 0), and the candidate 521/50 of PR #317 (the exact numerical point of its Section 6, with its envelope profile), with controls. One output file per row in results/. Usage: ./run_all.sh [CERTS_ROOT]   (default: ./certs). Python 3.9+, standard library only; about 10 seconds.",
+   "tags": [
+    "N2026"
+   ]
+  },
+  {
+   "anchor": null,
+   "constants": [
+    "4b"
+   ],
+   "dates": [
+    "2026-11-08"
+   ],
+   "files": {
+    "c4b": {
+     "checks": [
+      "chain_check.py"
+     ],
+     "fetch": true,
+     "results": [
+      "results/jon2026a.txt",
+      "results/kra2026.txt"
+     ],
+     "run_all": true
+    }
+   },
+   "folders": [
+    "c4b"
+   ],
+   "heading": "C4b: replay in c4b/ (2026-11-08; the README section is not written yet)",
+   "kind": "folder",
+   "prs": [
+    187
+   ],
+   "rows": [],
+   "summary": "Replays of two 4b rows added in PR #187: [Kra2026] C_4b >= 0.752796455874514... (the ten Paley chains, alpha_*) and [Jon2026a] C_4b >= 0.753741541837329405... (the two square-DAG blocks on 235 and 299, the eleven-block alpha_inf), in interval arithmetic, with the constructions checked on small instances by brute force; controls. One output file per row in results/. Usage: ./run_all.sh [CERTS_ROOT]   (default: ./certs). Python 3.9+; seconds.",
+   "tags": [
+    "Jon2026a",
+    "Kra2026"
+   ]
+  },
+  {
+   "anchor": null,
+   "constants": [
+    "89c"
+   ],
+   "dates": [
+    "2026-11-08"
+   ],
+   "files": {
+    "c89c": {
+     "checks": [
+      "flag_check.py",
+      "flag_count.c"
+     ],
+     "fetch": true,
+     "results": [
+      "results/pin2026.txt"
+     ],
+     "run_all": true
+    }
+   },
+   "folders": [
+    "c89c"
+   ],
+   "heading": "C89c: replay in c89c/ (2026-11-08; the README section is not written yet)",
+   "kind": "folder",
+   "prs": [
+    308
+   ],
+   "rows": [],
+   "summary": "Replay of the 89c candidate lower bound of PR #308 from its certificate and graph list (fetched by fetch.sh): the certificate's structure, the completeness of the graph list, and the coefficient inequality for every 8-vertex graph, exactly, with red controls and a pure-Python recomputation for three graphs. One output file in results/. Usage: ./run_all.sh [CERTS_ROOT]   (default: ./certs). A C compiler and Python 3.9+; about a minute, under 400 MB.",
+   "tags": []
+  }
+ ],
+ "tao_repository": "https://github.com/teorth/optimizationproblems"
+}

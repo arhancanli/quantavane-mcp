@@ -1,0 +1,10 @@
+# Strength-3 first entries of ca-tools #51 that a published construction beats (not counted as ours).
+# Source: the covering arrays paper's make_table.py (quantavane-hq papers/covering-arrays-2026, 5 Nov 2026), which
+# evaluates Shokri and Moura (J. Combin. Des. 2025; SM) and the Roux-type construction of Colbourn, Martirosyan,
+# Tran Van Trung and Walker (CMTW34) at every width; it agrees with ca-tools derived.csv at all its points.
+t,v,k_from,k_to,law,their_N,our_N
+3,5,10001,10215,CMTW34,1441,1445
+3,23,10001,12719,SM,58236,60743
+3,23,13872,14973,CMTW34,67127-67655,72887
+3,25,10001,16275,SM,75050,78025
+3,25,17333,18925,CMTW34,84911-86185,93625

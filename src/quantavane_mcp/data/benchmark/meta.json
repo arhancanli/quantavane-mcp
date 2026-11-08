@@ -1,0 +1,777 @@
+{
+ "commit": "6c6c0270c752feb1dd6a9c65eec53330baab4c69",
+ "commit_date": "2026-11-07T05:16:13Z",
+ "cvrplib_instances": {
+  "Antwerp1.vrp": {
+   "sha256": "f9206ba0037ccffea614cefb2300830b171ee192b4116a3c7a949f456d7870ff",
+   "url": "https://galgos.inf.puc-rio.br/cvrplib/en/download/instance/258"
+  },
+  "Antwerp2.vrp": {
+   "sha256": "26b6ca241f76bc7993bc88faac4a0035e39ba93b24dcedd289f394be128f37da",
+   "url": "https://galgos.inf.puc-rio.br/cvrplib/en/download/instance/259"
+  },
+  "Brussels1.vrp": {
+   "sha256": "df36365400cbc0dac8ba7d55f62234801519d29629d41c473f405419d8947503",
+   "url": "https://galgos.inf.puc-rio.br/cvrplib/en/download/instance/260"
+  },
+  "Brussels2.vrp": {
+   "sha256": "1ae2a871fed6baff273bd3f6d869c272b0373a04acac7be3b919a90c98a9cd21",
+   "url": "https://galgos.inf.puc-rio.br/cvrplib/en/download/instance/261"
+  },
+  "Flanders1.vrp": {
+   "sha256": "4b64deac4878d0cfdf3221195eacf794e8c45b91f18efc4eb26830b63193c3ab",
+   "url": "https://galgos.inf.puc-rio.br/cvrplib/en/download/instance/262"
+  },
+  "Flanders2.vrp": {
+   "sha256": "2927e79b46b156a29ee45bb0c130f667bb9077fd2895fb1e99a2151665eaa68e",
+   "url": "https://galgos.inf.puc-rio.br/cvrplib/en/download/instance/263"
+  },
+  "Ghent1.vrp": {
+   "sha256": "fff572e192410999fc8fb71e656728899b8ba1555f96bfb1d13a2c9114a11276",
+   "url": "https://galgos.inf.puc-rio.br/cvrplib/en/download/instance/264"
+  },
+  "Ghent2.vrp": {
+   "sha256": "a07c1c03491527f5c1890230ceab59cfd2e67a01d362c4c7d03b4515fc7a001a",
+   "url": "https://galgos.inf.puc-rio.br/cvrplib/en/download/instance/265"
+  },
+  "Leuven2.vrp": {
+   "sha256": "dbcf78551e64f523d3ad535ff04fd3be2c8bb21dc704e9053fccb18d20201b9a",
+   "url": "https://galgos.inf.puc-rio.br/cvrplib/en/download/instance/267"
+  },
+  "XL-n1048-k237.vrp": {
+   "sha256": "3718a537257b90d30d5dfc111739098b4aa7c8ecf5cac48232f77fb2eef4907c",
+   "url": "https://galgos.inf.puc-rio.br/cvrplib/en/download/instance/280"
+  },
+  "XL-n1748-k271.vrp": {
+   "sha256": "ed4d6e78f738af93892fe15da80ae6e2572b628fd8816e6ad032fefc709f3e97",
+   "url": "https://galgos.inf.puc-rio.br/cvrplib/en/download/instance/295"
+  },
+  "XL-n6168-k1922.vrp": {
+   "sha256": "55b0f0a1fe0793feed56cbd261a431808f65b88a7207cdc5ee59cff95ad8162e",
+   "url": "https://galgos.inf.puc-rio.br/cvrplib/en/download/instance/357"
+  },
+  "XL-n8028-k294.vrp": {
+   "sha256": "680f7815f0633a6e1786079985060534da9d6ea8010a3a7900befda6512df227",
+   "url": "https://galgos.inf.puc-rio.br/cvrplib/en/download/instance/369"
+  },
+  "XL-n9784-k2774.vrp": {
+   "sha256": "a29f80c7bd223c15301467a3778927e48e726a88e2d0e15574543d26a818d38a",
+   "url": "https://galgos.inf.puc-rio.br/cvrplib/en/download/instance/378"
+  }
+ },
+ "external_expected": [
+  {
+   "expected": [
+    "does not improve",
+    "does not improve"
+   ],
+   "file": "flat4_1a.json",
+   "problem": "1a-upper"
+  },
+  {
+   "expected": [
+    "does not improve",
+    "does not improve"
+   ],
+   "file": "kos_1c.json",
+   "problem": "1c-lower"
+  },
+  {
+   "expected": [
+    "IMPROVES",
+    "does not improve"
+   ],
+   "file": "vid_1c_v3.json",
+   "problem": "1c-lower"
+  },
+  {
+   "expected": [
+    "does not improve",
+    "does not improve"
+   ],
+   "file": "huiihao_1d.json",
+   "problem": "1d-upper"
+  },
+  {
+   "expected": [
+    "does not improve",
+    "does not improve"
+   ],
+   "file": "pin_68a.json",
+   "problem": "68a-lower"
+  },
+  {
+   "expected": [
+    "IMPROVES",
+    "does not improve"
+   ],
+   "file": "vid_68a_044605.json",
+   "problem": "68a-lower"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "cremer_6_8_n134.txt",
+   "problem": "ramsey-6-8"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "griego_c42.json",
+   "problem": "42a-upper"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "pinho_c42_256.json",
+   "problem": "42a-upper"
+  },
+  {
+   "expected": [
+    "IMPROVES",
+    "does not improve"
+   ],
+   "file": "gomyway_c59.json",
+   "problem": "59a-upper"
+  },
+  {
+   "expected": [
+    "NOT CERTIFIED"
+   ],
+   "file": "control_cvrp_missing_route.sol",
+   "problem": "cvrp-xl-n1048-k237"
+  },
+  {
+   "expected": [
+    "NOT CERTIFIED"
+   ],
+   "file": "control_cvrp_overfull.sol",
+   "problem": "cvrp-xl-n1048-k237"
+  },
+  {
+   "expected": [
+    "NOT CERTIFIED"
+   ],
+   "file": "control_cw_repeated.txt",
+   "problem": "cw-34-6-5"
+  },
+  {
+   "expected": [
+    "NOT CERTIFIED"
+   ],
+   "file": "control_cw_weight.txt",
+   "problem": "cw-34-6-5"
+  }
+ ],
+ "problem_count": 117,
+ "problem_file_dates": {
+  "16a-lower": "2026-11-06",
+  "1a-upper": "2026-11-05",
+  "1c-lower": "2026-11-05",
+  "1d-upper": "2026-11-05",
+  "42a-upper": "2026-11-06",
+  "59a-upper": "2026-11-06",
+  "68a-lower": "2026-11-05",
+  "covering-17-7-4-6": "2026-11-06",
+  "covering-18-9-5-6": "2026-11-06",
+  "covering-21-8-3-4": "2026-11-06",
+  "covering-22-15-6": "2026-11-06",
+  "covering-23-6-6-15": "2026-11-06",
+  "covering-24-17-7": "2026-11-06",
+  "covering-28-17-4": "2026-11-06",
+  "covering-35-10-3": "2026-11-06",
+  "covering-36-6-2": "2026-11-06",
+  "covering-37-8-2-3": "2026-11-06",
+  "cvrp-antwerp1": "2026-11-06",
+  "cvrp-antwerp2": "2026-11-06",
+  "cvrp-brussels1": "2026-11-06",
+  "cvrp-brussels2": "2026-11-06",
+  "cvrp-flanders1": "2026-11-06",
+  "cvrp-flanders2": "2026-11-06",
+  "cvrp-ghent1": "2026-11-06",
+  "cvrp-ghent2": "2026-11-06",
+  "cvrp-leuven2": "2026-11-06",
+  "cvrp-xl-n1048-k237": "2026-11-06",
+  "cvrp-xl-n1748-k271": "2026-11-06",
+  "cvrp-xl-n6168-k1922": "2026-11-06",
+  "cvrp-xl-n8028-k294": "2026-11-06",
+  "cvrp-xl-n9784-k2774": "2026-11-06",
+  "cw-27-4-6": "2026-11-06",
+  "cw-28-4-5": "2026-11-06",
+  "cw-29-4-5": "2026-11-06",
+  "cw-33-4-5": "2026-11-06",
+  "cw-33-6-6": "2026-11-06",
+  "cw-34-6-5": "2026-11-06",
+  "cw-34-6-6": "2026-11-06",
+  "cw-35-6-5": "2026-11-06",
+  "cw-35-6-6": "2026-11-06",
+  "cw-36-4-5": "2026-11-06",
+  "cw-36-6-5": "2026-11-06",
+  "cw-38-4-5": "2026-11-06",
+  "cw-38-6-6": "2026-11-06",
+  "cw-39-4-5": "2026-11-06",
+  "cw-40-4-5": "2026-11-06",
+  "cw-40-6-5": "2026-11-06",
+  "cw-42-6-5": "2026-11-06",
+  "cw-42-6-6": "2026-11-06",
+  "cw-44-6-5": "2026-11-06",
+  "cw-45-6-5": "2026-11-06",
+  "cw-46-6-5": "2026-11-06",
+  "cw-47-6-5": "2026-11-06",
+  "cw-50-6-5": "2026-11-06",
+  "cw-51-6-5": "2026-11-06",
+  "cw-51-6-6": "2026-11-06",
+  "cw-52-6-5": "2026-11-06",
+  "cw-53-6-5": "2026-11-06",
+  "cw-54-6-5": "2026-11-06",
+  "cw-55-6-5": "2026-11-06",
+  "cw-56-6-5": "2026-11-06",
+  "cw-58-6-5": "2026-11-06",
+  "cw-60-6-5": "2026-11-06",
+  "ramsey-10-12": "2026-11-05",
+  "ramsey-12-12": "2026-11-05",
+  "ramsey-3-17": "2026-11-05",
+  "ramsey-3-24": "2026-11-05",
+  "ramsey-3-25": "2026-11-05",
+  "ramsey-3-26": "2026-11-05",
+  "ramsey-3-28": "2026-11-05",
+  "ramsey-3-29": "2026-11-05",
+  "ramsey-3-30": "2026-11-05",
+  "ramsey-3-31": "2026-11-05",
+  "ramsey-3-32": "2026-11-05",
+  "ramsey-3-33": "2026-11-05",
+  "ramsey-3-34": "2026-11-05",
+  "ramsey-3-35": "2026-11-05",
+  "ramsey-3-36": "2026-11-05",
+  "ramsey-3-37": "2026-11-05",
+  "ramsey-3-38": "2026-11-05",
+  "ramsey-3-39": "2026-11-05",
+  "ramsey-3-40": "2026-11-05",
+  "ramsey-3-41": "2026-11-05",
+  "ramsey-3-42": "2026-11-05",
+  "ramsey-3-43": "2026-11-05",
+  "ramsey-3-44": "2026-11-05",
+  "ramsey-3-45": "2026-11-05",
+  "ramsey-3-46": "2026-11-05",
+  "ramsey-3-47": "2026-11-05",
+  "ramsey-3-48": "2026-11-05",
+  "ramsey-3-49": "2026-11-05",
+  "ramsey-3-50": "2026-11-05",
+  "ramsey-4-15": "2026-11-05",
+  "ramsey-4-16": "2026-11-05",
+  "ramsey-4-18": "2026-11-05",
+  "ramsey-4-19": "2026-11-05",
+  "ramsey-4-20": "2026-11-05",
+  "ramsey-4-21": "2026-11-05",
+  "ramsey-5-15": "2026-11-06",
+  "ramsey-6-8": "2026-11-05",
+  "ramsey-7-13": "2026-11-05",
+  "ramsey-7-16": "2026-11-05",
+  "ramsey-8-10": "2026-11-05",
+  "ramsey-8-12": "2026-11-06",
+  "ramsey-8-18": "2026-11-05",
+  "ramsey-9-11": "2026-11-05",
+  "sphere-d10-n176": "2026-11-06",
+  "sphere-d12-n103": "2026-11-06",
+  "sphere-d16-n63": "2026-11-06",
+  "sphere-d20-n86": "2026-11-06",
+  "sphere-d24-n71": "2026-11-06",
+  "sphere-d3-n952": "2026-11-06",
+  "sphere-d32-n84": "2026-11-06",
+  "sphere-d4-n310": "2026-11-06",
+  "sphere-d5-n267": "2026-11-06",
+  "sphere-d6-n188": "2026-11-06",
+  "sphere-d8-n119": "2026-11-06"
+ },
+ "reference_expected": [
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_sphere_d3_n952.txt",
+   "problem": "sphere-d3-n952"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_sphere_d4_n310.txt",
+   "problem": "sphere-d4-n310"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_sphere_d5_n267.txt",
+   "problem": "sphere-d5-n267"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_sphere_d6_n188.txt",
+   "problem": "sphere-d6-n188"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_sphere_d8_n119.txt",
+   "problem": "sphere-d8-n119"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_sphere_d10_n176.txt",
+   "problem": "sphere-d10-n176"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_sphere_d12_n103.txt",
+   "problem": "sphere-d12-n103"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_sphere_d16_n63.txt",
+   "problem": "sphere-d16-n63"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_sphere_d20_n86.txt",
+   "problem": "sphere-d20-n86"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_sphere_d24_n71.txt",
+   "problem": "sphere-d24-n71"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_sphere_d32_n84.txt",
+   "problem": "sphere-d32-n84"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_covering_36-6-2.txt",
+   "problem": "covering-36-6-2"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_covering_35-10-3.txt",
+   "problem": "covering-35-10-3"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_covering_28-17-4.txt",
+   "problem": "covering-28-17-4"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_covering_22-15-6.txt",
+   "problem": "covering-22-15-6"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_covering_24-17-7.txt",
+   "problem": "covering-24-17-7"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_covering_37-8-2-3.txt",
+   "problem": "covering-37-8-2-3"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_covering_21-8-3-4.txt",
+   "problem": "covering-21-8-3-4"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_covering_17-7-4-6.txt",
+   "problem": "covering-17-7-4-6"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_covering_18-9-5-6.txt",
+   "problem": "covering-18-9-5-6"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_covering_23-6-6-15.txt",
+   "problem": "covering-23-6-6-15"
+  },
+  {
+   "expected": [
+    "does not improve",
+    "does not improve"
+   ],
+   "file": "maxr_c16_lower.json",
+   "problem": "16a-lower"
+  },
+  {
+   "expected": [
+    "IMPROVES",
+    "does not improve"
+   ],
+   "file": "vid_c16_lower.json",
+   "problem": "16a-lower"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_cvrp_Antwerp1.sol",
+   "problem": "cvrp-antwerp1"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_cvrp_Antwerp2.sol",
+   "problem": "cvrp-antwerp2"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_cvrp_Brussels1.sol",
+   "problem": "cvrp-brussels1"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_cvrp_Brussels2.sol",
+   "problem": "cvrp-brussels2"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_cvrp_Flanders1.sol",
+   "problem": "cvrp-flanders1"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_cvrp_Flanders2.sol",
+   "problem": "cvrp-flanders2"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_cvrp_Ghent1.sol",
+   "problem": "cvrp-ghent1"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_cvrp_Ghent2.sol",
+   "problem": "cvrp-ghent2"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_cvrp_Leuven2.sol",
+   "problem": "cvrp-leuven2"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_cvrp_XL-n1048-k237.sol",
+   "problem": "cvrp-xl-n1048-k237"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_cvrp_XL-n1748-k271.sol",
+   "problem": "cvrp-xl-n1748-k271"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_cvrp_XL-n6168-k1922.sol",
+   "problem": "cvrp-xl-n6168-k1922"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_cvrp_XL-n8028-k294.sol",
+   "problem": "cvrp-xl-n8028-k294"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_cvrp_XL-n9784-k2774.sol",
+   "problem": "cvrp-xl-n9784-k2774"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_cw_27_4_6.txt",
+   "problem": "cw-27-4-6"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_cw_28_4_5.txt",
+   "problem": "cw-28-4-5"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_cw_29_4_5.txt",
+   "problem": "cw-29-4-5"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_cw_33_4_5.txt",
+   "problem": "cw-33-4-5"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_cw_33_6_6.txt",
+   "problem": "cw-33-6-6"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_cw_34_6_5.txt",
+   "problem": "cw-34-6-5"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_cw_34_6_6.txt",
+   "problem": "cw-34-6-6"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_cw_35_6_5.txt",
+   "problem": "cw-35-6-5"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_cw_35_6_6.txt",
+   "problem": "cw-35-6-6"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_cw_36_4_5.txt",
+   "problem": "cw-36-4-5"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_cw_36_6_5.txt",
+   "problem": "cw-36-6-5"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_cw_38_4_5.txt",
+   "problem": "cw-38-4-5"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_cw_38_6_6.txt",
+   "problem": "cw-38-6-6"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_cw_39_4_5.txt",
+   "problem": "cw-39-4-5"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_cw_40_4_5.txt",
+   "problem": "cw-40-4-5"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_cw_40_6_5.txt",
+   "problem": "cw-40-6-5"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_cw_42_6_5.txt",
+   "problem": "cw-42-6-5"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_cw_42_6_6.txt",
+   "problem": "cw-42-6-6"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_cw_44_6_5.txt",
+   "problem": "cw-44-6-5"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_cw_45_6_5.txt",
+   "problem": "cw-45-6-5"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_cw_46_6_5.txt",
+   "problem": "cw-46-6-5"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_cw_47_6_5.txt",
+   "problem": "cw-47-6-5"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_cw_50_6_5.txt",
+   "problem": "cw-50-6-5"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_cw_51_6_5.txt",
+   "problem": "cw-51-6-5"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_cw_51_6_6.txt",
+   "problem": "cw-51-6-6"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_cw_52_6_5.txt",
+   "problem": "cw-52-6-5"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_cw_53_6_5.txt",
+   "problem": "cw-53-6-5"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_cw_54_6_5.txt",
+   "problem": "cw-54-6-5"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_cw_55_6_5.txt",
+   "problem": "cw-55-6-5"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_cw_56_6_5.txt",
+   "problem": "cw-56-6-5"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_cw_58_6_5.txt",
+   "problem": "cw-58-6-5"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_cw_60_6_5.txt",
+   "problem": "cw-60-6-5"
+  }
+ ],
+ "repository": "https://github.com/arhancanli/quantavane-benchmark"
+}

@@ -1,0 +1,17 @@
+{
+ "covering_array_families": 196,
+ "covering_array_cells": 448049,
+ "covering_array_held": 1845,
+ "covering_array_entries_listed": 206384,
+ "covering_array_entries_pending": 0,
+ "covering_array_first_listed": 1068096,
+ "covering_array_first_not_best": 11904,
+ "covering_array_first_pending": 0,
+ "verified_results": 1342778,
+ "records_verified": 274682,
+ "first_entries": 1068096,
+ "records_listed_outside_covering_arrays": 805,
+ "scheduling_results_listed": 67493,
+ "catools_rows_crediting_us": 217,
+ "date": "2026-11-07"
+}

@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below. To cite a problem, a result or a replay, use the server's cite tool."
+type: software
+title: "quantavane-mcp: an MCP server for open problems with exact checkers"
+version: "0.1.0"
+authors:
+  - family-names: Canli
+    given-names: Arhan
+    affiliation: Quantavane
+license: MIT
+url: "https://quantavane.com"
+repository-code: "https://github.com/arhancanli/quantavane-mcp"
+keywords:
+  - model context protocol
+  - open problems
+  - exact verification
+references:
+  - type: software
+    title: "Open Problems Benchmark (v1)"
+    authors:
+      - family-names: Canli
+        given-names: Arhan
+    url: "https://github.com/arhancanli/quantavane-benchmark"
+  - type: dataset
+    title: "Quantavane verified results"
+    authors:
+      - family-names: Canli
+        given-names: Arhan
+    url: "https://www.kaggle.com/datasets/arhancanli12/quantavane-verified-results"
