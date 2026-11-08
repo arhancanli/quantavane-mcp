@@ -82,8 +82,9 @@ def value_from_output(kind: str, exit_code: int | None, stdout: str, stderr: str
 
 def ramsey_precheck(data: bytes) -> str | None:
     """Reject, without running it, a matrix whose rows ramsey_check.c could not hold: a run of more than 2048 0/1
-    characters in what one fgets call reads. No valid certificate has one (n <= 2048), and the C checker would reject
-    the file anyway, after writing past its matrix for widths 2049 to 2055."""
+    characters in what one fgets call reads. No valid certificate has one (n <= 2048). The checker itself rejects such
+    rows with exit 2 since benchmark commit 3635207; before it, widths 2049 to 2055 were written past its matrix. This
+    guard stays as a second layer, for instance for an older checkout given as QUANTAVANE_MCP_BENCHMARK_DIR."""
     pieces = data.split(b"\n")
     for i, piece in enumerate(pieces):
         line = piece + (b"\n" if i < len(pieces) - 1 else b"")

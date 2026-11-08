@@ -1,6 +1,6 @@
 {
- "commit": "6c6c0270c752feb1dd6a9c65eec53330baab4c69",
- "commit_date": "2026-11-07T05:16:13Z",
+ "commit": "3635207cd5c56cfb1a26ef8968249b75c2b2fe89",
+ "commit_date": "2026-11-08T18:05:32Z",
  "cvrplib_instances": {
   "Antwerp1.vrp": {
    "sha256": "f9206ba0037ccffea614cefb2300830b171ee192b4116a3c7a949f456d7870ff",

@@ -363,7 +363,7 @@ def build_server(settings: Settings | None = None, store: Store | None = None) -
                        "max_bytes": settings.max_bytes, "inline_chars": MAX_INLINE_CHARS,
                        "max_concurrent": settings.max_concurrent},
             "certificate_path_roots": [str(r) for r in settings.roots],
-            "licence": "code MIT; bundled data CC BY 4.0",
+            "licence": "code, benchmark files and replay index MIT; verified results CC BY 4.0 (LICENSE-DATA.md)",
             "update": "uvx --refresh quantavane-mcp, or pip install -U quantavane-mcp",
         }, indent=1)
 

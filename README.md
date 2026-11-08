@@ -139,7 +139,7 @@ check_candidate {"problem_id": "covering-17-7-4-6", "certificate_path": "/tmp/ou
  "comparisons": [{"reference": "page best", "value": "17", "threshold": "17", "improves": false,
    "source": "Covering Repository (coveringrepository.com), C(17,7,4,6) = 17 blocks: ours, listed since 2026-10-26 (before it 18); read 6 Nov 2026"}],
  "certificate_sha256": "cf4b0b58b318634eb94e629075d9a916d6aa5585c240bf75d1221e0cbb8d688d",
- "reproduce": "git clone https://github.com/arhancanli/quantavane-benchmark && cd quantavane-benchmark && git checkout 6c6c027\npython3 -I obb.py check covering-17-7-4-6 CANDIDATE ..."
+ "reproduce": "git clone https://github.com/arhancanli/quantavane-benchmark && cd quantavane-benchmark && git checkout 3635207\npython3 -I obb.py check covering-17-7-4-6 CANDIDATE ..."
 }
 ```
 
@@ -234,7 +234,7 @@ quantavane-mcp check covering-17-7-4-6 design.txt
 
 ## Limits
 
-- **A snapshot.** The data is from the commits and dates in `quantavane://about` (benchmark 6c6c027 of 7 Nov 2026;
+- **A snapshot.** The data is from the commits and dates in `quantavane://about` (benchmark 3635207 of 8 Nov 2026;
   open data of 7 Nov 2026; replays b892ccb of 8 Nov 2026). Best known values move: check the source page before
   claiming a record. A newer release of this package brings newer data.
 - **Routing instances are not bundled.** The 14 vehicle routing problems need CVRPLIB's instance files (third-party
@@ -279,8 +279,8 @@ All optional, as environment variables:
   folders are refused. The file is copied before the check, so the checker never sees your path.
 - Checker output is returned with local paths removed. The server reads only its own data and the files you point it
   to, and writes only the compiled Ramsey checker into its cache folder.
-- A Ramsey file with rows longer than the C checker's 2048 columns is rejected before the checker runs (the C
-  checker would also reject it, after writing past its matrix for widths 2049 to 2055).
+- A Ramsey file with rows longer than the C checker's 2048 columns is rejected before the checker runs. The checker
+  rejects such rows itself as well (exit 2); the server's check is a second layer.
 
 ## Development
 
@@ -295,8 +295,10 @@ python3 -I scripts/sync_data.py --open-data DIR --check   # confirm the bundled 
 
 ## Licence
 
-Code: MIT ([LICENSE](LICENSE)). Bundled data (problem files, reference certificates, verified results, the replay
-index): CC BY 4.0 ([LICENSE-DATA.md](LICENSE-DATA.md)). The benchmark's checkers are MIT, as in the benchmark.
+Code: MIT ([LICENSE](LICENSE)). The bundled data keeps the licence its source states
+([LICENSE-DATA.md](LICENSE-DATA.md)): the benchmark's files (problems, checkers, reference certificates) and the
+replay index are MIT, as the benchmark and the replays repository state; the verified results are CC BY 4.0, as the
+dataset states.
 
 ## Citation
 

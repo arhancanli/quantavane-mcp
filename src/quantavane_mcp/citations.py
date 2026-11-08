@@ -70,8 +70,7 @@ def cite(store: Store, target: str, id: str | None = None, fmt: str = "both") ->
             "title": "Open Problems Benchmark (v1): open problems with exact checkers",
             "year": _year(bdate),
             "howpublished": rf"\url{{{BENCHMARK_URL}}}",
-            "note": f"Quantavane; {len(bench.problems)} problems; commit {commit[:7]} ({bdate}); code MIT, data "
-                    "CC BY 4.0",
+            "note": f"Quantavane; {len(bench.problems)} problems; commit {commit[:7]} ({bdate}); MIT licence",
         })
         text = (f"{AUTHOR_TEXT}. Open Problems Benchmark (v1): open problems with exact checkers. {_year(bdate)}. "
                 f"{BENCHMARK_URL} (commit {commit[:7]}, {bdate}; {len(bench.problems)} problems).")
@@ -157,7 +156,7 @@ def cite(store: Store, target: str, id: str | None = None, fmt: str = "both") ->
             "year": "2026",
             "version": __version__,
             "url": SERVER_URL,
-            "note": "Code MIT; bundled data CC BY 4.0",
+            "note": "MIT licence; the bundled verified results are CC BY 4.0",
         })
         text = (f"{AUTHOR_TEXT}. quantavane-mcp {__version__}: an MCP server for open problems with exact checkers. "
                 "2026.")

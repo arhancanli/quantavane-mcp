@@ -8,10 +8,13 @@ published by a script without the owner running it.
 1. **Words** (owner): read and approve the public text: `README.md`, `LICENSE-DATA.md`, `CITATION.cff`, the server
    instructions, tool descriptions and prompts in `src/quantavane_mcp/server.py`, and the field descriptions in
    `src/quantavane_mcp/models.py`.
-2. **Licence of the benchmark's data** (owner decision): the bundled problem files and reference certificates are
-   declared CC BY 4.0 in `LICENSE-DATA.md`; the benchmark repository states MIT for its code and nothing yet for its
-   data. Add the same CC BY 4.0 line to the benchmark's README, or change `LICENSE-DATA.md`.
-3. **Data at the published commits**: every source must be pushed first (the sync reads `origin/main`), then
+2. **Data licences** (owner question): `LICENSE-DATA.md` follows the sources as they read today: the benchmark's
+   files and the replay index MIT (the benchmark's README and LICENSE; the replays' LICENSE), the verified results
+   CC BY 4.0 (the dataset's README). If the problem files and reference certificates should be CC BY 4.0 like the
+   dataset, the benchmark's README must say so first; then `LICENSE-DATA.md`, the README's Licence section and the
+   `cite` notes follow.
+3. **Data at the published commits**: every source must be pushed first (the sync reads `origin/main`; the bundle
+   of 0.1.0 holds benchmark commit 3635207, which must be pushed before the release), then
    - `python3 -I scripts/sync_data.py --open-data DIR` (DIR: the folder of the open dataset's published files),
    - `python3 -I scripts/sync_data.py --open-data DIR --check` prints `bundled data matches the sources`,
    - update the snapshot line in the README's Limits section (benchmark, open data and replays commits and dates),

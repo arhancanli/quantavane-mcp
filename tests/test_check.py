@@ -10,7 +10,8 @@ from pathlib import Path
 import pytest
 from helpers import make_mini_benchmark, pentagon, ref
 
-from quantavane_mcp.checking import Checker, CheckError, obb_verdicts, ramsey_precheck
+from quantavane_mcp import sandbox
+from quantavane_mcp.checking import Checker, CheckError, obb_verdicts, ramsey_precheck, value_from_output
 from quantavane_mcp.config import Settings
 from quantavane_mcp.data import DATA_DIR, Benchmark, Store
 
@@ -180,6 +181,20 @@ def test_ramsey_rows_past_the_c_limit_are_rejected_before_running(checker):
     assert ramsey_precheck(b"x" + b"0" * 4200) is not None    # the C checker's second fgets chunk: 2055 zeros
     assert ramsey_precheck(b"x" * 10 + b"0" * 3000) is None   # its second chunk holds 955 zeros only
     assert ramsey_precheck(pentagon().encode()) is None
+
+
+def test_vendored_ramsey_checker_rejects_a_wide_row_itself(checker, tmp_path):
+    """Red control on the C checker alone (benchmark commit 3635207): a 2,050-character row gets its exit-2 error.
+    It runs directly, as the server's own guard stops such a file before the checker."""
+    wide = tmp_path / "wide.txt"
+    wide.write_text("0" * 2050 + "\n")
+    r = sandbox.run([str(checker.ramsey_binary()), "3", "17", str(wide)], cwd=tmp_path,
+                    limits=sandbox.Limits(timeout_s=60, memory_mb=256))
+    assert r.exit_code == 2 and "rows wider than 2048 are not supported" in r.stderr
+    assert value_from_output("ramsey", r.exit_code, r.stdout, r.stderr) is None
+    p = checker.bench.problems["ramsey-3-17"]
+    assert Checker.failure_reason(p, r.exit_code, r.stdout, r.stderr) == \
+        "the file is not a valid matrix: rows wider than 2048 are not supported"
 
 
 # ------------------------------------------------------------------------------------- routing (mini benchmark)
