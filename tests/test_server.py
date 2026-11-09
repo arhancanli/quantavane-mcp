@@ -43,15 +43,16 @@ async def test_tools_are_listed_with_schemas_and_read_only_annotations(server):
 async def test_list_and_get_problem(server):
     r = await call(server, "list_problems", {"family": "ramsey", "limit": 5})
     s = r.structuredContent
-    assert not r.isError and s["total"] == 43 and s["count"] == 5 and s["has_more"]
-    assert s["families"]["spherical-code"] == 11
+    assert not r.isError and s["total"] == 133 and s["count"] == 5 and s["has_more"]
+    assert s["families"]["spherical-code"] == 14793 and s["total_problems"] == 149351
     r = await call(server, "get_problem", {"problem_id": "sphere-d3-n952"})
     s = r.structuredContent
     assert s["checker"]["program"] == "sph_check.py" and s["objective"] == "minimize"
     assert s["reference_certificates"][0]["uri"] == "quantavane://refs/ours_sphere_d3_n952.txt"
     assert "read 6 Nov 2026" in s["best_known"]["read"]
     r = await call(server, "get_problem", {"problem_id": "cvrp-antwerp1"})
-    assert r.structuredContent["instance"]["file"] == "Antwerp1.vrp"
+    assert r.structuredContent["instance"]["file"] == "instances/Antwerp1.vrp"
+    assert len(r.structuredContent["instance"]["sha256"]) == 64
 
 
 @pytest.mark.anyio
@@ -102,11 +103,12 @@ async def test_resources(server):
     assert {"quantavane://about", "quantavane://problems", "quantavane://checkers", "quantavane://benchmark/readme",
             "quantavane://open-data/readme"} <= listed
     assert "quantavane://problems/{problem_id}" in templates and "quantavane://refs/{filename}" in templates
-    assert about["network"].startswith("none") and about["counts"]["problems"] == 117
+    assert about["network"].startswith("none") and about["counts"]["problems"] == 149351
+    assert about["counts"]["single_problems"] == 374 and about["counts"]["family_cells"] == 148977
     assert prob["id"] == "1c-lower"
     assert "Used by: cw-" in docs and "SHA-256" in docs and "constant weight code" in docs
     assert "Bron-Kerbosch" in src and len(refc.splitlines()) == 17
-    assert "ramsey_check.c" in index and "Used by 43 problem(s)" in index
+    assert "ramsey_check.c" in index and "Used by 133 problem(s)" in index
 
 
 @pytest.mark.anyio
@@ -137,11 +139,11 @@ async def test_prompts(server):
 async def test_completion_of_problem_ids(server):
     async with create_connected_server_and_client_session(server) as client:
         c = await client.complete(PromptReference(type="ref/prompt", name="attack_problem"),
-                                  {"name": "problem_id", "value": "sphere-d1"})
+                                  {"name": "problem_id", "value": "cw-8-6-"})
         t = await client.complete(ResourceTemplateReference(type="ref/resource",
                                                             uri="quantavane://checkers/{program}"),
                                   {"name": "program", "value": "c1"})
-    assert c.completion.values == ["sphere-d10-n176", "sphere-d12-n103", "sphere-d16-n63"]
+    assert "cw-8-6-4" in c.completion.values                         # a family cell completes like a problem
     assert set(t.completion.values) == {"c16_check.py", "c16_lower.py", "c16_trunc_check.py"}
 
 
@@ -150,3 +152,29 @@ async def test_no_gym_tools_by_default(server):
     async with create_connected_server_and_client_session(server) as client:
         names = {t.name for t in (await client.list_tools()).tools}
     assert not any(n.startswith("gym_") for n in names)
+
+
+@pytest.mark.anyio
+async def test_families_through_the_protocol(server):
+    r = await call(server, "list_problems", {"family": "covering-design", "params": {"v": 7, "t": 2}, "limit": 3})
+    s = r.structuredContent
+    assert not r.isError and s["total"] >= 1 and all(p["id"].startswith("covering-7-") for p in s["problems"])
+    r = await call(server, "list_problems", {"family": "linear-code", "sample": 5, "seed": 0})
+    assert [p["id"] for p in r.structuredContent["problems"]] == ["code-q8-n65-k6", "code-q3-n118-k7",
+                                                                    "code-q5-n105-k10", "code-q9-n38-k6",
+                                                                    "code-q3-n150-k134"]
+    assert "obb.py sample" in r.structuredContent["note"]
+    r = await call(server, "list_problems", {"sample": 3})
+    assert r.isError and "family" in r.content[0].text
+    r = await call(server, "get_problem", {"problem_id": "code-q2-n32-k14"})
+    s = r.structuredContent
+    assert s["params"] == {"q": 2, "n": 32, "k": 14} and s["bound"]["value"] == "9"
+    assert s["provenance"]["keeper"].startswith("M. Grassl") and s["added"] == "2.0"
+    r = await call(server, "compare_to_record", {"problem_id": "code-q2-n32-k14", "value": "9"})
+    assert r.structuredContent["improves_page_best"] is True
+    async with create_connected_server_and_client_session(server) as client:
+        fams = (await client.read_resource("quantavane://families")).contents[0].text
+        one = json.loads((await client.read_resource("quantavane://families/spherical-code")).contents[0].text)
+        cell = json.loads((await client.read_resource("quantavane://problems/sphere-d3-n16")).contents[0].text)
+    assert "148,977 cells" in fams and "no keeper's file is included" in fams
+    assert one["exact_values"] is False and cell["family"] == "spherical-code"

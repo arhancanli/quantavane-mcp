@@ -14,15 +14,17 @@ published by a script without the owner running it.
    dataset, the benchmark's README must say so first; then `LICENSE-DATA.md`, the README's Licence section and the
    `cite` notes follow.
 3. **Data at the published commits**: every source must be pushed first (the sync reads `origin/main`; the bundle
-   of 0.1.0 holds benchmark commit 3635207, which must be pushed before the release), then
+   of 0.1.0 holds benchmark v2.0, commit 9cb6183, pushed on 9 Nov), then
    - `python3 -I scripts/sync_data.py --open-data DIR` (DIR: the folder of the open dataset's published files),
    - `python3 -I scripts/sync_data.py --open-data DIR --check` prints `bundled data matches the sources`,
    - update the snapshot line in the README's Limits section (benchmark, open data and replays commits and dates),
    - commit.
 4. **Tests**: `pytest` (all pass; 81 skips are the opt-in parity and routing tests), then the opt-in ones:
-   - in a benchmark checkout, `./fetch.sh`, then
+   - in a benchmark checkout, `./fetch.sh` and `python3 -I tests/sample_cells.py` (it writes the sampled cells'
+     objects and red controls to `certs/samples/`), then
      `QUANTAVANE_MCP_TEST_BENCHMARK=<checkout> pytest tests/test_parity_obb.py` (same exact values and verdicts as
-     `obb.py` for every certificate of `test.sh`),
+     `obb.py` for every certificate of `test.sh` and every sampled cell; `obb.py sample` and `obb.py show` give the
+     same cells, written out the same way),
    - `QUANTAVANE_MCP_TEST_INSTANCES=<checkout>/instances pytest -k routing` (the 14 routing references).
 5. **Static checks**: `ruff check --line-length 120 --exclude src/quantavane_mcp/data src tests scripts` and
    `mypy src/quantavane_mcp --exclude src/quantavane_mcp/data/`.
@@ -34,7 +36,7 @@ published by a script without the owner running it.
 ```sh
 rm -rf dist && uv build
 uvx twine check dist/*
-unzip -l dist/quantavane_mcp-*.whl | grep -c quantavane_mcp/data/   # 210: 209 data files and MANIFEST.json
+unzip -l dist/quantavane_mcp-*.whl | grep -c quantavane_mcp/data/   # every data file of MANIFEST.json, and itself
 uv venv /tmp/qv-wheel && uv pip install --python /tmp/qv-wheel/bin/python dist/quantavane_mcp-*.whl
 /tmp/qv-wheel/bin/quantavane-mcp selftest                           # "selftest: ok"
 ```
@@ -59,7 +61,8 @@ uv venv /tmp/qv-wheel && uv pip install --python /tmp/qv-wheel/bin/python dist/q
 
 - The server uses the MCP Python SDK 1.x (`FastMCP`, `mcp>=1.30,<2`); SDK 2.x renames it `MCPServer`.
 - Windows: no memory cap, so checks are refused unless `QUANTAVANE_MCP_ALLOW_UNCAPPED=1`.
-- Routing problems need the CVRPLIB instance files, which the server never downloads.
+- Routing problems and scheduling cells need instance files (CVRPLIB's, the scheduling sets'), which the server
+  never downloads; only CVRPLIB's are pinned by SHA-256.
 - Replays published after a release appear in the next release; replay folders whose README section is not written
   yet are indexed from their own scripts' comments and documentation.
 - The training-gym hook (`QUANTAVANE_MCP_GYM`) is tested with a stand-in backend only.

@@ -3,9 +3,12 @@
 <!-- mcp-name: io.github.arhancanli/quantavane-mcp -->
 
 An MCP server for open problems with exact checkers. It gives an AI agent, or a person at a terminal, Quantavane's
-[Open Problems Benchmark](https://github.com/arhancanli/quantavane-benchmark): 117 open problems, each with its best
-known value, the source and date of that value, and an exact checker. A candidate is scored by the benchmark's own
-checker, in a sandbox, offline, and the answer is a verdict and an exact value, never an estimate.
+[Open Problems Benchmark](https://github.com/arhancanli/quantavane-benchmark) v2.0: 149,351 open problems, each with
+its best known value, the source and date of that value, and an exact checker. 374 are single problems (Tao's
+optimization constants, Ramsey numbers, cages, kissing numbers, sorting networks, Hadamard matrices and more); 148,977
+are cells of six families read from their keepers' tables (covering designs, spherical codes, linear codes, covering
+arrays, constant weight codes and project scheduling). A candidate is scored by the benchmark's own checker, in a
+sandbox, offline, and the answer is a verdict and an exact value, never an estimate.
 
 It also answers from Quantavane's verified results (the open dataset), our independent replays of certificates in the
 optimization constants repository, and gives citations for all of it.
@@ -105,8 +108,8 @@ is `quantavane-mcp` (or `python -m quantavane_mcp`).
 
 | Tool | What it does |
 | --- | --- |
-| `list_problems` | The problems, one line each, with filters (family, words) and pages. |
-| `get_problem` | One problem: statement, objective, best known value with source and read date, values in review, certificate format, checker, improvement rule, reference certificates. |
+| `list_problems` | The problems, one line each, with pages. Without a family it lists the single problems; with `family` it lists that family (its single problems, then its cells), filtered by the cells' parameters (`params`, such as `{"v": 13, "t": 3}`) or by words, or draws a random `sample` of cells with a `seed` (the same draw as `obb.py sample`). |
+| `get_problem` | One problem or family cell (a cell is written out like a problem file, as `obb.py show` does): statement, objective, best known value with source, keeper and read date, values in review, certificate format, checker, improvement rule, reference certificates, a cell's parameters and the table's other bound. |
 | `check_candidate` | Runs the problem's exact checker on a certificate (text, or a local file) in the sandbox. Verdict, exact value, comparisons with the best known values, the certificate's SHA-256 and the commands that rerun the check with the public benchmark. |
 | `compare_to_record` | Is a value better than the best known? Exact comparison with the page best and the verified values in review, with the date the value was read. Proves nothing about any object. |
 | `search_results` | Quantavane's verified results by table, cell (`CAN(3,2872,4)`, `C(84,7,2,5)`, `A(51,6,6)`, `R(8,12)`, `[63,14,33] over GF(5)`, ...), words, date or status, with citation info. |
@@ -117,7 +120,9 @@ Every tool is read-only, has an input schema with limits and an output schema, a
 Errors come back as tool errors that say what to change.
 
 Resources: `quantavane://about` (version, data commits and dates, limits), `quantavane://problems` and
-`quantavane://problems/{problem_id}`, `quantavane://checkers`, `quantavane://checkers/{program}` (documentation) and
+`quantavane://problems/{problem_id}` (a single problem or a cell), `quantavane://families` and
+`quantavane://families/{name}` (each family's keeper, date read, open rule and what was left out),
+`quantavane://checkers`, `quantavane://checkers/{program}` (documentation) and
 `quantavane://checkers/{program}/source`, `quantavane://refs/{filename}` (our reference certificates),
 `quantavane://benchmark/readme`, `quantavane://open-data/readme`. Problem ids, checker names and certificate names
 complete as you type in clients that support completion.
@@ -139,12 +144,31 @@ check_candidate {"problem_id": "covering-17-7-4-6", "certificate_path": "/tmp/ou
  "comparisons": [{"reference": "page best", "value": "17", "threshold": "17", "improves": false,
    "source": "Covering Repository (coveringrepository.com), C(17,7,4,6) = 17 blocks: ours, listed since 2026-10-26 (before it 18); read 6 Nov 2026"}],
  "certificate_sha256": "cf4b0b58b318634eb94e629075d9a916d6aa5585c240bf75d1221e0cbb8d688d",
- "reproduce": "git clone https://github.com/arhancanli/quantavane-benchmark && cd quantavane-benchmark && git checkout 3635207\npython3 -I obb.py check covering-17-7-4-6 CANDIDATE ..."
+ "reproduce": "git clone https://github.com/arhancanli/quantavane-benchmark && cd quantavane-benchmark && git checkout 9cb6183\npython3 -I obb.py check covering-17-7-4-6 CANDIDATE ..."
 }
 ```
 
 Remove one block and the same call returns `"verdict": "not_certified"` with the checker's reason
 (`some 6-subset meets every block in fewer than 4 points`).
+
+A family cell: the open entries of Grassl's tables for binary codes of length 32, then one in full:
+
+```json
+list_problems {"family": "linear-code", "params": {"q": 2, "n": 32}}
+{"total": 2, "problems": [{"id": "code-q2-n32-k14", "title": "Linear code [32,14] over GF(2)", "best_known": "8"},
+                          {"id": "code-q2-n32-k18", "title": "Linear code [32,18] over GF(2)", "best_known": "6"}]}
+
+get_problem {"problem_id": "code-q2-n32-k14"}
+{"params": {"q": 2, "n": 32, "k": 14}, "objective": "maximize",
+ "best_known": {"value": "8", "exact": "8", "read": "read 2026-11-09"},
+ "bound": {"value": "9", "kind": "upper bound", "source": "the upper bound in the same table"},
+ "provenance": {"keeper": "M. Grassl, bounds on the minimum distance of linear codes (codetables.de)",
+                "url": "https://www.codetables.de/BKLC/BKLC.php?q=2&n=32&k=14", "read": "2026-11-09", ...},
+ "checker": {"program": "lincode_check.py", "standalone": "python3 -I checkers/lincode_check.py 2 32 14 FILE", ...}}
+```
+
+A [32,14] binary code with minimum distance 9 would close this entry. `{"family": "linear-code", "sample": 5,
+"seed": 0}` draws five cells at random, the same five that `obb.py sample linear-code 5 0` prints.
 
 Would 0.41035 be a new lower bound for the autocorrelation constant C_1c?
 
@@ -207,7 +231,9 @@ quantavane-mcp check covering-17-7-4-6 design.txt
   commit in `quantavane://about`, verified against their SHA-256 before every run.
 - **Values.** Integers for counts (blocks, words, vertices, route cost); exact fractions for the autocorrelation,
   Korenblum, Turán and Bohr-radius bounds; for spherical codes the largest cosine in 50-digit arithmetic printed to 20
-  decimals; for C16 the lower end of a rigorous enclosure. `exactness` in each result says which.
+  decimals; for C16 the lower end of a rigorous enclosure; for the checkers added since v1.1 (and the covering array,
+  linear code and scheduling cells) the integer or fraction the checker prints after `RESULT`. `exactness` and
+  `score_meaning` in each result say which.
 - **Comparisons.** Two reference values are kept apart: the best value on the source page or table, and the best
   verified value still in review (a pull request whose certificate we replayed). Claims nobody has replayed are listed
   and never compared. A printed value whose exact original is unknown counts as beaten only by more than its last
@@ -234,16 +260,19 @@ quantavane-mcp check covering-17-7-4-6 design.txt
 
 ## Limits
 
-- **A snapshot.** The data is from the commits and dates in `quantavane://about` (benchmark 3635207 of 8 Nov 2026;
-  open data of 7 Nov 2026; replays b892ccb of 8 Nov 2026). Best known values move: check the source page before
-  claiming a record. A newer release of this package brings newer data.
-- **Routing instances are not bundled.** The 14 vehicle routing problems need CVRPLIB's instance files (third-party
-  data). Run `fetch.sh` in a clone of the benchmark and set `QUANTAVANE_MCP_INSTANCES` to its `instances/` folder;
-  each file is checked against the SHA-256 the benchmark pins before it is used. The server never downloads them.
+- **A snapshot.** The data is from the commits and dates in `quantavane://about` (benchmark v2.0, 9cb6183 of 9 Nov
+  2026, its tables read on 8 and 9 Nov; open data of 7 Nov 2026; replays 1fbce3f of 8 Nov 2026). Best known values
+  move: check the source page before claiming a record. A newer release of this package brings newer data.
+- **Instance files are not bundled.** The 14 vehicle routing problems need CVRPLIB's instance files, and the
+  project-scheduling cells the instance files of their sets (third-party data). Run `fetch.sh` in a clone of the
+  benchmark for CVRPLIB, unpack the scheduling sets as the family's `instances` note says, and set
+  `QUANTAVANE_MCP_INSTANCES` to the `instances/` folder. CVRPLIB files are checked against the SHA-256 the benchmark
+  pins before they are used. The server never downloads them.
 - **Ramsey.** Needs a C compiler; the checker is compiled once into a cache folder. Colourings have at most 2048
   vertices.
-- **Time.** The default timeout is 120 s. Most checks take under a second; the Turán (42a) and Bohr radius (59a)
-  checkers can take a minute or more on large certificates.
+- **Time.** The default timeout is 120 s, and 300 s for covering designs (a C(v,k,t,m) check can take about three
+  minutes). Most checks take under a second; the Turán (42a) and Bohr radius (59a) checkers can take a minute or more
+  on large certificates, a linear code at the edge of its family about 20 s.
 - **Platforms.** Linux and macOS. On Windows the memory cap cannot be enforced, so checks are refused unless
   `QUANTAVANE_MCP_ALLOW_UNCAPPED=1`; WSL works as Linux.
 - **What a checker proves is what its documentation says.** For the analytic constants the checkers verify the
@@ -296,9 +325,10 @@ python3 -I scripts/sync_data.py --open-data DIR --check   # confirm the bundled 
 ## Licence
 
 Code: MIT ([LICENSE](LICENSE)). The bundled data keeps the licence its source states
-([LICENSE-DATA.md](LICENSE-DATA.md)): the benchmark's files (problems, checkers, reference certificates) and the
-replay index are MIT, as the benchmark and the replays repository state; the verified results are CC BY 4.0, as the
-dataset states.
+([LICENSE-DATA.md](LICENSE-DATA.md)): the benchmark's files (problems, families, checkers, reference certificates)
+and the replay index are MIT, as the benchmark and the replays repository state; the verified results are CC BY 4.0,
+as the dataset states. The families hold values read from other people's tables, credited to their keepers and
+holders (LICENSE-DATA.md names each table); no keeper's file is included.
 
 ## Citation
 

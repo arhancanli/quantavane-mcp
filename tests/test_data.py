@@ -18,14 +18,18 @@ def test_sources_are_pinned_commits():
     assert s["open_data"]["date"] == "2026-11-07"
 
 
-def test_benchmark_has_117_problems_in_six_families(store):
+def test_benchmark_has_374_problems_in_23_families(store):
     probs = store.benchmark.problems
-    assert len(probs) == 117
+    assert len(probs) == 374
     counts = {}
     for p in probs.values():
         counts[p.family] = counts.get(p.family, 0) + 1
-    assert counts == {"constant": 7, "ramsey": 43, "spherical-code": 11, "covering-design": 10,
-                      "vehicle-routing": 14, "constant-weight-code": 32}
+    assert counts == {"cage": 40, "cap-set": 2, "circulant-weighing-matrix": 12, "coil-in-the-box": 5, "constant": 7,
+                      "constant-weight-code": 32, "covering-design": 10, "degree-diameter": 20, "golomb-ruler": 2,
+                      "hadamard": 4, "kissing-number": 16, "multicolour-ramsey": 14, "no-three-in-line": 2,
+                      "ramsey": 133, "schur": 4, "shannon-capacity": 1, "snake-in-the-box": 5, "sorting-network": 21,
+                      "spherical-code": 11, "superpermutation": 4, "van-der-waerden": 10, "vehicle-routing": 14,
+                      "weak-schur": 5}
 
 
 def test_every_problem_names_an_existing_checker_and_a_dated_value(store):
@@ -43,7 +47,7 @@ def test_reference_certificates_and_expectations(store):
     refs = store.benchmark.references
     files = {p.name for p in store.benchmark.refs_dir.iterdir()} - {"README.md"}
     assert {r.file for v in refs.values() for r in v} == files     # test.sh expects a verdict for every bundled ref
-    assert sum(len(v) for v in refs.values()) == 69
+    assert sum(len(v) for v in refs.values()) == 92
     assert {r.file for r in refs["16a-lower"]} == {"maxr_c16_lower.json", "vid_c16_lower.json"}
     assert all(r.ours for r in refs["cw-34-6-6"])
 

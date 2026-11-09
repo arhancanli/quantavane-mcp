@@ -7,6 +7,7 @@ import hashlib
 import os
 import platform
 import re
+import shlex
 import shutil
 import sys
 import tempfile
@@ -38,6 +39,7 @@ EXACTNESS = {
     "blocks": "integer: the number of blocks",
     "cvrp": "integer: the total cost, every distance rounded exactly in integers",
     "words": "integer: the number of code words",
+    "result": "exact: the integer or fraction the checker prints after RESULT (see the problem's score)",
 }
 
 
@@ -73,6 +75,9 @@ def value_from_output(kind: str, exit_code: int | None, stdout: str, stderr: str
     if kind == "c16":
         m = re.search(r"RESULT C16 >= (\d+\.\d+)", text)
         return Fraction(m.group(1)) if m else None
+    if kind == "result":                     # benchmark 1.1 and later: last line "RESULT v", v an integer or p/q
+        m = re.search(r"^RESULT (-?\d+)(?:/(\d+))?$", text, re.M)
+        return Fraction(big_int(m.group(1)), big_int(m.group(2) or "1")) if m else None
     integer_patterns = {"blocks": r"^blocks (\d+)$", "cvrp": r"^cost (\d+)$", "words": r"^words (\d+)$"}
     if kind in integer_patterns:
         m = re.search(integer_patterns[kind], text, re.M)
@@ -99,6 +104,8 @@ def ramsey_precheck(data: bytes) -> str | None:
 
 def score_meaning(p: Problem) -> str:
     args = p.checker["args"]
+    if p.raw.get("score"):                   # benchmark 1.1 and later say what the value means
+        return str(p.raw["score"])
     if p.kind == "ramsey":
         s, t = args
         return (f"n, the size of a two-colouring of K_n with no red K_{s} and no blue K_{t}; it proves "
@@ -118,19 +125,29 @@ def score_meaning(p: Problem) -> str:
 
 def standalone_command(p: Problem) -> str:
     c = p.checker
+    args = " ".join(shlex.quote(a) for a in c["args"])
     if p.kind == "ramsey":
-        return f"cc -O3 -o ramsey_check checkers/ramsey_check.c && ./ramsey_check {' '.join(c['args'])} FILE"
+        return f"cc -O3 -o ramsey_check checkers/ramsey_check.c && ./ramsey_check {args} FILE"
     if p.kind == "spherical":
-        return f"python3 -I checkers/{c['program']} FILE {' '.join(c['args'])}"
-    return " ".join(["python3 -I", f"checkers/{c['program']}", *c["args"], "FILE"])
+        return f"python3 -I checkers/{c['program']} FILE {args}"
+    return f"python3 -I checkers/{c['program']} {args} FILE".replace("  ", " ")
+
+
+CELL_ID_FORMS = ("covering-V-K-T or covering-V-K-T-M, sphere-dD-nN, code-qQ-nN-kK, ca-T-K-V, cw-N-D-W, "
+                 "rcpsp-SET-ID")
 
 
 def find_problem(bench: Benchmark, problem_id: str) -> Problem:
-    p = bench.problems.get(problem_id.strip())
+    pid = problem_id.strip()
+    p = bench.find(pid)
     if p is None:
-        close = difflib.get_close_matches(problem_id.strip().lower(), list(bench.problems), n=5, cutoff=0.6)
+        close = difflib.get_close_matches(pid.lower(), list(bench.problems), n=5, cutoff=0.6)
         hint = f" Did you mean {', '.join(close)}?" if close else ""
-        raise CheckError(f"Unknown problem {problem_id!r}.{hint} list_problems gives every id.")
+        fam = bench.family_of(pid)
+        where = (f" No cell of the {fam} family has this id." if fam else
+                 f" Family cells have ids such as {CELL_ID_FORMS}.")
+        raise CheckError(f"Unknown problem {problem_id!r}.{hint}{where} list_problems gives every id (with family= "
+                         "for the cells of a family).")
     return p
 
 
@@ -260,14 +277,19 @@ class Checker:
             os.replace(tmp, exe)
         return exe
 
-    def instance(self, arg: str) -> Path:
-        """A CVRPLIB instance named by a checker argument (instances/NAME.vrp), from QUANTAVANE_MCP_INSTANCES or a
-        local benchmark checkout, verified against the SHA-256 that fetch.sh pins. The server never downloads it."""
-        name = Path(arg).name
-        info = self.bench.meta.get("cvrplib_instances", {}).get(name)
+    def instance(self, arg: str, p: Problem | None = None) -> Path:
+        """An instance file named by a checker argument (instances/NAME.vrp for CVRPLIB, instances/rcpsp/SET/FILE for
+        the scheduling sets), from QUANTAVANE_MCP_INSTANCES (the benchmark's instances/ folder) or a local benchmark
+        checkout. A CVRPLIB file must match the SHA-256 that fetch.sh pins. The server never downloads it."""
+        rel = Path(arg[len("instances/"):])
+        if rel.is_absolute() or ".." in rel.parts:
+            raise CheckError(f"Refusing the instance path {arg!r}.")
+        info = self.bench.meta.get("cvrplib_instances", {}).get(rel.name) if rel.suffix == ".vrp" else None
         candidates = []
         if self.settings.instances_dir:
-            candidates.append(self.settings.instances_dir / name)
+            candidates.append(self.settings.instances_dir / rel)
+            if rel.suffix == ".vrp":
+                candidates.append(self.settings.instances_dir / rel.name)
         if not self.bench.bundled:
             candidates.append(self.bench.root / arg)
         for c in candidates:
@@ -276,31 +298,44 @@ class Checker:
                 key = (str(c), st.st_size, st.st_mtime)
                 digest = self._instance_ok.get(key) or sha256_file(c)
                 if info and digest != info["sha256"]:
-                    raise CheckError(f"{name} in {c.parent} does not match the SHA-256 pinned by the benchmark "
+                    raise CheckError(f"{rel.name} in {c.parent} does not match the SHA-256 pinned by the benchmark "
                                      f"({info['sha256'][:12]}...); fetch CVRPLIB's file again.")
                 self._instance_ok[key] = digest
                 return c
-        url = f" from {info['url']}" if info else ""
-        raise CheckError(f"This routing problem needs the CVRPLIB instance {name}, which is not bundled (third-party "
-                         f"data) and is never downloaded by the server. Get it{url} (or run fetch.sh in a clone of "
-                         "github.com/arhancanli/quantavane-benchmark), then set QUANTAVANE_MCP_INSTANCES to the folder "
-                         "that holds it.")
+        if rel.suffix == ".vrp":
+            url = f" from {info['url']}" if info else ""
+            raise CheckError(f"This routing problem needs the CVRPLIB instance {rel.name}, which is not bundled "
+                             f"(third-party data) and is never downloaded by the server. Get it{url} (or run fetch.sh "
+                             "in a clone of github.com/arhancanli/quantavane-benchmark), then set "
+                             "QUANTAVANE_MCP_INSTANCES to the folder that holds it.")
+        how = (self.bench.families.get(p.family, {}).get("instances", "") if p is not None else "")
+        raise CheckError(f"This problem needs the instance file {arg}, which is not bundled (third-party data) and is "
+                         f"never downloaded by the server. {how} Then set QUANTAVANE_MCP_INSTANCES to the folder that "
+                         "plays the part of instances/ (it holds rcpsp/SET/FILE).")
 
     def instance_status(self, p: Problem) -> dict[str, str] | None:
-        if p.kind != "cvrp":
+        wanted = [a for a in p.checker["args"] if a.startswith("instances/")]
+        if not wanted:
             return None
-        name = Path(p.checker["args"][0]).name
-        info = self.bench.meta.get("cvrplib_instances", {}).get(name, {})
-        try:
-            where = str(self.instance(p.checker["args"][0]).parent)
-        except CheckError:
-            where = "not available: set QUANTAVANE_MCP_INSTANCES to a folder holding it"
-        return {"file": name, "sha256": info.get("sha256", ""), "url": info.get("url", ""), "found": where}
+        out: dict[str, str] = {}
+        for i, arg in enumerate(wanted):
+            info = self.bench.meta.get("cvrplib_instances", {}).get(Path(arg).name, {})
+            try:
+                where = str(self.instance(arg, p).parent)
+            except CheckError:
+                where = "not available: set QUANTAVANE_MCP_INSTANCES to a folder holding it"
+            suffix = "" if i == 0 else f"_{i + 1}"
+            out["file" + suffix] = arg
+            out["sha256" + suffix] = info.get("sha256", "not pinned by the benchmark")
+            out["found" + suffix] = where
+            if info.get("url"):
+                out["url" + suffix] = info["url"]
+        return out
 
     def argv(self, p: Problem, candidate: Path) -> list[str]:
         """The command obb.py runs for this problem (Python flags: isolated, no bytecode, UTF-8, no digit limit)."""
         c = p.checker
-        args = [str(self.instance(a)) if a.startswith("instances/") else a for a in c["args"]]
+        args = [str(self.instance(a, p)) if a.startswith("instances/") else a for a in c["args"]]
         if p.kind == "ramsey":
             return [str(self.ramsey_binary()), *args, str(candidate)]
         program = str(self.bench.checkers_dir / c["program"])
@@ -319,6 +354,13 @@ class Checker:
 
     # ------------------------------------------------------------------------------------------- the check
 
+    def default_timeout(self, p: Problem) -> int:
+        """120 s by default; C(v,k,t,m) designs can take about 3 minutes, so covering designs get 300 s."""
+        base = self.settings.timeout_s
+        if p.family == "covering-design":
+            base = max(base, 300)
+        return min(base, self.settings.max_timeout_s)
+
     def limits_info(self, timeout_s: int) -> LimitsInfo:
         return LimitsInfo(timeout_s=timeout_s, memory_mb=self.settings.memory_mb,
                           memory_cap=sandbox.memory_cap_mode() or "not enforced on this platform",
@@ -333,6 +375,8 @@ class Checker:
                  + (f" && git checkout {commit}" if commit else "")]
         if p.kind == "cvrp":
             lines.append("./fetch.sh   # CVRPLIB instances, each checked against its SHA-256")
+        elif any(a.startswith("instances/rcpsp/") for a in p.checker["args"]):
+            lines.append("# put the set's instance files under instances/rcpsp/ first (the family's 'instances' note)")
         lines.append(f"python3 -I obb.py check {p.id} CANDIDATE   # the file with SHA-256 {digest}")
         return "\n".join(lines)
 
@@ -345,7 +389,7 @@ class Checker:
     def check_data(self, problem_id: str, data: bytes, timeout_s: int | None = None) -> CheckResult:
         """Check a certificate given as bytes (the command line and the gym hook use this directly)."""
         p = find_problem(self.bench, problem_id)
-        timeout = self.settings.timeout_s if timeout_s is None else timeout_s
+        timeout = self.default_timeout(p) if timeout_s is None else timeout_s
         if not 1 <= timeout <= self.settings.max_timeout_s:
             raise CheckError(f"timeout_s must be between 1 and {self.settings.max_timeout_s}.")
         if len(data) > self.settings.max_bytes:

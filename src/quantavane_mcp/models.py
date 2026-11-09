@@ -1,7 +1,7 @@
 """Output models of the tools: each becomes a tool's output schema, and every field is described there."""
 from __future__ import annotations
 
-from typing import Literal
+from typing import Any, Literal
 
 from pydantic import BaseModel, Field
 
@@ -19,8 +19,8 @@ class Page(BaseModel):
 class ProblemSummary(BaseModel):
     id: str
     title: str
-    family: str = Field(description="constant, ramsey, spherical-code, covering-design, vehicle-routing or "
-                                    "constant-weight-code")
+    family: str = Field(description="The problem family, such as ramsey, cage, kissing-number or constant "
+                                    "(list_problems gives every family and its count)")
     objective: Literal["maximize", "minimize"]
     best_known: str = Field(description="Best value on the source page or table, as printed there")
     verified_in_review: str | None = Field(default=None, description="Best value still in review whose certificate we "
@@ -29,7 +29,10 @@ class ProblemSummary(BaseModel):
 
 class ProblemList(Page):
     problems: list[ProblemSummary]
-    families: dict[str, int] = Field(description="Problems per family in the whole benchmark")
+    families: dict[str, int] = Field(description="Problems per family in the whole benchmark (single problems and "
+                                                 "family cells)")
+    total_problems: int = Field(description="Problems in the whole benchmark")
+    note: str | None = Field(default=None, description="How the list was drawn, when it is not the plain list")
     data_as_of: str
 
 
@@ -77,8 +80,15 @@ class ProblemDetail(BaseModel):
     claimed_not_replayed: list[ReferenceValue] = Field(description="Claims nobody has replayed; never compared")
     improvement_rule: str
     reference_certificates: list[ReferenceCertificate]
-    instance: dict[str, str] | None = Field(default=None, description="Routing problems: the CVRPLIB instance file the "
-                                                                 "checker needs, its SHA-256 and where it was found")
+    instance: dict[str, str] | None = Field(default=None, description=(
+        "Routing and scheduling problems: the instance file(s) the checker needs, the SHA-256 the benchmark pins (for "
+        "CVRPLIB) and where they were found"))
+    params: dict[str, Any] | None = Field(default=None, description="A family cell's parameters")
+    bound: dict[str, str] | None = Field(default=None, description="The other side's bound, when the table gives one")
+    provenance: dict[str, Any] | None = Field(default=None, description=(
+        "Who keeps the table, its address, the date and revision read, and who holds the value"))
+    quantavane_record: bool = Field(default=False, description="The best known entry is Quantavane's own")
+    added: str | None = Field(default=None, description="Benchmark version that added the problem")
     data_as_of: str
 
 

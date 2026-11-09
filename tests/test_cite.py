@@ -26,7 +26,8 @@ def test_benchmark(store):
     assert balanced(c.bibtex) and c.bibtex.startswith("@misc{quantavane-open-problems-benchmark,")
     f = fields(c.bibtex)
     assert f["author"] == "Canli, Arhan" and "quantavane-benchmark" in f["howpublished"]
-    assert "117 problems" in c.text and "cff-version: 1.2.0" in c.cff and "commit: " in c.cff
+    assert "149,351 problems (374 single problems" in c.text and "cff-version: 1.2.0" in c.cff
+    assert "commit: " in c.cff and 'version: "v2.0"' in c.cff
 
 
 def test_problem_names_the_source_of_the_best_value(store):

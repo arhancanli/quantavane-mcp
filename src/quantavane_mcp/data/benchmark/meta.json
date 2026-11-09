@@ -1,6 +1,34 @@
 {
- "commit": "3635207cd5c56cfb1a26ef8968249b75c2b2fe89",
- "commit_date": "2026-11-08T18:05:32Z",
+ "by_family": {
+  "cage": 40,
+  "cap-set": 2,
+  "circulant-weighing-matrix": 12,
+  "coil-in-the-box": 5,
+  "constant": 7,
+  "constant-weight-code": 1166,
+  "covering-array": 2651,
+  "covering-design": 55995,
+  "degree-diameter": 20,
+  "golomb-ruler": 2,
+  "hadamard": 4,
+  "kissing-number": 16,
+  "linear-code": 15255,
+  "multicolour-ramsey": 14,
+  "no-three-in-line": 2,
+  "project-scheduling": 59170,
+  "ramsey": 133,
+  "schur": 4,
+  "shannon-capacity": 1,
+  "snake-in-the-box": 5,
+  "sorting-network": 21,
+  "spherical-code": 14793,
+  "superpermutation": 4,
+  "van-der-waerden": 10,
+  "vehicle-routing": 14,
+  "weak-schur": 5
+ },
+ "commit": "9cb6183bce754b06459815b523acf5d1a90bca2c",
+ "commit_date": "2026-11-09T05:14:16Z",
  "cvrplib_instances": {
   "Antwerp1.vrp": {
    "sha256": "f9206ba0037ccffea614cefb2300830b171ee192b4116a3c7a949f456d7870ff",
@@ -164,128 +192,795 @@
    ],
    "file": "control_cw_weight.txt",
    "problem": "cw-34-6-5"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_snake-in-the-box-9-lower-191.txt",
+   "problem": "snake-d9"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_snake-in-the-box-10-lower-379.txt",
+   "problem": "snake-d10"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_snake-in-the-box-11-lower-750.txt",
+   "problem": "snake-d11"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_snake-in-the-box-12-lower-1480.txt",
+   "problem": "snake-d12"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_snake-in-the-box-13-lower-2946.txt",
+   "problem": "snake-d13"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_coil-in-the-box-9-lower-192.txt",
+   "problem": "coil-d9"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_coil-in-the-box-10-lower-374.txt",
+   "problem": "coil-d10"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_coil-in-the-box-11-lower-740.txt",
+   "problem": "coil-d11"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_coil-in-the-box-12-lower-1468.txt",
+   "problem": "coil-d12"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_coil-in-the-box-13-lower-2930.txt",
+   "problem": "coil-d13"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_cap-set-7-lower-236.txt",
+   "problem": "capset-n7"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_cap-set-8-lower-512.txt",
+   "problem": "capset-n8"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_minimal-superpermutation-6-upper-873.txt",
+   "problem": "superperm-n6"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_minimal-superpermutation-7-upper-5913.txt",
+   "problem": "superperm-n7"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_schur-6-lower-537.txt",
+   "problem": "schur-6"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_schur-7-lower-1696.txt",
+   "problem": "schur-7"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_schur-8-lower-5372.txt",
+   "problem": "schur-8"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_weak-schur-5-lower-207.txt",
+   "problem": "weak-schur-5"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_weak-schur-6-lower-650.txt",
+   "problem": "weak-schur-6"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_van-der-waerden-2-7-lower-3704.txt",
+   "problem": "vdw-2-7"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_van-der-waerden-2-8-lower-11496.txt",
+   "problem": "vdw-2-8"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_van-der-waerden-4-4-lower-1049.txt",
+   "problem": "vdw-4-4"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_van-der-waerden-4-5-lower-17706.txt",
+   "problem": "vdw-4-5"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_van-der-waerden-5-4-lower-2255.txt",
+   "problem": "vdw-5-4"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_van-der-waerden-6-4-lower-9779.txt",
+   "problem": "vdw-6-4"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_no-three-in-line-75-lower-148.txt",
+   "problem": "no3line-75"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_no-three-in-line-77-lower-152.txt",
+   "problem": "no3line-77"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_degree-diameter-3-5-lower-64.s6",
+   "problem": "degdiam-3-5"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_degree-diameter-3-6-lower-64.s6",
+   "problem": "degdiam-3-6"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_degree-diameter-3-7-lower-162.s6",
+   "problem": "degdiam-3-7"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_degree-diameter-3-8-lower-272.s6",
+   "problem": "degdiam-3-8"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_degree-diameter-3-9-lower-506.s6",
+   "problem": "degdiam-3-9"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_degree-diameter-3-10-lower-820.s6",
+   "problem": "degdiam-3-10"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_degree-diameter-4-3-lower-41.s6",
+   "problem": "degdiam-4-3"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_degree-diameter-4-4-lower-84.s6",
+   "problem": "degdiam-4-4"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_degree-diameter-4-5-lower-205.s6",
+   "problem": "degdiam-4-5"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_degree-diameter-5-3-lower-54.s6",
+   "problem": "degdiam-5-3"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_degree-diameter-5-4-lower-210.s6",
+   "problem": "degdiam-5-4"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_degree-diameter-8-2-lower-57.s6",
+   "problem": "degdiam-8-2"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_degree-diameter-8-3-lower-253.s6",
+   "problem": "degdiam-8-3"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_degree-diameter-8-4-lower-1029.s6",
+   "problem": "degdiam-8-4"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_degree-diameter-9-3-lower-256.s6",
+   "problem": "degdiam-9-3"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_degree-diameter-10-2-lower-91.s6",
+   "problem": "degdiam-10-2"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_degree-diameter-10-3-lower-366.s6",
+   "problem": "degdiam-10-3"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_degree-diameter-11-3-lower-420.s6",
+   "problem": "degdiam-11-3"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "derived_r63_from_schur6_n538.txt",
+   "problem": "multiramsey-3-3-3-3-3-3"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "derived_r73_from_schur7_n1697.txt",
+   "problem": "multiramsey-3-3-3-3-3-3-3"
+  },
+  {
+   "expected": [
+    "NOT CERTIFIED"
+   ],
+   "file": "control_ramsey_blue_k17.txt",
+   "problem": "ramsey-3-17"
+  },
+  {
+   "expected": [
+    "NOT CERTIFIED"
+   ],
+   "file": "control_multiramsey_triangle.txt",
+   "problem": "multiramsey-3-3-3-3"
+  },
+  {
+   "expected": [
+    "NOT CERTIFIED"
+   ],
+   "file": "control_superperm_short.txt",
+   "problem": "superperm-n6"
+  },
+  {
+   "expected": [
+    "NOT CERTIFIED"
+   ],
+   "file": "control_no3line_diagonal.txt",
+   "problem": "no3line-75"
+  },
+  {
+   "expected": [
+    "NOT CERTIFIED"
+   ],
+   "file": "control_hadamard_all_plus.txt",
+   "problem": "hadamard-668"
+  },
+  {
+   "expected": [
+    "NOT CERTIFIED"
+   ],
+   "file": "control_strongpow_adjacent.txt",
+   "problem": "shannon-c7-power5"
   }
  ],
- "problem_count": 117,
- "problem_file_dates": {
-  "16a-lower": "2026-11-06",
-  "1a-upper": "2026-11-05",
-  "1c-lower": "2026-11-05",
-  "1d-upper": "2026-11-05",
-  "42a-upper": "2026-11-06",
-  "59a-upper": "2026-11-06",
-  "68a-lower": "2026-11-05",
-  "covering-17-7-4-6": "2026-11-06",
-  "covering-18-9-5-6": "2026-11-06",
-  "covering-21-8-3-4": "2026-11-06",
-  "covering-22-15-6": "2026-11-06",
-  "covering-23-6-6-15": "2026-11-06",
-  "covering-24-17-7": "2026-11-06",
-  "covering-28-17-4": "2026-11-06",
-  "covering-35-10-3": "2026-11-06",
-  "covering-36-6-2": "2026-11-06",
-  "covering-37-8-2-3": "2026-11-06",
-  "cvrp-antwerp1": "2026-11-06",
-  "cvrp-antwerp2": "2026-11-06",
-  "cvrp-brussels1": "2026-11-06",
-  "cvrp-brussels2": "2026-11-06",
-  "cvrp-flanders1": "2026-11-06",
-  "cvrp-flanders2": "2026-11-06",
-  "cvrp-ghent1": "2026-11-06",
-  "cvrp-ghent2": "2026-11-06",
-  "cvrp-leuven2": "2026-11-06",
-  "cvrp-xl-n1048-k237": "2026-11-06",
-  "cvrp-xl-n1748-k271": "2026-11-06",
-  "cvrp-xl-n6168-k1922": "2026-11-06",
-  "cvrp-xl-n8028-k294": "2026-11-06",
-  "cvrp-xl-n9784-k2774": "2026-11-06",
-  "cw-27-4-6": "2026-11-06",
-  "cw-28-4-5": "2026-11-06",
-  "cw-29-4-5": "2026-11-06",
-  "cw-33-4-5": "2026-11-06",
-  "cw-33-6-6": "2026-11-06",
-  "cw-34-6-5": "2026-11-06",
-  "cw-34-6-6": "2026-11-06",
-  "cw-35-6-5": "2026-11-06",
-  "cw-35-6-6": "2026-11-06",
-  "cw-36-4-5": "2026-11-06",
-  "cw-36-6-5": "2026-11-06",
-  "cw-38-4-5": "2026-11-06",
-  "cw-38-6-6": "2026-11-06",
-  "cw-39-4-5": "2026-11-06",
-  "cw-40-4-5": "2026-11-06",
-  "cw-40-6-5": "2026-11-06",
-  "cw-42-6-5": "2026-11-06",
-  "cw-42-6-6": "2026-11-06",
-  "cw-44-6-5": "2026-11-06",
-  "cw-45-6-5": "2026-11-06",
-  "cw-46-6-5": "2026-11-06",
-  "cw-47-6-5": "2026-11-06",
-  "cw-50-6-5": "2026-11-06",
-  "cw-51-6-5": "2026-11-06",
-  "cw-51-6-6": "2026-11-06",
-  "cw-52-6-5": "2026-11-06",
-  "cw-53-6-5": "2026-11-06",
-  "cw-54-6-5": "2026-11-06",
-  "cw-55-6-5": "2026-11-06",
-  "cw-56-6-5": "2026-11-06",
-  "cw-58-6-5": "2026-11-06",
-  "cw-60-6-5": "2026-11-06",
-  "ramsey-10-12": "2026-11-05",
-  "ramsey-12-12": "2026-11-05",
-  "ramsey-3-17": "2026-11-05",
-  "ramsey-3-24": "2026-11-05",
-  "ramsey-3-25": "2026-11-05",
-  "ramsey-3-26": "2026-11-05",
-  "ramsey-3-28": "2026-11-05",
-  "ramsey-3-29": "2026-11-05",
-  "ramsey-3-30": "2026-11-05",
-  "ramsey-3-31": "2026-11-05",
-  "ramsey-3-32": "2026-11-05",
-  "ramsey-3-33": "2026-11-05",
-  "ramsey-3-34": "2026-11-05",
-  "ramsey-3-35": "2026-11-05",
-  "ramsey-3-36": "2026-11-05",
-  "ramsey-3-37": "2026-11-05",
-  "ramsey-3-38": "2026-11-05",
-  "ramsey-3-39": "2026-11-05",
-  "ramsey-3-40": "2026-11-05",
-  "ramsey-3-41": "2026-11-05",
-  "ramsey-3-42": "2026-11-05",
-  "ramsey-3-43": "2026-11-05",
-  "ramsey-3-44": "2026-11-05",
-  "ramsey-3-45": "2026-11-05",
-  "ramsey-3-46": "2026-11-05",
-  "ramsey-3-47": "2026-11-05",
-  "ramsey-3-48": "2026-11-05",
-  "ramsey-3-49": "2026-11-05",
-  "ramsey-3-50": "2026-11-05",
-  "ramsey-4-15": "2026-11-05",
-  "ramsey-4-16": "2026-11-05",
-  "ramsey-4-18": "2026-11-05",
-  "ramsey-4-19": "2026-11-05",
-  "ramsey-4-20": "2026-11-05",
-  "ramsey-4-21": "2026-11-05",
-  "ramsey-5-15": "2026-11-06",
-  "ramsey-6-8": "2026-11-05",
-  "ramsey-7-13": "2026-11-05",
-  "ramsey-7-16": "2026-11-05",
-  "ramsey-8-10": "2026-11-05",
-  "ramsey-8-12": "2026-11-06",
-  "ramsey-8-18": "2026-11-05",
-  "ramsey-9-11": "2026-11-05",
-  "sphere-d10-n176": "2026-11-06",
-  "sphere-d12-n103": "2026-11-06",
-  "sphere-d16-n63": "2026-11-06",
-  "sphere-d20-n86": "2026-11-06",
-  "sphere-d24-n71": "2026-11-06",
-  "sphere-d3-n952": "2026-11-06",
-  "sphere-d32-n84": "2026-11-06",
-  "sphere-d4-n310": "2026-11-06",
-  "sphere-d5-n267": "2026-11-06",
-  "sphere-d6-n188": "2026-11-06",
-  "sphere-d8-n119": "2026-11-06"
+ "families": {
+  "constant-weight-code": {
+   "bytes": 153700,
+   "cells": "families/constant-weight-code/cells.jsonl.gz",
+   "count": 1134,
+   "sha256": "6ef7a4d5023bb394d4029b4a9b531c5dcb21293ca43bfd0ed9b89d659a736ded"
+  },
+  "covering-array": {
+   "bytes": 377108,
+   "cells": "families/covering-array/cells.jsonl.gz",
+   "count": 2651,
+   "sha256": "e1beb9a99bf0341a4abb4a47b90e14b9ba82d4068797d73674c52713f9f26577"
+  },
+  "covering-design": {
+   "bytes": 7755849,
+   "cells": "families/covering-design/cells.jsonl.gz",
+   "count": 55985,
+   "sha256": "65ca1b70cbc2a6347b47f1cac8225b6a5de3dfc356f288d1e70fd98155f3e993"
+  },
+  "linear-code": {
+   "bytes": 1427121,
+   "cells": "families/linear-code/cells.jsonl.gz",
+   "count": 15255,
+   "sha256": "4d2c330935506a60f4258264a15604589a705b763932d382442ac03bcc037f7d"
+  },
+  "project-scheduling": {
+   "bytes": 14589029,
+   "cells": "families/project-scheduling/cells.jsonl.gz",
+   "count": 59170,
+   "sha256": "244bbf87e85a94ea753c90ec074e030ccd7d75794429a3db51af5d521714a150"
+  },
+  "spherical-code": {
+   "bytes": 2442264,
+   "cells": "families/spherical-code/cells.jsonl.gz",
+   "count": 14782,
+   "sha256": "3019bdbe31d174e8b7760a050851ccbe43bbe76c2565604b1b4059be86219747"
+  }
  },
+ "problem_count": 374,
+ "problem_file_dates": {
+  "16a-lower": "2026-11-08",
+  "1a-upper": "2026-11-08",
+  "1c-lower": "2026-11-08",
+  "1d-upper": "2026-11-08",
+  "42a-upper": "2026-11-08",
+  "59a-upper": "2026-11-08",
+  "68a-lower": "2026-11-08",
+  "cage-10-5": "2026-11-08",
+  "cage-10-7": "2026-11-08",
+  "cage-11-5": "2026-11-08",
+  "cage-11-6": "2026-11-08",
+  "cage-12-5": "2026-11-08",
+  "cage-13-6": "2026-11-08",
+  "cage-15-6": "2026-11-08",
+  "cage-16-6": "2026-11-08",
+  "cage-16-7": "2026-11-08",
+  "cage-19-6": "2026-11-08",
+  "cage-3-13": "2026-11-08",
+  "cage-3-14": "2026-11-08",
+  "cage-3-15": "2026-11-08",
+  "cage-3-16": "2026-11-08",
+  "cage-3-17": "2026-11-08",
+  "cage-3-18": "2026-11-08",
+  "cage-3-19": "2026-11-08",
+  "cage-3-20": "2026-11-08",
+  "cage-4-10": "2026-11-08",
+  "cage-4-11": "2026-11-08",
+  "cage-4-9": "2026-11-08",
+  "cage-5-10": "2026-11-08",
+  "cage-5-11": "2026-11-08",
+  "cage-5-7": "2026-11-08",
+  "cage-5-9": "2026-11-08",
+  "cage-6-10": "2026-11-08",
+  "cage-6-7": "2026-11-08",
+  "cage-6-9": "2026-11-08",
+  "cage-7-10": "2026-11-08",
+  "cage-7-7": "2026-11-08",
+  "cage-7-8": "2026-11-08",
+  "cage-7-9": "2026-11-08",
+  "cage-8-10": "2026-11-08",
+  "cage-8-5": "2026-11-08",
+  "cage-8-7": "2026-11-08",
+  "cage-8-9": "2026-11-08",
+  "cage-9-10": "2026-11-08",
+  "cage-9-5": "2026-11-08",
+  "cage-9-7": "2026-11-08",
+  "cage-9-9": "2026-11-08",
+  "capset-n7": "2026-11-08",
+  "capset-n8": "2026-11-08",
+  "coil-d10": "2026-11-08",
+  "coil-d11": "2026-11-08",
+  "coil-d12": "2026-11-08",
+  "coil-d13": "2026-11-08",
+  "coil-d9": "2026-11-08",
+  "covering-17-7-4-6": "2026-11-08",
+  "covering-18-9-5-6": "2026-11-08",
+  "covering-21-8-3-4": "2026-11-08",
+  "covering-22-15-6": "2026-11-08",
+  "covering-23-6-6-15": "2026-11-08",
+  "covering-24-17-7": "2026-11-08",
+  "covering-28-17-4": "2026-11-08",
+  "covering-35-10-3": "2026-11-08",
+  "covering-36-6-2": "2026-11-08",
+  "covering-37-8-2-3": "2026-11-08",
+  "cvrp-antwerp1": "2026-11-08",
+  "cvrp-antwerp2": "2026-11-08",
+  "cvrp-brussels1": "2026-11-08",
+  "cvrp-brussels2": "2026-11-08",
+  "cvrp-flanders1": "2026-11-08",
+  "cvrp-flanders2": "2026-11-08",
+  "cvrp-ghent1": "2026-11-08",
+  "cvrp-ghent2": "2026-11-08",
+  "cvrp-leuven2": "2026-11-08",
+  "cvrp-xl-n1048-k237": "2026-11-08",
+  "cvrp-xl-n1748-k271": "2026-11-08",
+  "cvrp-xl-n6168-k1922": "2026-11-08",
+  "cvrp-xl-n8028-k294": "2026-11-08",
+  "cvrp-xl-n9784-k2774": "2026-11-08",
+  "cw-27-4-6": "2026-11-08",
+  "cw-28-4-5": "2026-11-08",
+  "cw-29-4-5": "2026-11-08",
+  "cw-33-4-5": "2026-11-08",
+  "cw-33-6-6": "2026-11-08",
+  "cw-34-6-5": "2026-11-08",
+  "cw-34-6-6": "2026-11-08",
+  "cw-35-6-5": "2026-11-08",
+  "cw-35-6-6": "2026-11-08",
+  "cw-36-4-5": "2026-11-08",
+  "cw-36-6-5": "2026-11-08",
+  "cw-38-4-5": "2026-11-08",
+  "cw-38-6-6": "2026-11-08",
+  "cw-39-4-5": "2026-11-08",
+  "cw-40-4-5": "2026-11-08",
+  "cw-40-6-5": "2026-11-08",
+  "cw-42-6-5": "2026-11-08",
+  "cw-42-6-6": "2026-11-08",
+  "cw-44-6-5": "2026-11-08",
+  "cw-45-6-5": "2026-11-08",
+  "cw-46-6-5": "2026-11-08",
+  "cw-47-6-5": "2026-11-08",
+  "cw-50-6-5": "2026-11-08",
+  "cw-51-6-5": "2026-11-08",
+  "cw-51-6-6": "2026-11-08",
+  "cw-52-6-5": "2026-11-08",
+  "cw-53-6-5": "2026-11-08",
+  "cw-54-6-5": "2026-11-08",
+  "cw-55-6-5": "2026-11-08",
+  "cw-56-6-5": "2026-11-08",
+  "cw-58-6-5": "2026-11-08",
+  "cw-60-6-5": "2026-11-08",
+  "cwm-105-36": "2026-11-08",
+  "cwm-112-100": "2026-11-08",
+  "cwm-112-36": "2026-11-08",
+  "cwm-120-49": "2026-11-08",
+  "cwm-132-81": "2026-11-08",
+  "cwm-140-121": "2026-11-08",
+  "cwm-140-64": "2026-11-08",
+  "cwm-154-144": "2026-11-08",
+  "cwm-155-25": "2026-11-08",
+  "cwm-165-25": "2026-11-08",
+  "cwm-186-25": "2026-11-08",
+  "cwm-96-36": "2026-11-08",
+  "degdiam-10-2": "2026-11-08",
+  "degdiam-10-3": "2026-11-08",
+  "degdiam-11-3": "2026-11-08",
+  "degdiam-3-10": "2026-11-08",
+  "degdiam-3-5": "2026-11-08",
+  "degdiam-3-6": "2026-11-08",
+  "degdiam-3-7": "2026-11-08",
+  "degdiam-3-8": "2026-11-08",
+  "degdiam-3-9": "2026-11-08",
+  "degdiam-4-3": "2026-11-08",
+  "degdiam-4-4": "2026-11-08",
+  "degdiam-4-5": "2026-11-08",
+  "degdiam-4-8": "2026-11-08",
+  "degdiam-5-3": "2026-11-08",
+  "degdiam-5-4": "2026-11-08",
+  "degdiam-8-2": "2026-11-08",
+  "degdiam-8-3": "2026-11-08",
+  "degdiam-8-4": "2026-11-08",
+  "degdiam-9-2": "2026-11-08",
+  "degdiam-9-3": "2026-11-08",
+  "golomb-29": "2026-11-08",
+  "golomb-30": "2026-11-08",
+  "hadamard-1132": "2026-11-08",
+  "hadamard-668": "2026-11-08",
+  "hadamard-716": "2026-11-08",
+  "hadamard-892": "2026-11-08",
+  "kissing-d10": "2026-11-08",
+  "kissing-d11": "2026-11-08",
+  "kissing-d12": "2026-11-08",
+  "kissing-d13": "2026-11-08",
+  "kissing-d14": "2026-11-08",
+  "kissing-d15": "2026-11-08",
+  "kissing-d16": "2026-11-08",
+  "kissing-d17": "2026-11-08",
+  "kissing-d18": "2026-11-08",
+  "kissing-d19": "2026-11-08",
+  "kissing-d20": "2026-11-08",
+  "kissing-d21": "2026-11-08",
+  "kissing-d5": "2026-11-08",
+  "kissing-d6": "2026-11-08",
+  "kissing-d7": "2026-11-08",
+  "kissing-d9": "2026-11-08",
+  "multiramsey-3-3-3-3": "2026-11-08",
+  "multiramsey-3-3-3-3-3": "2026-11-08",
+  "multiramsey-3-3-3-3-3-3": "2026-11-08",
+  "multiramsey-3-3-3-3-3-3-3": "2026-11-08",
+  "multiramsey-3-3-5": "2026-11-08",
+  "multiramsey-3-3-6": "2026-11-08",
+  "multiramsey-3-4-4": "2026-11-08",
+  "multiramsey-3-4-5": "2026-11-08",
+  "multiramsey-3-4-6": "2026-11-08",
+  "multiramsey-3-5-5": "2026-11-08",
+  "multiramsey-3-5-6": "2026-11-08",
+  "multiramsey-4-4-4": "2026-11-08",
+  "multiramsey-4-4-4-4": "2026-11-08",
+  "multiramsey-5-5-5": "2026-11-08",
+  "no3line-75": "2026-11-08",
+  "no3line-77": "2026-11-08",
+  "ramsey-10-10": "2026-11-08",
+  "ramsey-10-11": "2026-11-08",
+  "ramsey-10-12": "2026-11-08",
+  "ramsey-10-13": "2026-11-08",
+  "ramsey-10-14": "2026-11-08",
+  "ramsey-10-15": "2026-11-08",
+  "ramsey-12-12": "2026-11-08",
+  "ramsey-3-10": "2026-11-08",
+  "ramsey-3-11": "2026-11-08",
+  "ramsey-3-12": "2026-11-08",
+  "ramsey-3-13": "2026-11-08",
+  "ramsey-3-14": "2026-11-08",
+  "ramsey-3-15": "2026-11-08",
+  "ramsey-3-16": "2026-11-08",
+  "ramsey-3-17": "2026-11-08",
+  "ramsey-3-18": "2026-11-08",
+  "ramsey-3-19": "2026-11-08",
+  "ramsey-3-20": "2026-11-08",
+  "ramsey-3-21": "2026-11-08",
+  "ramsey-3-22": "2026-11-08",
+  "ramsey-3-23": "2026-11-08",
+  "ramsey-3-24": "2026-11-08",
+  "ramsey-3-25": "2026-11-08",
+  "ramsey-3-26": "2026-11-08",
+  "ramsey-3-28": "2026-11-08",
+  "ramsey-3-29": "2026-11-08",
+  "ramsey-3-30": "2026-11-08",
+  "ramsey-3-31": "2026-11-08",
+  "ramsey-3-32": "2026-11-08",
+  "ramsey-3-33": "2026-11-08",
+  "ramsey-3-34": "2026-11-08",
+  "ramsey-3-35": "2026-11-08",
+  "ramsey-3-36": "2026-11-08",
+  "ramsey-3-37": "2026-11-08",
+  "ramsey-3-38": "2026-11-08",
+  "ramsey-3-39": "2026-11-08",
+  "ramsey-3-40": "2026-11-08",
+  "ramsey-3-41": "2026-11-08",
+  "ramsey-3-42": "2026-11-08",
+  "ramsey-3-43": "2026-11-08",
+  "ramsey-3-44": "2026-11-08",
+  "ramsey-3-45": "2026-11-08",
+  "ramsey-3-46": "2026-11-08",
+  "ramsey-3-47": "2026-11-08",
+  "ramsey-3-48": "2026-11-08",
+  "ramsey-3-49": "2026-11-08",
+  "ramsey-3-50": "2026-11-08",
+  "ramsey-4-10": "2026-11-08",
+  "ramsey-4-11": "2026-11-08",
+  "ramsey-4-12": "2026-11-08",
+  "ramsey-4-13": "2026-11-08",
+  "ramsey-4-14": "2026-11-08",
+  "ramsey-4-15": "2026-11-08",
+  "ramsey-4-16": "2026-11-08",
+  "ramsey-4-17": "2026-11-08",
+  "ramsey-4-18": "2026-11-08",
+  "ramsey-4-19": "2026-11-08",
+  "ramsey-4-20": "2026-11-08",
+  "ramsey-4-21": "2026-11-08",
+  "ramsey-4-22": "2026-11-08",
+  "ramsey-4-23": "2026-11-08",
+  "ramsey-4-6": "2026-11-08",
+  "ramsey-4-7": "2026-11-08",
+  "ramsey-4-8": "2026-11-08",
+  "ramsey-4-9": "2026-11-08",
+  "ramsey-5-10": "2026-11-08",
+  "ramsey-5-11": "2026-11-08",
+  "ramsey-5-12": "2026-11-08",
+  "ramsey-5-13": "2026-11-08",
+  "ramsey-5-14": "2026-11-08",
+  "ramsey-5-15": "2026-11-08",
+  "ramsey-5-16": "2026-11-08",
+  "ramsey-5-17": "2026-11-08",
+  "ramsey-5-18": "2026-11-08",
+  "ramsey-5-19": "2026-11-08",
+  "ramsey-5-20": "2026-11-08",
+  "ramsey-5-21": "2026-11-08",
+  "ramsey-5-22": "2026-11-08",
+  "ramsey-5-23": "2026-11-08",
+  "ramsey-5-24": "2026-11-08",
+  "ramsey-5-5": "2026-11-08",
+  "ramsey-5-6": "2026-11-08",
+  "ramsey-5-7": "2026-11-08",
+  "ramsey-5-8": "2026-11-08",
+  "ramsey-5-9": "2026-11-08",
+  "ramsey-6-10": "2026-11-08",
+  "ramsey-6-11": "2026-11-08",
+  "ramsey-6-12": "2026-11-08",
+  "ramsey-6-13": "2026-11-08",
+  "ramsey-6-14": "2026-11-08",
+  "ramsey-6-15": "2026-11-08",
+  "ramsey-6-16": "2026-11-08",
+  "ramsey-6-17": "2026-11-08",
+  "ramsey-6-18": "2026-11-08",
+  "ramsey-6-19": "2026-11-08",
+  "ramsey-6-20": "2026-11-08",
+  "ramsey-6-21": "2026-11-08",
+  "ramsey-6-22": "2026-11-08",
+  "ramsey-6-6": "2026-11-08",
+  "ramsey-6-7": "2026-11-08",
+  "ramsey-6-8": "2026-11-08",
+  "ramsey-6-9": "2026-11-08",
+  "ramsey-7-10": "2026-11-08",
+  "ramsey-7-11": "2026-11-08",
+  "ramsey-7-12": "2026-11-08",
+  "ramsey-7-13": "2026-11-08",
+  "ramsey-7-14": "2026-11-08",
+  "ramsey-7-15": "2026-11-08",
+  "ramsey-7-16": "2026-11-08",
+  "ramsey-7-17": "2026-11-08",
+  "ramsey-7-18": "2026-11-08",
+  "ramsey-7-19": "2026-11-08",
+  "ramsey-7-20": "2026-11-08",
+  "ramsey-7-7": "2026-11-08",
+  "ramsey-7-8": "2026-11-08",
+  "ramsey-7-9": "2026-11-08",
+  "ramsey-8-10": "2026-11-08",
+  "ramsey-8-11": "2026-11-08",
+  "ramsey-8-12": "2026-11-08",
+  "ramsey-8-13": "2026-11-08",
+  "ramsey-8-14": "2026-11-08",
+  "ramsey-8-15": "2026-11-08",
+  "ramsey-8-16": "2026-11-08",
+  "ramsey-8-18": "2026-11-08",
+  "ramsey-8-8": "2026-11-08",
+  "ramsey-8-9": "2026-11-08",
+  "ramsey-9-10": "2026-11-08",
+  "ramsey-9-11": "2026-11-08",
+  "ramsey-9-12": "2026-11-08",
+  "ramsey-9-13": "2026-11-08",
+  "ramsey-9-14": "2026-11-08",
+  "ramsey-9-15": "2026-11-08",
+  "ramsey-9-9": "2026-11-08",
+  "schur-6": "2026-11-08",
+  "schur-7": "2026-11-08",
+  "schur-8": "2026-11-08",
+  "schur-9": "2026-11-08",
+  "shannon-c7-power5": "2026-11-08",
+  "snake-d10": "2026-11-08",
+  "snake-d11": "2026-11-08",
+  "snake-d12": "2026-11-08",
+  "snake-d13": "2026-11-08",
+  "snake-d9": "2026-11-08",
+  "sortnet-n13-size": "2026-11-08",
+  "sortnet-n14-size": "2026-11-08",
+  "sortnet-n15-size": "2026-11-08",
+  "sortnet-n16-size": "2026-11-08",
+  "sortnet-n17-size": "2026-11-08",
+  "sortnet-n18-size": "2026-11-08",
+  "sortnet-n19-size": "2026-11-08",
+  "sortnet-n20-size": "2026-11-08",
+  "sortnet-n21-size": "2026-11-08",
+  "sortnet-n22-size": "2026-11-08",
+  "sortnet-n23-size": "2026-11-08",
+  "sortnet-n24-size": "2026-11-08",
+  "sortnet-n25-size": "2026-11-08",
+  "sortnet-n26-size": "2026-11-08",
+  "sortnet-n27-size": "2026-11-08",
+  "sortnet-n28-size": "2026-11-08",
+  "sortnet-n29-size": "2026-11-08",
+  "sortnet-n30-size": "2026-11-08",
+  "sortnet-n31-size": "2026-11-08",
+  "sortnet-n32-size": "2026-11-08",
+  "sortnet-n33-size": "2026-11-08",
+  "sphere-d10-n176": "2026-11-08",
+  "sphere-d12-n103": "2026-11-08",
+  "sphere-d16-n63": "2026-11-08",
+  "sphere-d20-n86": "2026-11-08",
+  "sphere-d24-n71": "2026-11-08",
+  "sphere-d3-n952": "2026-11-08",
+  "sphere-d32-n84": "2026-11-08",
+  "sphere-d4-n310": "2026-11-08",
+  "sphere-d5-n267": "2026-11-08",
+  "sphere-d6-n188": "2026-11-08",
+  "sphere-d8-n119": "2026-11-08",
+  "superperm-n6": "2026-11-08",
+  "superperm-n7": "2026-11-08",
+  "superperm-n8": "2026-11-08",
+  "superperm-n9": "2026-11-08",
+  "vdw-2-7": "2026-11-08",
+  "vdw-2-8": "2026-11-08",
+  "vdw-3-5": "2026-11-08",
+  "vdw-3-6": "2026-11-08",
+  "vdw-4-4": "2026-11-08",
+  "vdw-4-5": "2026-11-08",
+  "vdw-5-3": "2026-11-08",
+  "vdw-5-4": "2026-11-08",
+  "vdw-6-3": "2026-11-08",
+  "vdw-6-4": "2026-11-08",
+  "weak-schur-5": "2026-11-08",
+  "weak-schur-6": "2026-11-08",
+  "weak-schur-7": "2026-11-08",
+  "weak-schur-8": "2026-11-08",
+  "weak-schur-9": "2026-11-08"
+ },
+ "problems_total": 149351,
  "reference_expected": [
   {
    "expected": [
@@ -771,7 +1466,171 @@
    ],
    "file": "ours_cw_60_6_5.txt",
    "problem": "cw-60-6-5"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_ramsey_3_18_n100.txt",
+   "problem": "ramsey-3-18"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_ramsey_4_18_n210.txt",
+   "problem": "ramsey-4-18"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "ours_ramsey_5_15_n282.txt",
+   "problem": "ramsey-5-15"
+  },
+  {
+   "expected": [
+    "IMPROVES",
+    "does not improve"
+   ],
+   "file": "ours_cage_6_9_n5600.s6",
+   "problem": "cage-6-9"
+  },
+  {
+   "expected": [
+    "IMPROVES",
+    "does not improve"
+   ],
+   "file": "ours_cage_7_9_n17600.s6",
+   "problem": "cage-7-9"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "classic_multiramsey_3333_n32.txt",
+   "problem": "multiramsey-3-3-3-3"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "classic_multiramsey_444_n127.txt",
+   "problem": "multiramsey-4-4-4"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "classic_kissing_d5_D5_n40.txt",
+   "problem": "kissing-d5"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "classic_kissing_d6_E6_n72.txt",
+   "problem": "kissing-d6"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "classic_kissing_d7_E7_n126.txt",
+   "problem": "kissing-d7"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "classic_kissing_d16_BW16_n4320.txt",
+   "problem": "kissing-d16"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "classic_sortnet_batcher_n13.txt",
+   "problem": "sortnet-n13-size"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "classic_sortnet_batcher_n16.txt",
+   "problem": "sortnet-n16-size"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "classic_sortnet_batcher_n20.txt",
+   "problem": "sortnet-n20-size"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "classic_sortnet_batcher_n24.txt",
+   "problem": "sortnet-n24-size"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "classic_sortnet_batcher_n28.txt",
+   "problem": "sortnet-n28-size"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "classic_sortnet_batcher_n32.txt",
+   "problem": "sortnet-n32-size"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "classic_sortnet_batcher_n33.txt",
+   "problem": "sortnet-n33-size"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "classic_golomb_erdos_turan_m29.txt",
+   "problem": "golomb-29"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "classic_golomb_erdos_turan_m30.txt",
+   "problem": "golomb-30"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "classic_superperm_n8.txt",
+   "problem": "superperm-n8"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "classic_superperm_n9.txt",
+   "problem": "superperm-n9"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "classic_shannon_c7_k5_n243.txt",
+   "problem": "shannon-c7-power5"
   }
  ],
- "repository": "https://github.com/arhancanli/quantavane-benchmark"
+ "repository": "https://github.com/arhancanli/quantavane-benchmark",
+ "version": "2.0"
 }

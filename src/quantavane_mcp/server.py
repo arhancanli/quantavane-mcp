@@ -56,8 +56,11 @@ from .search import SearchError, search
 
 INSTRUCTIONS = """\
 Quantavane's open problems, each with an exact checker, plus our verified results, replays and citations. Offline.
-- list_problems / get_problem: 117 open problems (Tao's optimization constants, Ramsey lower bounds, spherical codes,
-  covering designs, vehicle routing, constant weight codes) with the best known value, its source and when it was read.
+- list_problems / get_problem: 149,351 open problems: 374 single problems (Tao's optimization constants, Ramsey numbers,
+  cages, kissing numbers, sorting networks, Hadamard matrices and more) and 148,977 cells of six families read from
+  their keepers' tables (covering designs, spherical codes, linear codes, covering arrays, constant weight codes,
+  project scheduling), each with the best known value, its source and when it was read. Family cells are listed with
+  family= (and params= or sample=).
 - check_candidate: runs the benchmark's own checker on your certificate, sandboxed. Only verdict "certified" proves a
   value; a value counts as a new best only when improves_page_best is true. Put large certificates in a file and pass
   certificate_path.
@@ -67,11 +70,11 @@ Quantavane's open problems, each with an exact checker, plus our verified result
 Report values exactly as the tools give them; never round a bound in your favour."""
 
 READ_ONLY = ToolAnnotations(readOnlyHint=True, destructiveHint=False, idempotentHint=True, openWorldHint=False)
-FamilyName = Literal["constant", "ramsey", "spherical-code", "covering-design", "vehicle-routing",
-                     "constant-weight-code"]
 ProblemId = Annotated[str, Field(min_length=1, max_length=64, pattern=r"^[A-Za-z0-9][A-Za-z0-9._\-]*$",
-                                 description="A problem id from list_problems, such as '1c-lower', 'ramsey-5-15', "
-                                             "'sphere-d3-n952', 'covering-17-7-4-6', 'cvrp-antwerp1' or 'cw-34-6-5'")]
+                                 description="A problem id from list_problems: a single problem such as '1c-lower', "
+                                             "'ramsey-5-15' or 'cvrp-antwerp1', or a family cell such as "
+                                             "'covering-7-3-2-3', 'sphere-d4-n30', 'code-q2-n32-k14', 'ca-2-5-3', "
+                                             "'cw-20-6-5' or 'rcpsp-j120-51'")]
 
 FAMILY_HINTS = {
     "ramsey": "Circulant and block-circulant colourings, then local search on edge colours, are the usual starts; the "
@@ -147,32 +150,79 @@ def build_server(settings: Settings | None = None, store: Store | None = None) -
             claimed_not_replayed=[ReferenceValue(value=v["value"], exact=v.get("exact"), source=v["source"])
                                   for v in p.claimed_pending],
             improvement_rule=rule, reference_certificates=refs, instance=checker.instance_status(p),
-            data_as_of=checker.data_as_of(p))
+            params=p.raw.get("params") or _cell_params(p), bound=p.raw.get("bound"),
+            provenance=p.best_known.get("provenance"), quantavane_record=bool(p.raw.get("quantavane_record")),
+            added=str(p.raw["added"]) if p.raw.get("added") else None, data_as_of=checker.data_as_of(p))
+
+    def _cell_params(p: Problem) -> dict[str, Any] | None:
+        fam = bench.families.get(p.family)
+        if fam is None or p.id not in bench.cells(p.family):
+            return None
+        return dict(json.loads(bench.cells(p.family)[p.id])["params"])
+
+    family_names = tuple(bench.family_counts()) or ("constant",)
+    FamilyName = Literal[family_names]  # type: ignore[valid-type]  # the benchmark's own families, as an enum
 
     # ----------------------------------------------------------------------------------------------- tools
 
     @tool("list_problems", "List open problems")
     def list_problems(
-        family: Annotated[FamilyName | None, Field(description="Only this family")] = None,
+        family: Annotated[FamilyName | None, Field(description=(  # type: ignore[valid-type]
+            "Only this family. Without it the list holds the single problems; the six families of cells "
+            "(covering-design, spherical-code, linear-code, covering-array, constant-weight-code, "
+            "project-scheduling) are listed only by family"))] = None,
+        params: Annotated[dict[str, str | int] | None, Field(description=(
+            "Family cells whose parameters equal these, such as {\"v\": 13, \"t\": 3} for covering designs, "
+            "{\"q\": 2, \"n\": 32} for linear codes, {\"d\": 4} for spherical codes or {\"set\": \"J120\"} for "
+            "scheduling"))] = None,
         query: Annotated[str | None, Field(max_length=100, description=(
             "Words that must all appear in the id or title, such as 'R(5' or 'autocorrelation'"))] = None,
+        sample: Annotated[int | None, Field(ge=1, le=1000, description=(
+            "Draw this many cells of the family at random instead (needs family), exactly as "
+            "`obb.py sample FAMILY N SEED` draws them"))] = None,
+        seed: Annotated[int, Field(ge=0, description="Seed of the draw")] = 0,
         limit: Annotated[int, Field(ge=1, le=200, description="Problems per page")] = 50,
         offset: Annotated[int, Field(ge=0, description="Index of the first problem to return")] = 0,
     ) -> ProblemList:
-        """List the open problems of the Open Problems Benchmark (v1, 117 problems), one line each: id, title,
-        family, objective, the best known value on its source page and the best verified value still in review.
-        Use get_problem for the statement, the certificate format and the sources."""
+        """List the open problems of the Open Problems Benchmark (v2.0: 149,351 problems, 374 single problems and
+        148,977 cells of six families), one line each: id, title, family, objective, the best known value on its
+        source page and the best verified value in review. Filter by family, by a family's parameters or by words;
+        or draw a random sample of a family's cells. get_problem gives a problem (or cell) in full."""
+        if sample is not None and family not in bench.families:
+            raise ToolError(f"sample draws cells of a family: give family, one of {', '.join(bench.families)}.")
+        note = None
+        if sample is not None:
+            assert family is not None
+            ids = bench.sample(family, sample, seed)
+            note = f"{len(ids)} cells of {family} drawn at random with seed {seed} (as obb.py sample)"
+        elif family is not None:
+            ids = bench.family_problems(family)
+        else:
+            ids = list(bench.problems)
+        if params:
+            want = {k: str(v) for k, v in params.items()}
+            if family not in bench.families:
+                raise ToolError("params filter the cells of a family: give family too.")
+            cells = bench.cells(family)
+
+            def matches(pid: str) -> bool:
+                line = cells.get(pid)
+                if line is None:
+                    return False
+                have = json.loads(line)["params"]
+                return all(str(have.get(k)) == v for k, v in want.items())
+            ids = [pid for pid in ids if matches(pid)]
         words = [w.lower() for w in (query or "").split()]
-        rows = [p for p in bench.problems.values() if (family is None or p.family == family)
-                and all(w in (p.id + " " + p.raw["title"]).lower() for w in words)]
-        page = rows[offset:offset + limit]
-        more = offset + len(page) < len(rows)
-        counts: dict[str, int] = {}
-        for p in bench.problems.values():
-            counts[p.family] = counts.get(p.family, 0) + 1
-        return ProblemList(total=len(rows), count=len(page), offset=offset, has_more=more,
-                           next_offset=offset + len(page) if more else None, problems=[_summary(p) for p in page],
-                           families=dict(sorted(counts.items())), data_as_of=bench.describe())
+        if words:
+            ids = [pid for pid in ids if all(w in (pid + " " + find_problem(bench, pid).raw["title"]).lower()
+                                             for w in words)]
+        page_ids = ids[offset:offset + limit]
+        more = offset + len(page_ids) < len(ids)
+        return ProblemList(total=len(ids), count=len(page_ids), offset=offset, has_more=more,
+                           next_offset=offset + len(page_ids) if more else None,
+                           problems=[_summary(find_problem(bench, pid)) for pid in page_ids],
+                           families=bench.family_counts(), total_problems=bench.total_problems(), note=note,
+                           data_as_of=bench.describe())
 
     @tool("get_problem", "Get one problem")
     def get_problem(problem_id: ProblemId) -> ProblemDetail:
@@ -356,8 +406,10 @@ def build_server(settings: Settings | None = None, store: Store | None = None) -
             "network": "none: the server never opens a network connection",
             "benchmark": bench.describe(),
             "sources": m.sources,
-            "counts": {"problems": len(bench.problems), "results": len(store.open_data.records),
-                       "replay_sections": len(store.replays.sections)},
+            "counts": {"problems": bench.total_problems(), "single_problems": len(bench.problems),
+                       "family_cells": sum(f["count"] for f in bench.families.values()),
+                       "families": {n: f["count"] for n, f in bench.families.items()},
+                       "results": len(store.open_data.records), "replay_sections": len(store.replays.sections)},
             "limits": {"timeout_s": settings.timeout_s, "max_timeout_s": settings.max_timeout_s,
                        "memory_mb": settings.memory_mb, "memory_cap": sandbox.memory_cap_mode(),
                        "max_bytes": settings.max_bytes, "inline_chars": MAX_INLINE_CHARS,
@@ -365,6 +417,7 @@ def build_server(settings: Settings | None = None, store: Store | None = None) -
             "certificate_path_roots": [str(r) for r in settings.roots],
             "licence": "code, benchmark files and replay index MIT; verified results CC BY 4.0 (LICENSE-DATA.md)",
             "update": "uvx --refresh quantavane-mcp, or pip install -U quantavane-mcp",
+            "benchmark_version": bench.meta.get("version"),
         }, indent=1)
 
     @mcp.resource("quantavane://benchmark/readme", name="benchmark-readme", title="Open Problems Benchmark README",
@@ -375,11 +428,36 @@ def build_server(settings: Settings | None = None, store: Store | None = None) -
 
     @mcp.resource("quantavane://problems", name="problems", title="Problem index", mime_type="text/markdown")
     def problems_index() -> str:
-        """Every problem id with its title and best known value."""
+        """Every single problem with its title and best known value, and each family with its number of cells."""
         lines = ["| id | title | objective | best known |", "| --- | --- | --- | --- |"]
         lines += [f"| {p.id} | {p.raw['title']} | {p.objective} | {p.best_known['value']} |"
                   for p in bench.problems.values()]
+        lines += ["", "Families (their cells: list_problems with family=, or quantavane://families/NAME):", ""]
+        lines += [f"- {name}: {fam['count']:,} cells ({fam['title']})" for name, fam in bench.families.items()]
         return "\n".join(lines) + "\n"
+
+    @mcp.resource("quantavane://families", name="families", title="The problem families", mime_type="text/markdown")
+    def families_index() -> str:
+        """Each family: its cells, objective, checker, keeper and the date its table was read (obb.py families)."""
+        out = ["# Problem families", ""]
+        for name, fam in bench.families.items():
+            out.append(f"- **{name}**: {fam['count']:,} cells, {fam['objective']}, checker "
+                       f"{fam['checker']['program']}. {fam['keeper']}; read {fam['read']}; "
+                       f"{fam.get('quantavane_records', 0)} held by Quantavane. "
+                       f"Open cells: {fam.get('open_rule', '')}. Left out: {fam.get('left_out', '')}.")
+        out.append("")
+        out.append(f"{len(bench.families)} families, {sum(f['count'] for f in bench.families.values()):,} cells. "
+                   "Only values are stored, with their sources; no keeper's file is included.")
+        return "\n".join(out) + "\n"
+
+    @mcp.resource("quantavane://families/{name}", name="family", title="Family definition",
+                  mime_type="application/json")
+    def family_file(name: str) -> str:
+        """A family's definition (family.json): templates, checker, keeper, page, date read, open rule, left out."""
+        fam = bench.families.get(name)
+        if fam is None:
+            raise ValueError(f"No family {name!r}; quantavane://families lists them.")
+        return json.dumps(fam, indent=1, ensure_ascii=False)
 
     @mcp.resource("quantavane://problems/{problem_id}", name="problem", title="Problem file",
                   mime_type="application/json")
@@ -516,7 +594,8 @@ Quote every number exactly as the tool gives it.
     async def complete(ref: Any, argument: Any, context: Any) -> Completion | None:
         name, prefix = getattr(argument, "name", ""), (getattr(argument, "value", "") or "").lower()
         if name == "problem_id":
-            pool = list(bench.problems)
+            fam = bench.family_of(prefix)
+            pool = list(bench.problems) + (list(bench.cells(fam)) if fam else [])
         elif name == "program":
             pool = sorted(f.name for f in bench.checkers_dir.iterdir() if f.suffix in (".py", ".c"))
         elif name == "filename":
@@ -566,6 +645,13 @@ def selftest(settings: Settings) -> int:
         print(f"  {'ok  ' if good else 'FAIL'} ramsey-3-17 pentagon (C checker): {r.verdict} {r.value or ''}")
     except CheckError as e:
         print(f"  skip ramsey-3-17 (C checker): {e}")
+    if "constant-weight-code" in store.benchmark.families:      # a family cell: A(8,6,4) >= 2, two disjoint words
+        r = checker.check_data("cw-8-6-4", b"1 2 3 4\n5 6 7 8\n")
+        good = r.verdict == "certified" and r.value == "2" and r.improves_page_best is False
+        ok &= good
+        print(f"  {'ok  ' if good else 'FAIL'} cw-8-6-4 family cell: {r.verdict} {r.value or ''} "
+              f"({store.benchmark.total_problems():,} problems in {len(store.benchmark.families)} families and "
+              f"{len(store.benchmark.problems)} single problems)")
     print("selftest: " + ("ok" if ok else "FAILED"))
     return 0 if ok else 1
 

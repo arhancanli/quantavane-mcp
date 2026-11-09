@@ -42,3 +42,44 @@ def test_same_value_and_verdicts_as_obb(checker, pid, rel, expected):
     value, verdicts = obb(pid, rel)
     assert obb_verdicts(ours) == verdicts == expected
     assert ours.value == value
+
+
+# ------------------------------------------------------------------------------------- families (benchmark 2.0)
+
+SAMPLES = sorted(Path(BENCH).expanduser().joinpath("certs", "samples").glob("*.txt")) if BENCH else []
+SAMPLE_CASES = [f for f in SAMPLES if re.match(r"(covering|sphere|code|ca|cw|rcpsp)-", f.name)]
+
+
+@pytest.mark.parametrize("path", SAMPLE_CASES, ids=[f.name for f in SAMPLE_CASES])
+def test_sampled_cells_same_as_obb(store, cache_dir, tmp_path, path):
+    """The objects tests/sample_cells.py builds for drawn cells (and their red controls): same value and verdicts."""
+    from quantavane_mcp.checking import Checker, CheckError
+    from quantavane_mcp.config import Settings
+    pid = path.stem.removesuffix("_red")
+    c = Checker(store, Settings(roots=(tmp_path.resolve(),), cache_dir=cache_dir, timeout_s=600, max_timeout_s=900,
+                                instances_dir=Path(BENCH).expanduser() / "instances"))
+    try:
+        ours = c.check_data(pid, path.read_bytes())
+    except CheckError as e:
+        pytest.skip(str(e)[:100])          # a scheduling cell whose instance files are not here
+    value, verdicts = obb(pid, str(path.relative_to(Path(BENCH).expanduser())))
+    assert obb_verdicts(ours) == verdicts
+    assert ours.value == value
+    assert verdicts == (["NOT CERTIFIED"] if path.stem.endswith("_red") else ["does not improve"])
+
+
+FAMILY_NAMES = ["constant-weight-code", "covering-array", "covering-design", "linear-code", "project-scheduling",
+                "spherical-code"]
+
+
+@pytest.mark.parametrize("family", FAMILY_NAMES)
+def test_show_and_sample_same_as_obb(store, family):
+    """obb.py sample FAMILY 4 11 draws the same cells, and obb.py show writes each out exactly as the server does."""
+    r = subprocess.run(["python3", "-I", "obb.py", "sample", family, "4", "11"], cwd=BENCH, capture_output=True,
+                       text=True, timeout=300)
+    drawn = r.stdout.split()
+    assert drawn == store.benchmark.sample(family, 4, 11)
+    for pid in drawn:
+        shown = subprocess.run(["python3", "-I", "obb.py", "show", pid], cwd=BENCH, capture_output=True, text=True,
+                               timeout=300)
+        assert json.loads(shown.stdout) == store.benchmark.find(pid).raw, pid

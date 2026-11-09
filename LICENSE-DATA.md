@@ -1,10 +1,10 @@
 # Data licences
 
-The data bundled in `src/quantavane_mcp/data/` is Quantavane's own. Each part keeps the licence its source states:
+The data bundled in `src/quantavane_mcp/data/` keeps the licence its source states:
 
 - `data/benchmark/`: the Open Problems Benchmark, https://github.com/arhancanli/quantavane-benchmark (the commit is in
-  `data/MANIFEST.json`): the problem files, the checkers and the reference certificates. MIT, as the benchmark states
-  (its `LICENSE`, copied here as `data/benchmark/LICENSE`).
+  `data/MANIFEST.json`): the problem files, the family definitions and cells, the checkers and the reference
+  certificates. MIT, as the benchmark states (its `LICENSE`, copied here as `data/benchmark/LICENSE`).
 - `data/replays/index.json`: an index of https://github.com/arhancanli/quantavane-replays. MIT, as that repository
   states (its `LICENSE`).
 - `data/open_data/`: Quantavane verified results,
@@ -13,7 +13,25 @@ The data bundled in `src/quantavane_mcp/data/` is Quantavane's own. Each part ke
   to "Arhan Canli (Quantavane)" with a link to the dataset. `covering_array_entries_runs.csv` holds the dataset's
   `covering_array_entries.csv` as runs of consecutive k; the expansion is byte for byte the published file.
 
-Best known values that the problem files credit to other people are theirs: cite the source each problem file names.
-The CVRPLIB instance files are not bundled.
+## Values read from other people's tables
+
+The six families of the benchmark hold best known values read from the tables their keepers maintain, each with the
+keeper, the date read, the revision read and, where the table names one, who holds the value. Only values are
+stored, with their sources; no keeper's file is included. Credit for every value goes to its holder and its table:
+
+- `constant-weight-code`: A. E. Brouwer, bounds for binary constant weight codes, https://aeb.win.tue.nl/codes/Andw.html
+  (read 9 Nov 2026).
+- `covering-array`: C. Smolen's ca-tools table, the live successor of C. J. Colbourn's covering array tables,
+  https://github.com/chrispbsmolen/ca-tools (read 9 Nov 2026).
+- `covering-design`: the Covering Repository, successor of D. Gordon's La Jolla Covering Repository,
+  https://www.coveringrepository.com/ (read 8 Nov 2026).
+- `linear-code`: M. Grassl, bounds on the minimum distance of linear codes, https://www.codetables.de/ (read 9 Nov
+  2026).
+- `project-scheduling`: Solutions Update, M. Vanhoucke and J. Coelho, OR&S group, Ghent University,
+  http://solutionsupdate.ugent.be/index.php/rcpsp (read 9 Nov 2026).
+- `spherical-code`: H. Cohn, table of spherical codes, https://spherical-codes.org/ (read 9 Nov 2026).
+
+The single problems name their sources the same way (`best_known.source` and `best_known.provenance`). The
+CVRPLIB instance files and the scheduling sets' instance files are not bundled.
 
 The server's code is under the MIT licence (`LICENSE`).

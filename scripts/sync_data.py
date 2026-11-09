@@ -7,9 +7,10 @@
 --open-data (or QUANTAVANE_OPEN_DATA) is the folder holding the open dataset's files, as published on Kaggle.
 
 Sources (all Quantavane's own):
-- the Open Problems Benchmark (github.com/arhancanli/quantavane-benchmark): problems/, checkers/, refs/, README.md and
-  LICENSE, copied byte for byte with `git show REF:PATH`, plus the CVRPLIB instance hashes from fetch.sh and the
-  expected verdicts of test.sh;
+- the Open Problems Benchmark (github.com/arhancanli/quantavane-benchmark): problems/, checkers/, refs/,
+  families/*/family.json, index.json, VERSION, README.md and LICENSE, copied byte for byte with `git show REF:PATH`;
+  each families/*/cells.jsonl gzipped, checked against index.json's SHA-256 and its expansion against the file; plus
+  the CVRPLIB instance hashes from fetch.sh and the expected verdicts of test.sh;
 - the verified-results open data (the Kaggle dataset arhancanli12/quantavane-verified-results): records.json,
   totals.json, README.md, the ca-tools rows and the first-entry exclusions, copied as they are;
   covering_array_entries.csv (206,384 rows, 18 MB) is stored as runs of consecutive k with identical columns, and the
@@ -24,6 +25,7 @@ import ast
 import csv
 import datetime as dt
 import filecmp
+import gzip
 import hashlib
 import io
 import json
@@ -76,12 +78,31 @@ def dump_json(obj):
 def sync_benchmark(repo, ref, out):
     commit = git_text(repo, "rev-parse", ref)
     files = git_text(repo, "ls-tree", "-r", "--name-only", commit).splitlines()
-    keep = [f for f in files if f in ("README.md", "LICENSE")
+    keep = [f for f in files if f in ("README.md", "LICENSE", "VERSION", "index.json")
             or re.fullmatch(r"problems/[^/]+\.json", f)
             or re.fullmatch(r"checkers/[^/]+\.(py|c)", f)
+            or re.fullmatch(r"families/[^/]+/family\.json", f)
             or f.startswith("refs/")]
     for f in keep:
         write(os.path.join(out, "benchmark", f), git(repo, "show", f"{commit}:{f}"))
+
+    # family cells: gzipped (27 MB of text become under 2 MB); each file is checked against index.json's SHA-256 and
+    # its expansion against the original, byte for byte
+    families = {}
+    index = json.loads(git(repo, "show", f"{commit}:index.json")) if "index.json" in files else {"shards": []}
+    for shard in index["shards"]:
+        if shard.get("kind") != "family":
+            continue
+        raw = git(repo, "show", f"{commit}:{shard['path']}")
+        if sha256(raw) != shard["sha256"] or sum(1 for x in raw.splitlines() if x.strip()) != shard["count"]:
+            sys.exit(f"{shard['path']} does not match index.json; nothing written")
+        packed = gzip.compress(raw, compresslevel=9, mtime=0)
+        if gzip.decompress(packed) != raw:
+            sys.exit(f"{shard['path']}: the gzip copy does not expand to the file; nothing written")
+        target = shard["path"] + ".gz"
+        write(os.path.join(out, "benchmark", target), packed)
+        families[shard["family"]] = {"cells": target, "count": shard["count"], "sha256": shard["sha256"],
+                                     "bytes": len(raw)}
 
     # the date each problem file was last written (its best known value was read then, or on the date it states)
     dates = {}
@@ -119,7 +140,11 @@ def sync_benchmark(repo, ref, out):
         "repository": BENCHMARK_URL,
         "commit": commit,
         "commit_date": commit_time(repo, commit),
+        "version": git(repo, "show", f"{commit}:VERSION").decode().strip() if "VERSION" in files else "1.0",
         "problem_count": len(problem_dates),
+        "problems_total": index.get("problems", len(problem_dates)),
+        "by_family": index.get("by_family", {}),
+        "families": families,
         "problem_file_dates": problem_dates,
         "cvrplib_instances": instances,
         "reference_expected": expected,
@@ -127,7 +152,8 @@ def sync_benchmark(repo, ref, out):
     }
     write(os.path.join(out, "benchmark", "meta.json"), dump_json(meta))
     return {"repository": BENCHMARK_URL, "commit": commit, "commit_date": meta["commit_date"],
-            "files": len(keep), "problems": len(problem_dates)}
+            "version": meta["version"], "files": len(keep) + len(families), "problems": meta["problems_total"],
+            "single_problems": len(problem_dates), "family_cells": sum(f["count"] for f in families.values())}
 
 
 # ---------------------------------------------------------------------------------------------------- open data

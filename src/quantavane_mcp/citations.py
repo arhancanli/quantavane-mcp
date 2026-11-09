@@ -63,34 +63,39 @@ def cite(store: Store, target: str, id: str | None = None, fmt: str = "both") ->
     commit = meta.get("commit") or ""
     bdate = (meta.get("commit_date") or "2026-11-07")[:10]
     bib = text = cff = None
+    version = str(meta.get("version") or "1.0")
+    count = (f"{bench.total_problems():,} problems ({len(bench.problems)} single problems and "
+             f"{bench.total_problems() - len(bench.problems):,} family cells)")
 
     if target == "benchmark":
         bib = _bib("misc", "quantavane-open-problems-benchmark", {
             "author": AUTHOR_BIB,
-            "title": "Open Problems Benchmark (v1): open problems with exact checkers",
+            "title": f"Open Problems Benchmark (v{version}): open problems with exact checkers",
             "year": _year(bdate),
             "howpublished": rf"\url{{{BENCHMARK_URL}}}",
-            "note": f"Quantavane; {len(bench.problems)} problems; commit {commit[:7]} ({bdate}); MIT licence",
+            "note": f"Quantavane; {count}; commit {commit[:7]} ({bdate}); MIT licence",
         })
-        text = (f"{AUTHOR_TEXT}. Open Problems Benchmark (v1): open problems with exact checkers. {_year(bdate)}. "
-                f"{BENCHMARK_URL} (commit {commit[:7]}, {bdate}; {len(bench.problems)} problems).")
-        cff = _cff("Open Problems Benchmark", BENCHMARK_URL, "v1", bdate, "MIT", commit or None)
+        text = (f"{AUTHOR_TEXT}. Open Problems Benchmark (v{version}): open problems with exact checkers. "
+                f"{_year(bdate)}. {BENCHMARK_URL} (commit {commit[:7]}, {bdate}; {count}).")
+        cff = _cff("Open Problems Benchmark", BENCHMARK_URL, f"v{version}", bdate, "MIT", commit or None)
 
     elif target == "problem":
         if not id:
             raise CiteError("cite(target='problem') needs id, a problem id such as '1c-lower' (see list_problems).")
         p = find_problem(bench, id)
         bk = p.best_known
+        where = (f"families/{p.family}/cells.jsonl" if p.id not in bench.problems else f"problems/{p.id}.json")
+        page = (bk.get("provenance") or {}).get("url") or p.raw["page"]
         bib = _bib("misc", f"quantavane-obb-{_key(p.id)}", {
             "author": AUTHOR_BIB,
-            "title": _tex(f"{p.raw['title']} (problem {p.id} of the Open Problems Benchmark v1)"),
+            "title": _tex(f"{p.raw['title']} (problem {p.id} of the Open Problems Benchmark v{version})"),
             "year": _year(bdate),
-            "howpublished": rf"\url{{{BENCHMARK_URL}/blob/{commit[:7] or 'main'}/problems/{p.id}.json}}",
-            "note": _tex(f"Best known value {bk['value']}: {bk['source']}. Source page: {p.raw['page']}"),
+            "howpublished": rf"\url{{{BENCHMARK_URL}/blob/{commit[:7] or 'main'}/{where}}}",
+            "note": _tex(f"Best known value {bk['value']}: {bk['source']}. Source page: {page}"),
         })
-        text = (f"{AUTHOR_TEXT}. {p.raw['title']}, problem {p.id} of the Open Problems Benchmark (v1), "
+        text = (f"{AUTHOR_TEXT}. {p.raw['title']}, problem {p.id} of the Open Problems Benchmark (v{version}), "
                 f"{BENCHMARK_URL} (commit {commit[:7]}). Best known value {bk['value']} ({bk['source']}); cite that "
-                f"source too: {p.raw['page']}.")
+                f"source too: {page}.")
 
     elif target == "result":
         if not id:
