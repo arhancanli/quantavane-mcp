@@ -6,29 +6,96 @@
   "coil-in-the-box": 5,
   "constant": 7,
   "constant-weight-code": 1166,
+  "costas-array": 2,
   "covering-array": 2651,
   "covering-design": 55995,
   "degree-diameter": 20,
+  "erdos-problem": 2,
   "golomb-ruler": 2,
   "hadamard": 4,
-  "kissing-number": 16,
+  "kissing-number": 25,
+  "latin-squares": 1,
   "linear-code": 15255,
+  "matrix-multiplication": 2,
   "multicolour-ramsey": 14,
   "no-three-in-line": 2,
   "project-scheduling": 59170,
+  "projective-plane": 1,
   "ramsey": 133,
   "schur": 4,
   "shannon-capacity": 1,
   "snake-in-the-box": 5,
   "sorting-network": 21,
   "spherical-code": 14793,
+  "strongly-regular-graph": 3,
   "superpermutation": 4,
+  "travelling-salesman": 1,
   "van-der-waerden": 10,
   "vehicle-routing": 14,
   "weak-schur": 5
  },
- "commit": "9cb6183bce754b06459815b523acf5d1a90bca2c",
- "commit_date": "2026-11-09T05:14:16Z",
+ "collections": {
+  "originals": {
+   "date": null,
+   "own_problem_files": 39,
+   "pages": 39,
+   "problem_file_dates": {
+    "align-ambiguity": "2026-11-09",
+    "ap-cover": "2026-11-09",
+    "autoconv-square": "2026-11-09",
+    "benzenoid-kemeny": "2026-11-09",
+    "cata-kemeny": "2026-11-09",
+    "cell120-coil": "2026-11-09",
+    "cell120-great": "2026-11-09",
+    "cell600-forest": "2026-11-09",
+    "cell600-idcode": "2026-11-09",
+    "cubic-admissible": "2026-11-09",
+    "e8-goodman": "2026-11-09",
+    "e8-idcode": "2026-11-09",
+    "e8-resolving": "2026-11-09",
+    "eisenstein-triples": "2026-11-09",
+    "ga-ising": "2026-11-09",
+    "gauss-admissible": "2026-11-09",
+    "gauss-prime-ap": "2026-11-09",
+    "hp-tri": "2026-11-09",
+    "lj-fcc": "2026-11-09",
+    "nrm-segments": "2026-11-09",
+    "nussinov-degeneracy": "2026-11-09",
+    "overlap-square": "2026-11-09",
+    "overlap-three": "2026-11-09",
+    "paley-ising": "2026-11-09",
+    "polytope-ising": "2026-11-09",
+    "potts3-600": "2026-11-09",
+    "prime-cover": "2026-11-09",
+    "qr-sumfree": "2026-11-09",
+    "qr-xor": "2026-11-09",
+    "quad-admissible": "2026-11-09",
+    "six-frame": "2026-11-09",
+    "snub24-ising": "2026-11-09",
+    "sync-quadratic": "2026-11-09",
+    "tetra-distinct": "2026-11-09",
+    "tri-areas": "2026-11-09",
+    "tri-distinct": "2026-11-09",
+    "tsp-gaussian": "2026-11-09",
+    "tsp-sunflower": "2026-11-09",
+    "y-array": "2026-11-09"
+   },
+   "problems": 39,
+   "title": "Quantavane Originals",
+   "version": null
+  },
+  "prestige100": {
+   "date": "2026-11-09",
+   "own_problem_files": 0,
+   "pages": 100,
+   "problem_file_dates": {},
+   "problems": 100,
+   "title": "Quantavane Prestige 100",
+   "version": "1.0"
+  }
+ },
+ "commit": "504492c190bfe36d2199b1f0821c10b9efab76ed",
+ "commit_date": "2026-11-09T18:36:11Z",
  "cvrplib_instances": {
   "Antwerp1.vrp": {
    "sha256": "f9206ba0037ccffea614cefb2300830b171ee192b4116a3c7a949f456d7870ff",
@@ -90,6 +157,7 @@
  "external_expected": [
   {
    "expected": [
+    "does not improve",
     "does not improve",
     "does not improve"
    ],
@@ -540,8 +608,120 @@
    "expected": [
     "NOT CERTIFIED"
    ],
+   "file": "control_cage_petersen.txt",
+   "problem": "cage-3-13"
+  },
+  {
+   "expected": [
+    "NOT CERTIFIED"
+   ],
+   "file": "control_cage_not_regular.txt",
+   "problem": "cage-3-13"
+  },
+  {
+   "expected": [
+    "NOT CERTIFIED"
+   ],
+   "file": "control_cage_girth9_as_10.s6",
+   "problem": "cage-6-10"
+  },
+  {
+   "expected": [
+    "NOT CERTIFIED"
+   ],
+   "file": "control_degdiam_star.txt",
+   "problem": "degdiam-3-5"
+  },
+  {
+   "expected": [
+    "NOT CERTIFIED"
+   ],
+   "file": "control_degdiam_diameter10_as_9.s6",
+   "problem": "degdiam-3-9"
+  },
+  {
+   "expected": [
+    "NOT CERTIFIED"
+   ],
+   "file": "control_kissing_repeat.txt",
+   "problem": "kissing-d5"
+  },
+  {
+   "expected": [
+    "NOT CERTIFIED"
+   ],
+   "file": "control_kissing_rank6_as_5.txt",
+   "problem": "kissing-d5"
+  },
+  {
+   "expected": [
+    "NOT CERTIFIED"
+   ],
+   "file": "control_kissing_norm.txt",
+   "problem": "kissing-d5"
+  },
+  {
+   "expected": [
+    "NOT CERTIFIED"
+   ],
+   "file": "control_sortnet_missing_last.txt",
+   "problem": "sortnet-n16-size"
+  },
+  {
+   "expected": [
+    "NOT CERTIFIED"
+   ],
+   "file": "control_vdw_ap.txt",
+   "problem": "vdw-2-7"
+  },
+  {
+   "expected": [
+    "NOT CERTIFIED"
+   ],
+   "file": "control_schur_sum.txt",
+   "problem": "schur-6"
+  },
+  {
+   "expected": [
+    "NOT CERTIFIED"
+   ],
+   "file": "control_weak_schur_sum.txt",
+   "problem": "weak-schur-5"
+  },
+  {
+   "expected": [
+    "NOT CERTIFIED"
+   ],
+   "file": "control_snake_back.txt",
+   "problem": "snake-d9"
+  },
+  {
+   "expected": [
+    "NOT CERTIFIED"
+   ],
+   "file": "control_coil_open.txt",
+   "problem": "coil-d9"
+  },
+  {
+   "expected": [
+    "NOT CERTIFIED"
+   ],
+   "file": "control_capset_line.txt",
+   "problem": "capset-n7"
+  },
+  {
+   "expected": [
+    "NOT CERTIFIED"
+   ],
    "file": "control_superperm_short.txt",
    "problem": "superperm-n6"
+  },
+  {
+   "expected": [
+    "NOT CERTIFIED"
+   ],
+   "file": "control_golomb_repeat.txt",
+   "problem": "golomb-29"
   },
   {
    "expected": [
@@ -561,8 +741,234 @@
    "expected": [
     "NOT CERTIFIED"
    ],
+   "file": "unit_sylvester16.txt",
+   "problem": "hadamard-668"
+  },
+  {
+   "expected": [
+    "NOT CERTIFIED"
+   ],
+   "file": "control_cwm_zero.txt",
+   "problem": "cwm-155-25"
+  },
+  {
+   "expected": [
+    "NOT CERTIFIED"
+   ],
    "file": "control_strongpow_adjacent.txt",
    "problem": "shannon-c7-power5"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "cook_monalisa_5757191.tour",
+   "problem": "tsp-mona-lisa"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "fmm_3x3x3_23.json",
+   "problem": "matmul-3x3x3"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "fmm_4x4x4_48.json",
+   "problem": "matmul-4x4x4"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "derived_mckenna_schur6_538.txt",
+   "problem": "schur-6"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_weak-schur-7-lower-2154.txt",
+   "problem": "weak-schur-7"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_weak-schur-8-lower-7002.txt",
+   "problem": "weak-schur-8"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "lib_weak-schur-9-lower-22620.txt",
+   "problem": "weak-schur-9"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "derived_lib_ramsey-6-6-lower-102.txt",
+   "problem": "ramsey-6-6"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "derived_lib_ramsey-7-7-lower-205.txt",
+   "problem": "ramsey-7-7"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "derived_lib_ramsey-8-8-lower-282.txt",
+   "problem": "ramsey-8-8"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "dobb_n13_s45.txt",
+   "problem": "sortnet-n13-size"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "dobb_n14_s51.txt",
+   "problem": "sortnet-n14-size"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "dobb_n15_s56.txt",
+   "problem": "sortnet-n15-size"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "dobb_n16_s60.txt",
+   "problem": "sortnet-n16-size"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "dobb_n17_s71.txt",
+   "problem": "sortnet-n17-size"
+  },
+  {
+   "expected": [
+    "IMPROVES",
+    "does not improve",
+    "IMPROVES"
+   ],
+   "file": "ours_c1a_upper_n262144.json",
+   "problem": "1a-upper"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "classic_kissing_D22.txt",
+   "problem": "kissing-d22"
+  },
+  {
+   "expected": [
+    "does not improve"
+   ],
+   "file": "classic_kissing_D31.txt",
+   "problem": "kissing-d31"
+  },
+  {
+   "expected": [
+    "NOT CERTIFIED"
+   ],
+   "file": "control_kissing_D23_as_22.txt",
+   "problem": "kissing-d22"
+  },
+  {
+   "expected": [
+    "NOT CERTIFIED"
+   ],
+   "file": "control_costas_identity.txt",
+   "problem": "costas-32"
+  },
+  {
+   "expected": [
+    "NOT CERTIFIED"
+   ],
+   "file": "control_cage_petersen.txt",
+   "problem": "moore-57"
+  },
+  {
+   "expected": [
+    "NOT CERTIFIED"
+   ],
+   "file": "control_cage_petersen.txt",
+   "problem": "srg-99-14-1-2"
+  },
+  {
+   "expected": [
+    "NOT CERTIFIED"
+   ],
+   "file": "control_cage_petersen.txt",
+   "problem": "srg-88-27-6-9"
+  },
+  {
+   "expected": [
+    "NOT CERTIFIED"
+   ],
+   "file": "control_mols_equal.txt",
+   "problem": "mols-10"
+  },
+  {
+   "expected": [
+    "NOT CERTIFIED"
+   ],
+   "file": "control_projplane_disjoint.txt",
+   "problem": "projplane-12"
+  },
+  {
+   "expected": [
+    "NOT CERTIFIED"
+   ],
+   "file": "control_matmul_3x3x3_zeroed.json",
+   "problem": "matmul-3x3x3"
+  },
+  {
+   "expected": [
+    "NOT CERTIFIED"
+   ],
+   "file": "control_matmul_4x4x4_gf3.json",
+   "problem": "matmul-4x4x4"
+  },
+  {
+   "expected": [
+    "NOT CERTIFIED"
+   ],
+   "file": "control_monalisa_short.tour",
+   "problem": "tsp-mona-lisa"
+  },
+  {
+   "expected": [
+    "NOT CERTIFIED"
+   ],
+   "file": "control_convex_nonagon.txt",
+   "problem": "erdos-107"
+  },
+  {
+   "expected": [
+    "NOT CERTIFIED"
+   ],
+   "file": "control_tree_path.txt",
+   "problem": "erdos-993"
   }
  ],
  "families": {
@@ -603,10 +1009,16 @@
    "sha256": "3019bdbe31d174e8b7760a050851ccbe43bbe76c2565604b1b4059be86219747"
   }
  },
- "problem_count": 374,
+ "pinned_instances": {
+  "tsp/mona-lisa100K.tsp": {
+   "sha256": "532fefbfb9ad66cc2550bece766fa069acaa8e34ee511ac1949ae101da4d70ad",
+   "url": "https://www.math.uwaterloo.ca/tsp/data/ml/mona-lisa100K.tsp"
+  }
+ },
+ "problem_count": 395,
  "problem_file_dates": {
   "16a-lower": "2026-11-08",
-  "1a-upper": "2026-11-08",
+  "1a-upper": "2026-11-09",
   "1c-lower": "2026-11-08",
   "1d-upper": "2026-11-08",
   "42a-upper": "2026-11-08",
@@ -659,6 +1071,8 @@
   "coil-d12": "2026-11-08",
   "coil-d13": "2026-11-08",
   "coil-d9": "2026-11-08",
+  "costas-32": "2026-11-09",
+  "costas-33": "2026-11-09",
   "covering-17-7-4-6": "2026-11-08",
   "covering-18-9-5-6": "2026-11-08",
   "covering-21-8-3-4": "2026-11-08",
@@ -747,6 +1161,8 @@
   "degdiam-8-4": "2026-11-08",
   "degdiam-9-2": "2026-11-08",
   "degdiam-9-3": "2026-11-08",
+  "erdos-107": "2026-11-09",
+  "erdos-993": "2026-11-09",
   "golomb-29": "2026-11-08",
   "golomb-30": "2026-11-08",
   "hadamard-1132": "2026-11-08",
@@ -765,10 +1181,23 @@
   "kissing-d19": "2026-11-08",
   "kissing-d20": "2026-11-08",
   "kissing-d21": "2026-11-08",
+  "kissing-d22": "2026-11-09",
+  "kissing-d23": "2026-11-09",
+  "kissing-d25": "2026-11-09",
+  "kissing-d26": "2026-11-09",
+  "kissing-d27": "2026-11-09",
+  "kissing-d28": "2026-11-09",
+  "kissing-d29": "2026-11-09",
+  "kissing-d30": "2026-11-09",
+  "kissing-d31": "2026-11-09",
   "kissing-d5": "2026-11-08",
   "kissing-d6": "2026-11-08",
   "kissing-d7": "2026-11-08",
   "kissing-d9": "2026-11-08",
+  "matmul-3x3x3": "2026-11-09",
+  "matmul-4x4x4": "2026-11-09",
+  "mols-10": "2026-11-09",
+  "moore-57": "2026-11-09",
   "multiramsey-3-3-3-3": "2026-11-08",
   "multiramsey-3-3-3-3-3": "2026-11-08",
   "multiramsey-3-3-3-3-3-3": "2026-11-08",
@@ -785,6 +1214,7 @@
   "multiramsey-5-5-5": "2026-11-08",
   "no3line-75": "2026-11-08",
   "no3line-77": "2026-11-08",
+  "projplane-12": "2026-11-09",
   "ramsey-10-10": "2026-11-08",
   "ramsey-10-11": "2026-11-08",
   "ramsey-10-12": "2026-11-08",
@@ -918,7 +1348,7 @@
   "ramsey-9-14": "2026-11-08",
   "ramsey-9-15": "2026-11-08",
   "ramsey-9-9": "2026-11-08",
-  "schur-6": "2026-11-08",
+  "schur-6": "2026-11-09",
   "schur-7": "2026-11-08",
   "schur-8": "2026-11-08",
   "schur-9": "2026-11-08",
@@ -960,10 +1390,13 @@
   "sphere-d5-n267": "2026-11-08",
   "sphere-d6-n188": "2026-11-08",
   "sphere-d8-n119": "2026-11-08",
+  "srg-88-27-6-9": "2026-11-09",
+  "srg-99-14-1-2": "2026-11-09",
   "superperm-n6": "2026-11-08",
   "superperm-n7": "2026-11-08",
   "superperm-n8": "2026-11-08",
   "superperm-n9": "2026-11-08",
+  "tsp-mona-lisa": "2026-11-09",
   "vdw-2-7": "2026-11-08",
   "vdw-2-8": "2026-11-08",
   "vdw-3-5": "2026-11-08",
@@ -976,11 +1409,11 @@
   "vdw-6-4": "2026-11-08",
   "weak-schur-5": "2026-11-08",
   "weak-schur-6": "2026-11-08",
-  "weak-schur-7": "2026-11-08",
-  "weak-schur-8": "2026-11-08",
-  "weak-schur-9": "2026-11-08"
+  "weak-schur-7": "2026-11-09",
+  "weak-schur-8": "2026-11-09",
+  "weak-schur-9": "2026-11-09"
  },
- "problems_total": 149351,
+ "problems_total": 149372,
  "reference_expected": [
   {
    "expected": [
@@ -1632,5 +2065,5 @@
   }
  ],
  "repository": "https://github.com/arhancanli/quantavane-benchmark",
- "version": "2.0"
+ "version": "2.1"
 }

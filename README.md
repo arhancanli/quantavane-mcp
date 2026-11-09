@@ -3,15 +3,21 @@
 <!-- mcp-name: io.github.arhancanli/quantavane-mcp -->
 
 An MCP server for open problems with exact checkers. It gives an AI agent, or a person at a terminal, Quantavane's
-[Open Problems Benchmark](https://github.com/arhancanli/quantavane-benchmark) v2.0: 149,351 open problems, each with
-its best known value, the source and date of that value, and an exact checker. 374 are single problems (Tao's
-optimization constants, Ramsey numbers, cages, kissing numbers, sorting networks, Hadamard matrices and more); 148,977
-are cells of six families read from their keepers' tables (covering designs, spherical codes, linear codes, covering
-arrays, constant weight codes and project scheduling). A candidate is scored by the benchmark's own checker, in a
-sandbox, offline, and the answer is a verdict and an exact value, never an estimate.
+[Open Problems Benchmark](https://github.com/arhancanli/quantavane-benchmark) v2.1: 149,372 open problems, each with
+its best known value, the source and date of that value, and an exact checker. 395 are single problems (Tao's
+optimization constants, Ramsey numbers, cages, kissing numbers, sorting networks, Hadamard matrices, matrix
+multiplication and more); 148,977 are cells of six families read from their keepers' tables (covering designs,
+spherical codes, linear codes, covering arrays, constant weight codes and project scheduling). Two collections of our
+own come with them: **Quantavane Prestige 100**, one hundred famous open problems (R(5,5), the kissing numbers from
+dimension 5 to 31, 3 x 3 matrix multiplication, the Moore graph of degree 57 and more) with their keepers' records, and
+the **Quantavane Originals**, 39 new problems of ours, each with its own checker, a written novelty check and our
+first value. A candidate is scored by the benchmark's own checker, in a sandbox, offline, and the answer is a verdict
+and an exact value, never an estimate.
 
-It also answers from Quantavane's verified results (the open dataset), our independent replays of certificates in the
-optimization constants repository, and gives citations for all of it.
+`run_claim_checks` runs Quantavane's claim pipeline on an object: two separately written checkers must agree on its
+exact value, red controls (copies of it broken so that they must fail) must be refused, and the value must beat the
+keeper's value on file. It also answers from Quantavane's verified results (the open dataset), our independent replays
+of certificates in the optimization constants repository, and gives citations for all of it.
 
 - **Exact.** Values are integers or fractions, compared exactly. The checkers are byte for byte those of the public
   benchmark, and every reference certificate gets the verdict the benchmark's own runner gives (tested).
@@ -42,8 +48,8 @@ From the source: `uvx --from git+https://github.com/arhancanli/quantavane-mcp qu
 `pip install .`.
 
 `selftest` verifies every bundled file against its SHA-256, then runs a covering design, a constant weight code, a
-spherical code, a constant and a Ramsey colouring through the sandboxed checkers and compares the verdicts with the
-benchmark's.
+spherical code, a constant, a Ramsey colouring and one of the Originals through the sandboxed checkers, compares the
+verdicts with the benchmark's, and runs the claim checks once.
 
 ## Connect a client
 
@@ -115,19 +121,28 @@ is `quantavane-mcp` (or `python -m quantavane_mcp`).
 | `search_results` | Quantavane's verified results by table, cell (`CAN(3,2872,4)`, `C(84,7,2,5)`, `A(51,6,6)`, `R(8,12)`, `[63,14,33] over GF(5)`, ...), words, date or status, with citation info. |
 | `get_replay` | Our replay of a certificate in [teorth/optimizationproblems](https://github.com/teorth/optimizationproblems), by pull request, row (`1c Kos2026`) or constant: what was checked, the exact values, our programs and the commands that re-derive it. |
 | `cite` | BibTeX and citation text (and CITATION.cff) for the benchmark, a problem, a result, the dataset, a replay or this server. |
+| `list_collection` | Prestige 100 (slot, problem, family, the record as its keeper lists it and who holds it) or the Originals (field, title, our best known value, status), with words and a family or field to filter by. |
+| `get_collection_problem` | One problem of a collection in full, by id or Prestige 100 slot: for Prestige 100 the record and its holders, the other bound, what would beat it, the keeper read with date and version, the history of the bounds, why it matters and our replayed certificates; for the Originals the statement, context, novelty check, exact first values and references. |
+| `run_claim_checks` | Quantavane's claim pipeline on one object: the benchmark's checker and a second checker written apart from it (both sandboxed) must agree on the exact value, red controls built from the object must be refused by both, and the value must strictly beat the keeper's value on file. RECORD, NOT-A-RECORD or NOT VERIFIED, with every check, the keeper's value and its date, the literature queries to run and the pipeline's packet as text. |
 
 Every tool is read-only, has an input schema with limits and an output schema, and returns structured content.
-Errors come back as tool errors that say what to change.
+Errors come back as tool errors that say what to change. `get_problem`, `check_candidate`, `compare_to_record`,
+`run_claim_checks` and `cite` take the ids of the Originals (such as `qr-sumfree`) as well; the Prestige 100 problems are
+single problems of the benchmark and keep their ids (such as `ramsey-5-5`).
 
 Resources: `quantavane://about` (version, data commits and dates, limits), `quantavane://problems` and
 `quantavane://problems/{problem_id}` (a single problem or a cell), `quantavane://families` and
 `quantavane://families/{name}` (each family's keeper, date read, open rule and what was left out),
 `quantavane://checkers`, `quantavane://checkers/{program}` (documentation) and
 `quantavane://checkers/{program}/source`, `quantavane://refs/{filename}` (our reference certificates),
-`quantavane://benchmark/readme`, `quantavane://open-data/readme`. Problem ids, checker names and certificate names
-complete as you type in clients that support completion.
+`quantavane://benchmark/readme`, `quantavane://benchmark/changelog`, `quantavane://open-data/readme`,
+`quantavane://collections`, `quantavane://collections/{name}` (a collection's README),
+`quantavane://collections/{name}/{problem_id}` (a problem's page, by id or Prestige 100 slot) and
+`quantavane://collections/{name}/refs/{filename}` (the Originals' certificates). Problem ids, checker names, collection
+names and certificate names complete as you type in clients that support completion.
 
-Prompts: `attack_problem(problem_id)`, `verify_certificate(problem_id, certificate_path)`, `explain_replay(pr)`.
+Prompts: `attack_problem(problem_id)`, `verify_certificate(problem_id, certificate_path)`, `explain_replay(pr)`,
+`prepare_claim(problem_id, certificate_path)`.
 
 ## Examples
 
@@ -199,11 +214,39 @@ get_replay {"pr": 292}
                "cd quantavane-replays && git checkout b892ccb", "./fetch.sh && ./run_all.sh"]}], ...}
 ```
 
+A Prestige 100 problem and one of the Originals:
+
+```json
+list_collection {"collection": "prestige100", "group": "Ramsey", "limit": 2}
+{"total": 24, "entries": [{"id": "ramsey-5-5", "slot": 1, "family": "Ramsey numbers", "record": "R(5,5) ≥ 43",
+  "holders": "G. Exoo (1989)", "flagship": true, "quantavane": false}, ...]}
+
+get_collection_problem {"collection": "originals", "problem": "qr-sumfree"}
+{"title": "Largest sum-free set of quadratic residues", "entry": {"field": "Number theory", "objective": "maximize",
+ "best_known": {"value": "174", ...}, "novelty": {"verdict": "new as stated. ...", ...}, "first_values": {...}}, ...}
+```
+
+The claim pipeline on our 6-regular graph of girth 9 on 5,600 vertices:
+
+```json
+run_claim_checks {"problem_id": "cage-6-9", "certificate_path": "/tmp/ours_cage_6_9_n5600.s6"}
+{"verdict": "RECORD (5600 vs listed 7781; both checks OK, red controls all rejected; keeper value on file, read 8 Nov 2026; problem file of 2026-11-08; re-read the keeper today before sending)",
+ "verified": true, "record": true, "second_checker": "second_check.py cage", "red_controls": 1,
+ "checks": [{"kind": "check", "program": "cage_check.py", "verdict": "certified", "value": "5600"},
+            {"kind": "check", "program": "second_check.py cage", "verdict": "certified", "value": "5600"},
+            {"kind": "red", "name": "the edge 0 800 removed (two vertices lose a neighbour)", "program": "cage_check.py", "verdict": "not_certified"},
+            {"kind": "red", "name": "the edge 0 800 removed (two vertices lose a neighbour)", "program": "second_check.py cage", "verdict": "not_certified"}],
+ "keeper": {"name": "House of Graphs cage table (...)", "value": "7781", "read": "read 8 Nov 2026; problem file of 2026-11-08",
+            "re_read": "not done: offline. The pipeline re-reads the keeper's page the same day before a claim is sent; ..."},
+ "packet": {"VERDICT": "...", "checks.txt": "...", "keeper.txt": "...", "literature.json": "...", "README.md": "..."}}
+```
+
 Without an MCP client, the same check from the command line (JSON out; exit status 0 certified, 1 not certified, 2
-no verdict or an error):
+no verdict or an error), and the claim checks (exit status 0 RECORD, 1 NOT-A-RECORD, 2 NOT VERIFIED or an error):
 
 ```sh
 quantavane-mcp check covering-17-7-4-6 design.txt
+quantavane-mcp claim covering-17-7-4-6 design.txt
 ```
 
 ## For AI agent builders
@@ -217,6 +260,9 @@ quantavane-mcp check covering-17-7-4-6 design.txt
   by default.
 - Lists are paged (`total`, `has_more`, `next_offset`); outputs are small, and large texts (certificates, checker
   sources) are resources the agent reads only when it needs them.
+- Before reporting a new best, run `run_claim_checks` (or the `prepare_claim` prompt): it adds the second checker and
+  the red controls, and says RECORD only when both checkers agree, every red control is refused and the value beats
+  the keeper's value on file.
 - Training: the `quantavane_mcp.checking.Checker` class is the same sandboxed checker as a Python API
   (`Checker(store, settings).check_data(problem_id, data)`), and `quantavane-mcp check` is a scoring command for any
   pipeline. Gym environments around the same checkers can be attached later: set `QUANTAVANE_MCP_GYM` to a backend
@@ -244,6 +290,20 @@ quantavane-mcp check covering-17-7-4-6 design.txt
   present).
 - **A certified improvement is a candidate record.** It becomes a record when the table's keeper lists it. The
   problem's source names the table; `cite(target="problem")` gives the reference.
+- **Claim checks.** `run_claim_checks` is the gate Quantavane uses before it sends a result to a keeper. The second
+  checkers (`quantavane_mcp/independent/second_check.py`, standard library, runnable on their own) were written from
+  the problem statements, apart from the benchmark's checkers, for 27 checker programs: Ramsey and multicolour Ramsey,
+  Schur and weak Schur, van der Waerden, covering designs, constant weight codes, linear codes (over GF(2) to GF(9) by
+  listing the code), covering arrays, spherical codes (the first checker's printed largest cosine confirmed exactly to
+  one unit of its 20th decimal), kissing configurations, Golomb rulers, sorting networks, cap sets, no-three-in-line,
+  strong powers of cycles, Hadamard and circulant weighing matrices, Costas arrays, mutually orthogonal Latin squares,
+  projective planes, strongly regular graphs, cages, degree-diameter graphs, snakes and coils, superpermutations, trees
+  for Erdős problem #993 and matrix multiplication algorithms. Each red control breaks the object in a way that must
+  be refused (a clique planted, a block or an edge removed, a word or vector repeated, a point duplicated). The
+  analytic constants, routing, scheduling, the Mona Lisa tour, Erdős #107 and the Originals have no second checker yet,
+  so their claims come back NOT VERIFIED. A second checker that would exceed its limits says so (no verdict) rather
+  than guessing: the largest of our own cages (17,600 vertices), very large covering designs and codes, and sorting
+  networks on more than about 35 channels are past them.
 
 ## For professors
 
@@ -260,18 +320,21 @@ quantavane-mcp check covering-17-7-4-6 design.txt
 
 ## Limits
 
-- **A snapshot.** The data is from the commits and dates in `quantavane://about` (benchmark v2.0, 9cb6183 of 9 Nov
-  2026, its tables read on 8 and 9 Nov; open data of 7 Nov 2026; replays 1fbce3f of 8 Nov 2026). Best known values
-  move: check the source page before claiming a record. A newer release of this package brings newer data.
-- **Instance files are not bundled.** The 14 vehicle routing problems need CVRPLIB's instance files, and the
-  project-scheduling cells the instance files of their sets (third-party data). Run `fetch.sh` in a clone of the
-  benchmark for CVRPLIB, unpack the scheduling sets as the family's `instances` note says, and set
-  `QUANTAVANE_MCP_INSTANCES` to the `instances/` folder. CVRPLIB files are checked against the SHA-256 the benchmark
-  pins before they are used. The server never downloads them.
+- **A snapshot.** The data is from the commits and dates in `quantavane://about` (benchmark v2.1 with Prestige 100 and
+  the Originals, 504492c of 9 Nov 2026, its tables read on 8 and 9 Nov; open data of 7 Nov 2026; replays 57988b0 of 9
+  Nov 2026). Best known values move: check the source page before claiming a record (`run_claim_checks` compares with
+  the value on file and says so). A newer release of this package brings newer data.
+- **Instance files are not bundled.** The 14 vehicle routing problems need CVRPLIB's instance files, the Mona Lisa
+  problem its TSP instance, and the project-scheduling cells the instance files of their sets (third-party data). Run `fetch.sh` in a clone of the
+  benchmark for CVRPLIB and the Mona Lisa instance, unpack the scheduling sets as the family's `instances` note says,
+  and set `QUANTAVANE_MCP_INSTANCES` to the `instances/` folder. CVRPLIB files and the Mona Lisa instance are checked
+  against the SHA-256 the benchmark pins before they are used. The server never downloads them. (The Originals'
+  instance files are ours and bundled.)
 - **Ramsey.** Needs a C compiler; the checker is compiled once into a cache folder. Colourings have at most 2048
   vertices.
 - **Time.** The default timeout is 120 s, and 300 s for covering designs (a C(v,k,t,m) check can take about three
-  minutes). Most checks take under a second; the Turán (42a) and Bohr radius (59a) checkers can take a minute or more
+  minutes); `run_claim_checks` gives each program run 600 s by default (its second checkers are plain Python: a Ramsey
+  colouring on 282 vertices takes about three minutes there). Most checks take under a second; the Turán (42a) and Bohr radius (59a) checkers can take a minute or more
   on large certificates, a linear code at the edge of its family about 20 s.
 - **Platforms.** Linux and macOS. On Windows the memory cap cannot be enforced, so checks are refused unless
   `QUANTAVANE_MCP_ALLOW_UNCAPPED=1`; WSL works as Linux.
@@ -325,9 +388,10 @@ python3 -I scripts/sync_data.py --open-data DIR --check   # confirm the bundled 
 ## Licence
 
 Code: MIT ([LICENSE](LICENSE)). The bundled data keeps the licence its source states
-([LICENSE-DATA.md](LICENSE-DATA.md)): the benchmark's files (problems, families, checkers, reference certificates)
-and the replay index are MIT, as the benchmark and the replays repository state; the verified results are CC BY 4.0,
-as the dataset states. The families hold values read from other people's tables, credited to their keepers and
+([LICENSE-DATA.md](LICENSE-DATA.md)): the benchmark's files (problems, families, checkers, reference certificates,
+the Originals) and the replay index are MIT, as the benchmark and the replays repository state; the Prestige 100
+collection's data is CC BY 4.0 with its checkers MIT, as its index states; the verified results are CC BY 4.0, as the
+dataset states. The families hold values read from other people's tables, credited to their keepers and
 holders (LICENSE-DATA.md names each table); no keeper's file is included.
 
 ## Citation
@@ -339,7 +403,7 @@ holders (LICENSE-DATA.md names each table); no keeper's file is included.
   author  = {Canli, Arhan},
   title   = {quantavane-mcp: an MCP server for open problems with exact checkers},
   year    = {2026},
-  version = {0.1.0},
+  version = {0.2.0},
   url     = {https://github.com/arhancanli/quantavane-mcp}
 }
 ```

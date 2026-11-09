@@ -21,7 +21,7 @@ FAMILIES = {"constant-weight-code": 1134, "covering-array": 2651, "covering-desi
 def test_families_and_counts(store):
     b = store.benchmark
     assert {n: f["count"] for n, f in b.families.items()} == FAMILIES
-    assert b.total_problems() == 149351 == len(b.problems) + sum(FAMILIES.values())
+    assert b.total_problems() == 149372 == len(b.problems) + sum(FAMILIES.values())
     assert b.family_counts()["covering-design"] == 55985 + 10          # with the 10 single problems of v1
     for name, info in b.meta["families"].items():                     # the gzip copies are the published files
         import gzip

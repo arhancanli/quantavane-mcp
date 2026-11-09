@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "If you use this software, please cite it as below. To cite a problem, a result or a replay, use the server's cite tool."
 type: software
 title: "quantavane-mcp: an MCP server for open problems with exact checkers"
-version: "0.1.0"
+version: "0.2.0"
 authors:
   - family-names: Canli
     given-names: Arhan
@@ -16,7 +16,7 @@ keywords:
   - exact verification
 references:
   - type: software
-    title: "Open Problems Benchmark (v1)"
+    title: "Open Problems Benchmark (v2.1)"
     authors:
       - family-names: Canli
         given-names: Arhan

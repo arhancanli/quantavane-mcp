@@ -708,8 +708,8 @@
   ],
   "snapshot": "main at commit 87b4ebb (28 October 2026); pull requests and issues read on 5 November 2026 (#239, #270, #274, #280, #319 and #330 to 14:00 UTC)."
  },
- "commit": "1fbce3f8dfe34445bd1b9a415b3bc1c6b1237068",
- "commit_date": "2026-11-08T17:28:34Z",
+ "commit": "57988b03a5d646b392495810b2efcc06ed457f87",
+ "commit_date": "2026-11-09T16:50:00Z",
  "repository": "https://github.com/arhancanli/quantavane-replays",
  "reproduce": "./fetch.sh then ./run_all.sh in the folder (fetch.sh downloads the certificates at pinned commits and checks every SHA-256; Python 3.9+, standard library only)",
  "sections": [
@@ -1201,10 +1201,12 @@
     },
     "c70": {
      "checks": [
-      "c70_check.py"
+      "c70_check.py",
+      "pat_check.py"
      ],
      "fetch": true,
      "results": [
+      "results/pat2026.txt",
       "results/pin.txt"
      ],
      "run_all": true
@@ -1362,13 +1364,15 @@
      "checks": [
       "c16_boxes_check.py",
       "c16_check.py",
-      "c16_trunc_check.py"
+      "c16_trunc_check.py",
+      "pat_check.py"
      ],
      "fetch": true,
      "results": [
       "results/julsgaard_319.txt",
       "results/maxr_trunc.txt",
       "results/maxr_upper.txt",
+      "results/pat2026.txt",
       "results/vid.txt",
       "results/vid2.txt"
      ],
@@ -1455,14 +1459,16 @@
     "c68": {
      "checks": [
       "c68_check.py",
-      "row_check.py"
+      "row_check.py",
+      "wik_check.py"
      ],
      "fetch": true,
      "results": [
       "results/pin.txt",
       "results/pin0447.txt",
       "results/vid0446.txt",
-      "results/vid044605.txt"
+      "results/vid044605.txt",
+      "results/wik2026.txt"
      ],
      "run_all": true
     }
@@ -1588,16 +1594,24 @@
    "files": {
     "c3a": {
      "checks": [
+      "ae_check.py",
+      "ae_count.c",
       "c3a_check.py",
       "c3a_hist.c",
       "c3a_hist3.c",
+      "diff2d.c",
+      "g2026_check.py",
+      "mi2026_check.py",
       "o2026_check.py"
      ],
      "fetch": true,
      "results": [
+      "results/g2026.txt",
+      "results/ggswt2025.txt",
       "results/k2026b.txt",
       "results/m2026.txt",
       "results/m2026b.txt",
+      "results/mi2026.txt",
       "results/o2026.txt",
       "results/syl2.txt",
       "results/syl3.txt"
@@ -1799,11 +1813,15 @@
    "files": {
     "c59": {
      "checks": [
-      "c59_check.py"
+      "bpww_check.py",
+      "c59_check.py",
+      "patel_check.py"
      ],
      "fetch": true,
      "results": [
-      "results/c59_check_controls.txt"
+      "results/bpww2026.txt",
+      "results/c59_check_controls.txt",
+      "results/patel2026.txt"
      ],
      "run_all": true
     }
@@ -2082,8 +2100,10 @@
      ],
      "fetch": true,
      "results": [
+      "results/lin2026.txt",
       "results/pr321.txt",
       "results/pr341.txt",
+      "results/pr350.txt",
       "results/selftest.txt",
       "results/tom2026.txt"
      ],
@@ -2262,11 +2282,13 @@
    "files": {
     "c3b": {
      "checks": [
-      "c3b_check.py"
+      "c3b_check.py",
+      "mi2026_check.py"
      ],
      "fetch": true,
      "results": [
       "results/c3b_check.txt",
+      "results/mi2026.txt",
       "results/selftest.txt"
      ],
      "run_all": true
@@ -2315,16 +2337,24 @@
    "files": {
     "c3a": {
      "checks": [
+      "ae_check.py",
+      "ae_count.c",
       "c3a_check.py",
       "c3a_hist.c",
       "c3a_hist3.c",
+      "diff2d.c",
+      "g2026_check.py",
+      "mi2026_check.py",
       "o2026_check.py"
      ],
      "fetch": true,
      "results": [
+      "results/g2026.txt",
+      "results/ggswt2025.txt",
       "results/k2026b.txt",
       "results/m2026.txt",
       "results/m2026b.txt",
+      "results/mi2026.txt",
       "results/o2026.txt",
       "results/syl2.txt",
       "results/syl3.txt"
@@ -2577,14 +2607,16 @@
     "c68": {
      "checks": [
       "c68_check.py",
-      "row_check.py"
+      "row_check.py",
+      "wik_check.py"
      ],
      "fetch": true,
      "results": [
       "results/pin.txt",
       "results/pin0447.txt",
       "results/vid0446.txt",
-      "results/vid044605.txt"
+      "results/vid044605.txt",
+      "results/wik2026.txt"
      ],
      "run_all": true
     }
@@ -2638,11 +2670,13 @@
    "files": {
     "c84a": {
      "checks": [
+      "forum_check.py",
       "sawin_check.py"
      ],
      "fetch": true,
      "results": [
-      "results/emm2026.txt"
+      "results/emm2026.txt",
+      "results/forum2026.txt"
      ],
      "run_all": true
     }
@@ -2826,7 +2860,8 @@
    "files": {
     "c1ab": {
      "checks": [
-      "extract_values.py"
+      "extract_values.py",
+      "pbv_check.py"
      ],
      "fetch": true,
      "results": [
@@ -2845,6 +2880,7 @@
       "results/c1b_haugland_2016.decimal.txt",
       "results/c1b_together_ai_2026.decimal.txt",
       "results/c1b_together_ai_2026.txt",
+      "results/pbv2026.txt",
       "results/tog_c1a_ours_2026.decimal.txt",
       "results/tog_c1a_ours_2026.txt",
       "results/ttt_ac1_sequence.decimal.txt",
@@ -3112,6 +3148,165 @@
    ]
   },
   {
+   "anchor": "84a-sawins-example-and-three-finite-data-rows-9-november-2026",
+   "constants": [
+    "84a"
+   ],
+   "dates": [
+    "2026-11-09"
+   ],
+   "files": {
+    "c84a": {
+     "checks": [
+      "forum_check.py",
+      "sawin_check.py"
+     ],
+     "fetch": true,
+     "results": [
+      "results/emm2026.txt",
+      "results/forum2026.txt"
+     ],
+     "run_all": true
+    }
+   },
+   "folders": [
+    "c84a"
+   ],
+   "heading": "84a: Sawin's example and three finite-data rows (9 November 2026)",
+   "kind": "section",
+   "prs": [],
+   "rows": [
+    {
+     "prs": [],
+     "tags": [
+      "S2026"
+     ],
+     "text": "| [S2026] $1.014$ | 13, 22, 0 | $36 = 36$ | $0.0141144286784982389\\ldots$ |"
+    },
+    {
+     "prs": [],
+     "tags": [
+      "EPF90"
+     ],
+     "text": "| [EPF90] $1.03184$ | 74, 1082, 175 | $1332 \\le 1332.25$ | $0.0318499816702021619\\ldots$ |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| [MO511514] $1.03188$ | 74, 1092, 165 | $1332 \\le 1332.25$ | $0.0318830655396396548\\ldots$ |"
+    },
+    {
+     "prs": [],
+     "tags": [],
+     "text": "| [MO511514] $1.03190$ | 74, 1088, 169 | $1332 \\le 1332.25$ | $0.0319083717352678483\\ldots$ |"
+    }
+   ],
+   "summary": "`c84a/forum_check.py`, standard library only, on the criterion of our 1.0152\\* replay above (Sawin, arXiv:2605.20579, Lemmas 11 and 12 and Proposition 10): Sawin's own example ([S2026], the data printed in the proof of Theorem 1), and the three rows of the 84a page marked \"Unverified\": [EPF90] (mlewko's data file from Erdős Problems forum thread 90, `2783627d...3f14`, read as data) and spiderduckpig's two [MO511514] rows, whose $S$ we rebuild from the posts' rules.",
+   "tags": [
+    "EPF90",
+    "S2026"
+   ]
+  },
+  {
+   "anchor": "37a-no-boolean-function-of-degree-4-has-sensitivity-10-9-november-2026",
+   "constants": [
+    "37a"
+   ],
+   "dates": [
+    "2026-11-09"
+   ],
+   "files": {
+    "c37": {
+     "checks": [
+      "c37_check.py"
+     ],
+     "fetch": true,
+     "results": [
+      "results/kos2026.txt"
+     ],
+     "run_all": true
+    }
+   },
+   "folders": [
+    "c37"
+   ],
+   "heading": "37a: no Boolean function of degree 4 has sensitivity 10 (9 November 2026)",
+   "kind": "section",
+   "prs": [
+    283
+   ],
+   "rows": [],
+   "summary": "`c37/c37_check.py`, standard library only: the statement of [#283](https://github.com/teorth/optimizationproblems/pull/283) (DennisKoshta), from the definition and the three certificate files alone (`d10_4.cert.xz`, `3be6fa8b...e7e9f4`, decompressed `7dc38b37...7e6c`; `d7_3.cert`, `d4_2.cert`), read in the format of the packet's `WRITEUP.md` §6; its checker, generator, verifier and tools were neither read nor run. We rebuild the 638 Möbius conditions $a_S = 0$ ($\\lvert S\\rvert \\ge 5$) from $(n, d) = (10, 4)$, walk the branch-and-bound tree (478 branchings, 479 leaves, depth 15) and check at every leaf that $\\max_{g \\in B_\\ell} (y^\\top A) g < 0$ exactly ($y^\\top A$ by a superset-sum transform). As checks of $A$, $c \\cdot h = 0$ at every leaf for Proskurin's symmetric point (which solves the LP relaxation exactly) and for $\\mathrm{NAE}_3 \\circ \\mathrm{NAE}_3$; that function has degree 4 and sensitivity 9. Red controls, all refused: a leaf multiplier negated, the last leaf deleted, a branch on a fixed coordinate. Reproduce: `cd c37 && ./fetch.sh && ./run_all.sh` (about 3 seconds).",
+   "tags": []
+  },
+  {
+   "anchor": "3a-two-capped-digit-constructions-recounted-exactly-9-november-2026",
+   "constants": [
+    "3a"
+   ],
+   "dates": [
+    "2026-11-09"
+   ],
+   "files": {
+    "c3a": {
+     "checks": [
+      "ae_check.py",
+      "ae_count.c",
+      "c3a_check.py",
+      "c3a_hist.c",
+      "c3a_hist3.c",
+      "diff2d.c",
+      "g2026_check.py",
+      "mi2026_check.py",
+      "o2026_check.py"
+     ],
+     "fetch": true,
+     "results": [
+      "results/g2026.txt",
+      "results/ggswt2025.txt",
+      "results/k2026b.txt",
+      "results/m2026.txt",
+      "results/m2026b.txt",
+      "results/mi2026.txt",
+      "results/o2026.txt",
+      "results/syl2.txt",
+      "results/syl3.txt"
+     ],
+     "run_all": true
+    }
+   },
+   "folders": [
+    "c3a"
+   ],
+   "heading": "3a: two capped digit constructions recounted exactly (9 November 2026)",
+   "kind": "section",
+   "prs": [
+    71,
+    95
+   ],
+   "rows": [
+    {
+     "prs": [],
+     "tags": [
+      "G2026"
+     ],
+     "text": "| [G2026] | the pull request's three integers (77, 96, 106 digits) | $1.17407444769352116336\\ldots$ | 26 s |"
+    },
+    {
+     "prs": [],
+     "tags": [
+      "MI2026"
+     ],
+     "text": "| [MI2026] | the certificate's three integers (474, 591, 638 digits; at most 311,877 unsaturated states) | $1.18351293242186151065\\ldots$ | 3.2 h |"
+    }
+   ],
+   "summary": "`c3a/g2026_check.py` and `c3a/mi2026_check.py` (with `diff2d.c`), standard library only: the rows [G2026] $1.1740744$ ([#71](https://github.com/teorth/optimizationproblems/pull/71); $A = \\{0,2,\\ldots,10\\}$, base 21, 80 digits, digit sum at most 150) and [MI2026] $1.1835129324$ ([#95](https://github.com/teorth/optimizationproblems/pull/95); $A = \\{0,3,4,6,\\ldots,16\\}$, base 33, 420 digits, cap 1392; parameters from the counts file of Zenodo 20794135, read as data). No digit operation carries, so $\\lvert U+U\\rvert$ counts digit vectors $s$ with a split of both digit sums at most $T$: that holds iff $n + \\mu \\le 2T$ ($n = \\sum s_i$, $\\mu$ the least $\\lvert\\sum y_i\\rvert$, $y_i \\in \\{2a - s_i\\}$), counted by a dynamic program over (digit sum, reachable sums) with a saturation lemma (once every value of the right parity in $[-K, K]$ is reachable it stays so). $\\lvert U-U\\rvert$ is a box sum over $[0,T]^2$ of the coefficients of a $d$-th power, by the coordinatewise least split (in C modulo 35 primes for [MI2026], put together by the Chinese remainder theorem, two more primes agreeing). Both programs equal brute force on 13 small instances.",
+   "tags": [
+    "G2026",
+    "MI2026"
+   ]
+  },
+  {
    "anchor": null,
    "constants": [
     "13a"
@@ -3255,6 +3450,88 @@
   {
    "anchor": null,
    "constants": [
+    "3c"
+   ],
+   "dates": [
+    "2026-11-08"
+   ],
+   "files": {
+    "c3c": {
+     "checks": [
+      "c3c_check.py"
+     ],
+     "fetch": true,
+     "results": [
+      "results/g2026.txt",
+      "results/j2026.txt",
+      "results/l2026.txt",
+      "results/mi2026.txt"
+     ],
+     "run_all": true
+    }
+   },
+   "folders": [
+    "c3c"
+   ],
+   "heading": "C3c: replay in c3c/ (2026-11-08; the README section is not written yet)",
+   "kind": "folder",
+   "prs": [
+    70
+   ],
+   "rows": [],
+   "summary": "Replay the four entropy lower bounds of the 3c page ([G2026], [MI2026], [L2026], [J2026]) from their laws, fetched by fetch.sh as data (the [G2026] table is in c3c_check.py); one output file per row in results/, red controls included. Usage: ./run_all.sh [CERTS_ROOT]   (default: ./certs). Python 3.9+, standard library only; a few seconds.",
+   "tags": [
+    "G2026",
+    "J2026",
+    "L2026",
+    "MI2026"
+   ]
+  },
+  {
+   "anchor": null,
+   "constants": [
+    "45"
+   ],
+   "dates": [
+    "2026-11-08"
+   ],
+   "files": {
+    "c45": {
+     "checks": [
+      "c45_check.py",
+      "c45_comb.c"
+     ],
+     "fetch": true,
+     "results": [
+      "results/griego.txt",
+      "results/pin21.txt",
+      "results/selftest.txt",
+      "results/yoo.txt"
+     ],
+     "run_all": true
+    }
+   },
+   "folders": [
+    "c45"
+   ],
+   "heading": "C45: replay in c45/ (2026-11-08; the README section is not written yet)",
+   "kind": "folder",
+   "prs": [
+    82,
+    125,
+    281
+   ],
+   "rows": [],
+   "summary": "Replay of three C45 upper bounds (Romanoff's constant) from the 45a page's obstruction inequality and the prime sets alone: [G2026] (36 primes, PR #82), [Y2026] (38 primes, PR #125, the page's record) and the 21-base-prime row [P2026] of PR #281 (49 primes). Our own histogram of nu0 is checked against brute force on small sets (selftest), against two exact moments, and against the packet's histograms (fetched by fetch.sh, read as data only). Usage: ./run_all.sh [CERTS_ROOT]   (default: ./certs). A C compiler and Python 3.9+; the 21-prime row takes about 13 minutes and 0.6 GB, the others seconds.",
+   "tags": [
+    "G2026",
+    "P2026",
+    "Y2026"
+   ]
+  },
+  {
+   "anchor": null,
+   "constants": [
     "4b"
    ],
    "dates": [
@@ -3286,6 +3563,112 @@
    "tags": [
     "Jon2026a",
     "Kra2026"
+   ]
+  },
+  {
+   "anchor": null,
+   "constants": [
+    "57c"
+   ],
+   "dates": [
+    "2026-11-09"
+   ],
+   "files": {
+    "c57c": {
+     "checks": [
+      "w2026_check.py"
+     ],
+     "fetch": false,
+     "results": [
+      "results/w2026.txt"
+     ],
+     "run_all": true
+    }
+   },
+   "folders": [
+    "c57c"
+   ],
+   "heading": "C57c: replay in c57c/ (2026-11-09; the README section is not written yet)",
+   "kind": "folder",
+   "prs": [
+    311
+   ],
+   "rows": [],
+   "summary": "Replay of the finite certificate (Lemma 6.1) behind the 57c row [W2026], U >= 0.612242 (Wikstrom, arXiv:2610.34580v1, Theorem 1.2; recorded in PR #311), from the paper's statements alone (no download), with the red controls. Usage: ./run_all.sh. Python 3.9+, standard library only; about 75 minutes, under 30 MB.",
+   "tags": [
+    "W2026"
+   ]
+  },
+  {
+   "anchor": null,
+   "constants": [
+    "71"
+   ],
+   "dates": [
+    "2026-11-08"
+   ],
+   "files": {
+    "c71": {
+     "checks": [
+      "c71_check.py"
+     ],
+     "fetch": true,
+     "results": [
+      "results/mi2026.txt",
+      "results/mi2026b.txt",
+      "results/num2026.txt"
+     ],
+     "run_all": true
+    }
+   },
+   "folders": [
+    "c71"
+   ],
+   "heading": "C71: replay in c71/ (2026-11-08; the README section is not written yet)",
+   "kind": "folder",
+   "prs": [],
+   "rows": [],
+   "summary": "Replay the three explicit 71a lower bounds ([MI2026] n = 14, [MI2026b] n = 17, [Num2026] n = 18) from the data fetched by fetch.sh; one output file per row in results/, red controls included. Usage: ./run_all.sh [CERTS_ROOT]   (default: ./certs). Python 3.9+, standard library only; about a minute.",
+   "tags": [
+    "MI2026",
+    "MI2026b",
+    "Num2026"
+   ]
+  },
+  {
+   "anchor": null,
+   "constants": [
+    "7a"
+   ],
+   "dates": [
+    "2026-11-08"
+   ],
+   "files": {
+    "c7a": {
+     "checks": [
+      "pi_check.py"
+     ],
+     "fetch": true,
+     "results": [
+      "results/b2026.txt",
+      "results/zz2020.txt"
+     ],
+     "run_all": true
+    }
+   },
+   "folders": [
+    "c7a"
+   ],
+   "heading": "C7a: replay in c7a/ (2026-11-08; the README section is not written yet)",
+   "kind": "folder",
+   "prs": [
+    214
+   ],
+   "rows": [],
+   "summary": "Replays of the two latest 7a rows (PR #214): [B2026] mu(pi) < 7.101862832357 (Bai's sigma = r + C and tau = -s - C: the periodic set E, omega by two routes, C; zeta and r; y_c and s) and [ZZ2020] 7.103205334137... (Zeilberger and Zudilin's Part II: the prime saving psi(2/3) - psi(1/2) by two routes, the indicial cubic and its saddle-point route, the two rates), interval arithmetic of our own, with controls. One output file per row in results/. Usage: ./run_all.sh [CERTS_ROOT]   (default: ./certs). Python 3.9+, standard library only; about 20 seconds.",
+   "tags": [
+    "B2026",
+    "ZZ2020"
    ]
   },
   {

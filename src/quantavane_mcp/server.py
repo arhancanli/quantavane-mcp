@@ -31,6 +31,7 @@ from .checking import (
     standalone_command,
 )
 from .citations import CiteError, cite
+from .claims import run_claim, second_kind, second_kinds
 from .config import ConfigError, Settings
 from .data import Benchmark, DataError, Problem, Store, sha256_file
 from .exact import parse_value
@@ -39,6 +40,11 @@ from .models import (
     CheckerInfo,
     CheckResult,
     CitationResult,
+    ClaimResult,
+    CollectionEntry,
+    CollectionList,
+    CollectionProblem,
+    CollectionSummary,
     CompareResult,
     GymEnvironments,
     GymVerdict,
@@ -56,18 +62,32 @@ from .search import SearchError, search
 
 INSTRUCTIONS = """\
 Quantavane's open problems, each with an exact checker, plus our verified results, replays and citations. Offline.
-- list_problems / get_problem: 149,351 open problems: 374 single problems (Tao's optimization constants, Ramsey numbers,
-  cages, kissing numbers, sorting networks, Hadamard matrices and more) and 148,977 cells of six families read from
-  their keepers' tables (covering designs, spherical codes, linear codes, covering arrays, constant weight codes,
-  project scheduling), each with the best known value, its source and when it was read. Family cells are listed with
-  family= (and params= or sample=).
+- list_problems / get_problem: 149,372 open problems: 395 single problems (Tao's optimization constants, Ramsey numbers,
+  cages, kissing numbers, sorting networks, Hadamard matrices, matrix multiplication and more) and 148,977 cells of six
+  families read from their keepers' tables (covering designs, spherical codes, linear codes, covering arrays, constant
+  weight codes, project scheduling), each with the best known value, its source and when it was read. Family cells are
+  listed with family= (and params= or sample=).
+- list_collection / get_collection_problem: Quantavane Prestige 100 (one hundred famous open problems, such as R(5,5),
+  the kissing numbers and 3 x 3 matrix multiplication, with their keepers' records) and the Quantavane Originals (new
+  problems of ours, each with its own checker, novelty check and our first value).
 - check_candidate: runs the benchmark's own checker on your certificate, sandboxed. Only verdict "certified" proves a
   value; a value counts as a new best only when improves_page_best is true. Put large certificates in a file and pass
   certificate_path.
+- run_claim_checks: Quantavane's claim pipeline on an object: two separately written checkers, red controls (broken
+  copies that must be refused) and the keeper's value on file; says RECORD, NOT-A-RECORD or NOT VERIFIED.
 - compare_to_record: is a value better than the best known? (Exact comparison; it proves nothing by itself.)
 - search_results: Quantavane's verified results by table, cell or date. get_replay: our replay of a pull request in the
   optimization constants repository. cite: BibTeX and citation text.
 Report values exactly as the tools give them; never round a bound in your favour."""
+
+BENCHMARK_URL = "https://github.com/arhancanli/quantavane-benchmark"
+COLLECTION_FIELDS = ("field", "status", "context", "references", "novelty", "first_values", "baseline")
+COLLECTION_ABOUT = {
+    "prestige100": "one hundred famous open problems in which one checked object settles the score, each a single "
+                   "problem of the benchmark, with its keeper's record, its history and our replayed certificates",
+    "originals": "new open problems of ours, each with a novelty check written down before it was added, an exact "
+                 "checker of ours and our first value",
+}
 
 READ_ONLY = ToolAnnotations(readOnlyHint=True, destructiveHint=False, idempotentHint=True, openWorldHint=False)
 ProblemId = Annotated[str, Field(min_length=1, max_length=64, pattern=r"^[A-Za-z0-9][A-Za-z0-9._\-]*$",
@@ -89,6 +109,8 @@ FAMILY_HINTS = {
                        "distances rounded exactly in integers. The checker needs the CVRPLIB instance file.",
     "constant": "The certificate proves an analytic bound; read the checker's documentation for the exact format and "
                 "the method before building one.",
+    "originals": "A new problem of ours: read its context, first values and novelty check (get_problem), then the "
+                 "checker's documentation; the best known value is our own first value, there to be beaten.",
 }
 
 
@@ -127,7 +149,7 @@ def build_server(settings: Settings | None = None, store: Store | None = None) -
 
     def detail(p: Problem) -> ProblemDetail:
         c = p.checker
-        refs = [ReferenceCertificate(file=r.file, uri=f"quantavane://refs/{r.file}", description=r.description,
+        refs = [ReferenceCertificate(file=r.file, uri=r.resource_uri, description=r.description,
                                      expected=r.expected) for r in bench.references.get(p.id, [])]
         if p.objective == "maximize":
             rule = "a certified value larger than the best known one (exactly) improves the problem"
@@ -137,7 +159,8 @@ def build_server(settings: Settings | None = None, store: Store | None = None) -
             rule += ("; the best known value is known only as printed, so it must be beaten by more than one unit in "
                      "its last printed digit")
         return ProblemDetail(
-            id=p.id, title=p.raw["title"], family=p.family, page=p.raw["page"], statement=p.raw["statement"],
+            id=p.id, title=p.raw["title"], family=p.family, page=p.raw.get("page") or page_url(p),
+            statement=p.raw["statement"],
             objective=p.objective, submission=p.raw["submission"],
             checker=CheckerInfo(program=c["program"], args=c["args"], value_kind=p.kind, exactness=EXACTNESS[p.kind],
                                 score_meaning=score_meaning(p), standalone=standalone_command(p),
@@ -152,7 +175,14 @@ def build_server(settings: Settings | None = None, store: Store | None = None) -
             improvement_rule=rule, reference_certificates=refs, instance=checker.instance_status(p),
             params=p.raw.get("params") or _cell_params(p), bound=p.raw.get("bound"),
             provenance=p.best_known.get("provenance"), quantavane_record=bool(p.raw.get("quantavane_record")),
-            added=str(p.raw["added"]) if p.raw.get("added") else None, data_as_of=checker.data_as_of(p))
+            added=str(p.raw["added"]) if p.raw.get("added") else None, collection=p.collection,
+            collection_info={k: p.raw[k] for k in COLLECTION_FIELDS if k in p.raw} or None,
+            second_checker=second_kind(p), data_as_of=checker.data_as_of(p))
+
+    def page_url(p: Problem) -> str:
+        if p.collection:
+            return f"{BENCHMARK_URL}/blob/main/collections/{p.collection}/problems/{p.id}.md"
+        return BENCHMARK_URL
 
     def _cell_params(p: Problem) -> dict[str, Any] | None:
         fam = bench.families.get(p.family)
@@ -184,10 +214,11 @@ def build_server(settings: Settings | None = None, store: Store | None = None) -
         limit: Annotated[int, Field(ge=1, le=200, description="Problems per page")] = 50,
         offset: Annotated[int, Field(ge=0, description="Index of the first problem to return")] = 0,
     ) -> ProblemList:
-        """List the open problems of the Open Problems Benchmark (v2.0: 149,351 problems, 374 single problems and
+        """List the open problems of the Open Problems Benchmark (v2.1: 149,372 problems, 395 single problems and
         148,977 cells of six families), one line each: id, title, family, objective, the best known value on its
         source page and the best verified value in review. Filter by family, by a family's parameters or by words;
-        or draw a random sample of a family's cells. get_problem gives a problem (or cell) in full."""
+        or draw a random sample of a family's cells. get_problem gives a problem (or cell) in full. The collections
+        (Prestige 100, the Originals) are listed by list_collection."""
         if sample is not None and family not in bench.families:
             raise ToolError(f"sample draws cells of a family: give family, one of {', '.join(bench.families)}.")
         note = None
@@ -226,13 +257,37 @@ def build_server(settings: Settings | None = None, store: Store | None = None) -
 
     @tool("get_problem", "Get one problem")
     def get_problem(problem_id: ProblemId) -> ProblemDetail:
-        """Everything about one problem: the statement, the objective, the best known value with its source and when
-        it was read, the verified values in review, the certificate format, the exact checker (and how to run it
-        yourself), the improvement rule and our reference certificates (as resource URIs)."""
+        """Everything about one problem (a single problem, a family cell or one of the Quantavane Originals): the
+        statement, the objective, the best known value with its source and when it was read, the verified values in
+        review, the certificate format, the exact checker (and how to run it yourself), the improvement rule, our
+        reference certificates (as resource URIs) and, for the Originals, the context, novelty check and first
+        values."""
         try:
             return detail(find_problem(bench, problem_id))
         except CheckError as e:
             raise _fail(e) from None
+
+    async def with_progress(ctx: Context, limit: int, job: Callable[[], Any]) -> Any:
+        """Run job in a worker thread, reporting progress every 5 s to clients that ask for it."""
+        done = anyio.Event()
+
+        async def tick() -> None:
+            t0 = time.monotonic()
+            while not done.is_set():
+                with anyio.move_on_after(5):
+                    await done.wait()
+                if not done.is_set():
+                    try:
+                        await ctx.report_progress(min(time.monotonic() - t0, limit), limit, "checking")
+                    except Exception:   # a client that cannot take progress still gets the result
+                        return
+
+        async with anyio.create_task_group() as tg:
+            tg.start_soon(tick)
+            try:
+                return await anyio.to_thread.run_sync(job)
+            finally:
+                done.set()
 
     @tool("check_candidate", "Check a certificate exactly")
     async def check_candidate(
@@ -262,26 +317,124 @@ def build_server(settings: Settings | None = None, store: Store | None = None) -
                                      timeout_s=timeout_s), None
             except Exception as e:  # reported below as a tool error, never as a verdict
                 return None, e
+        result, error = await with_progress(ctx, limit, job)
+        if isinstance(error, CheckError):
+            raise _fail(error)
+        if error is not None:
+            what = f"{type(error).__name__}: {checker.clean(str(error))}"
+            raise ToolError(f"Internal error ({what}); nothing was proved. Please report it with the problem id and "
+                            "the certificate's size.")
+        assert result is not None
+        return result
 
-        done = anyio.Event()
+    collection_names = tuple(bench.collections) or ("originals",)
+    CollectionName = Literal[collection_names]  # type: ignore[valid-type]
 
-        async def tick() -> None:   # progress every 5 s, so clients that support it keep waiting
-            t0 = time.monotonic()
-            while not done.is_set():
-                with anyio.move_on_after(5):
-                    await done.wait()
-                if not done.is_set():
-                    try:
-                        await ctx.report_progress(min(time.monotonic() - t0, limit), limit, "checking")
-                    except Exception:   # a client that cannot take progress still gets the result
-                        return
+    def collection_entry(name: str, e: dict[str, Any]) -> CollectionEntry:
+        quant = e.get("quantavane")
+        ours = bool(quant.get("holds_record")) if isinstance(quant, dict) else (
+            "Quantavane" in str(e.get("holder") or "") if name == "originals" else False)
+        return CollectionEntry(
+            id=str(e["id"]), title=str(e.get("headline") or e.get("title") or e.get("name") or e["id"]),
+            slot=e.get("slot"), family=e.get("family"), field=e.get("field"), objective=e.get("objective"),
+            record=e.get("record") or e.get("best_known"), holders=e.get("holders") or e.get("holder"),
+            status=e.get("status"), flagship=e.get("flagship"), quantavane=ours)
 
-        async with anyio.create_task_group() as tg:
-            tg.start_soon(tick)
+    def summaries() -> list[CollectionSummary]:
+        return [CollectionSummary(name=n, title=c.title, problems=len(c.entries),
+                                  about=COLLECTION_ABOUT.get(n, c.title)) for n, c in bench.collections.items()]
+
+    @tool("list_collection", "List a collection of our own")
+    def list_collection(
+        collection: Annotated[CollectionName, Field(description=(  # type: ignore[valid-type]
+            "prestige100: Quantavane Prestige 100, famous open problems with their keepers' records; originals: the "
+            "Quantavane Originals, new problems of ours"))],
+        query: Annotated[str | None, Field(max_length=100, description=(
+            "Words that must all appear in the id, title, family, field or record, such as 'R(5' or 'kissing'"))] = None,
+        group: Annotated[str | None, Field(max_length=80, description=(
+            "Only this family (Prestige 100, such as 'Ramsey numbers' or 'Kissing numbers') or field (Originals, "
+            "such as 'Physics' or 'Number theory'), matched without case"))] = None,
+        limit: Annotated[int, Field(ge=1, le=100, description="Problems per page")] = 50,
+        offset: Annotated[int, Field(ge=0, description="Index of the first problem to return")] = 0,
+    ) -> CollectionList:
+        """List a collection of our own, one line per problem: Quantavane Prestige 100 (slot, problem, family, the
+        record as its keeper lists it and who holds it) or the Quantavane Originals (field, title, our best known value,
+        status). get_collection_problem gives one in full; check_candidate and run_claim_checks take the ids."""
+        c = bench.collections.get(collection)
+        if c is None:
+            raise ToolError(f"No collection {collection!r}; collections: {', '.join(bench.collections)}.")
+        entries = [collection_entry(collection, e) for e in c.entries]
+        if group:
+            g = group.strip().lower()
+            entries = [e for e in entries if g in (e.family or e.field or "").lower()]
+        words = [w.lower() for w in (query or "").split()]
+        if words:
+            entries = [e for e in entries if all(w in " ".join(str(x) for x in (e.id, e.title, e.family, e.field,
+                                                                                 e.record) if x).lower()
+                                                 for w in words)]
+        page = entries[offset:offset + limit]
+        more = offset + len(page) < len(entries)
+        return CollectionList(total=len(entries), count=len(page), offset=offset, has_more=more,
+                              next_offset=offset + len(page) if more else None, collection=collection,
+                              title=c.title, entries=page, collections=summaries(), data_as_of=bench.describe())
+
+    @tool("get_collection_problem", "Get one problem of a collection")
+    def get_collection_problem(
+        collection: Annotated[CollectionName, Field(description="prestige100 or originals")],  # type: ignore[valid-type]
+        problem: Annotated[str, Field(min_length=1, max_length=64, description=(
+            "The problem id (such as 'ramsey-5-5' or 'qr-sumfree') or, for Prestige 100, its slot number (1 to 100)"))],
+    ) -> CollectionProblem:
+        """One problem of a collection in full. Prestige 100: the record and its holders, the bound on the other side,
+        what would beat it, the keeper with the date and version read, the history of the bounds, why it matters, the
+        certificate format, the checker and the leaderboard of certificates we replayed. Originals: the statement,
+        context, novelty check, exact first values, references and our best known value."""
+        c = bench.collections.get(collection)
+        if c is None:
+            raise ToolError(f"No collection {collection!r}; collections: {', '.join(bench.collections)}.")
+        e = c.entry(problem)
+        if e is None:
+            raise ToolError(f"No problem {problem!r} in {collection}; list_collection gives the ids"
+                            + (" and slots." if collection == "prestige100" else "."))
+        pid = str(e["id"])
+        full = dict(c.problems[pid].raw) if pid in c.problems else dict(e)
+        try:
+            p = find_problem(bench, pid)
+            how = (f'check_candidate(problem_id="{pid}", certificate_path=...) checks a certificate exactly; '
+                   f'run_claim_checks(problem_id="{pid}", ...) runs the claim pipeline; by hand, in a benchmark '
+                   f"checkout: {standalone_command(p)}")
+        except CheckError:
+            how = "this problem has no checker in the bundled benchmark"
+        return CollectionProblem(collection=collection, id=pid, title=str(e.get("headline") or e.get("title") or pid),
+                                 entry=full, leaderboard=c.board(pid), page_uri=f"quantavane://collections/"
+                                 f"{collection}/{pid}", check_with=how, data_as_of=bench.describe())
+
+    @tool("run_claim_checks", "Run the claim pipeline's checks")
+    async def run_claim_checks(
+        problem_id: ProblemId,
+        ctx: Context,
+        certificate: Annotated[str | None, Field(max_length=MAX_INLINE_CHARS, description=(
+            "The object's file text, in the problem's format. Give this or certificate_path, not both"))] = None,
+        certificate_path: Annotated[str | None, Field(max_length=4096, description=(
+            "Path of a local certificate file, inside the folders the server allows"))] = None,
+        timeout_s: Annotated[int | None, Field(ge=1, le=86400, description=(
+            "Wall-clock limit of each program run (default 600, or the problem's default if larger; at most "
+            "QUANTAVANE_MCP_MAX_TIMEOUT_S). A large Ramsey colouring takes the second checker a few minutes"))] = None,
+    ) -> ClaimResult:
+        """Quantavane's claim pipeline on one object, offline: the benchmark's checker and a second checker written
+        apart from it must both pass it with the same exact value, red controls (copies of the object broken so that
+        they must fail) must be refused by both, and the value must strictly beat the keeper's value on file. Says
+        RECORD, NOT-A-RECORD or NOT VERIFIED, with every check, the keeper's value and when it was read, the
+        literature queries to run, and the pipeline's packet as text. A RECORD here still needs the keeper's page
+        re-read the same day before it is sent (offline, the server cannot); nothing is written or sent."""
+        limit = timeout_s or 600
+
+        def job() -> tuple[ClaimResult | None, Exception | None]:
             try:
-                result, error = await anyio.to_thread.run_sync(job)
-            finally:
-                done.set()
+                data = checker.read_certificate(certificate, certificate_path)
+                return run_claim(checker, problem_id, data, timeout_s), None
+            except Exception as e:  # reported below as a tool error, never as a verdict
+                return None, e
+        result, error = await with_progress(ctx, limit, job)
         if isinstance(error, CheckError):
             raise _fail(error)
         if error is not None:
@@ -409,13 +562,17 @@ def build_server(settings: Settings | None = None, store: Store | None = None) -
             "counts": {"problems": bench.total_problems(), "single_problems": len(bench.problems),
                        "family_cells": sum(f["count"] for f in bench.families.values()),
                        "families": {n: f["count"] for n, f in bench.families.items()},
-                       "results": len(store.open_data.records), "replay_sections": len(store.replays.sections)},
+                       "results": len(store.open_data.records), "replay_sections": len(store.replays.sections),
+                       "collections": {n: len(c.entries) for n, c in bench.collections.items()}},
+            "claim_checks": {"second_checkers": second_kinds(),
+                             "keeper": "the value on file (offline); re-read the keeper's page before sending a claim"},
             "limits": {"timeout_s": settings.timeout_s, "max_timeout_s": settings.max_timeout_s,
                        "memory_mb": settings.memory_mb, "memory_cap": sandbox.memory_cap_mode(),
                        "max_bytes": settings.max_bytes, "inline_chars": MAX_INLINE_CHARS,
                        "max_concurrent": settings.max_concurrent},
             "certificate_path_roots": [str(r) for r in settings.roots],
-            "licence": "code, benchmark files and replay index MIT; verified results CC BY 4.0 (LICENSE-DATA.md)",
+            "licence": "code, benchmark files and replay index MIT; Prestige 100 data and verified results CC BY 4.0 "
+                       "(LICENSE-DATA.md)",
             "update": "uvx --refresh quantavane-mcp, or pip install -U quantavane-mcp",
             "benchmark_version": bench.meta.get("version"),
         }, indent=1)
@@ -425,6 +582,51 @@ def build_server(settings: Settings | None = None, store: Store | None = None) -
     def benchmark_readme() -> str:
         """The benchmark's README: the problems, the checkers and how to submit."""
         return (bench.root / "README.md").read_text("utf-8")
+
+    @mcp.resource("quantavane://benchmark/changelog", name="benchmark-changelog",
+                  title="Open Problems Benchmark changes", mime_type="text/markdown")
+    def benchmark_changelog() -> str:
+        """The benchmark's CHANGELOG: what each version added."""
+        path = bench.root / "CHANGELOG.md"
+        return path.read_text("utf-8") if path.is_file() else "No CHANGELOG.md in this benchmark copy.\n"
+
+    @mcp.resource("quantavane://collections", name="collections", title="Collections of our own",
+                  mime_type="text/markdown")
+    def collections_index() -> str:
+        """Prestige 100 and the Originals: what each holds and how to read them."""
+        out = ["# Collections of our own", ""]
+        for c in summaries():
+            out.append(f"- **{c.name}** ({c.title}, {c.problems} problems): {c.about}. list_collection("
+                       f"collection=\"{c.name}\"); README: quantavane://collections/{c.name}")
+        return "\n".join(out) + "\n"
+
+    @mcp.resource("quantavane://collections/{name}", name="collection-readme", title="Collection README",
+                  mime_type="text/markdown")
+    def collection_readme(name: str) -> str:
+        """A collection's README."""
+        c = bench.collections.get(name)
+        if c is None:
+            raise ValueError(f"No collection {name!r}; quantavane://collections lists them.")
+        return c.readme
+
+    @mcp.resource("quantavane://collections/{name}/{problem_id}", name="collection-page",
+                  title="A collection problem's page", mime_type="text/markdown")
+    def collection_page(name: str, problem_id: str) -> str:
+        """The page of one problem of a collection (Markdown), by id or Prestige 100 slot."""
+        c = bench.collections.get(name)
+        page = c.page(problem_id) if c is not None else None
+        if page is None:
+            raise ValueError(f"No page {problem_id!r} in {name!r}; list_collection gives the ids.")
+        return page
+
+    @mcp.resource("quantavane://collections/{name}/refs/{filename}", name="collection-reference",
+                  title="A collection's reference certificate", mime_type="text/plain")
+    def collection_reference(name: str, filename: str) -> str:
+        """One of a collection's reference certificates (the Originals: our first value's certificate)."""
+        path = bench.reference_file(filename, collection=name)
+        if path is None:
+            raise ValueError(f"No reference certificate {filename!r} in {name!r}; get_problem lists each problem's.")
+        return path.read_text("utf-8")
 
     @mcp.resource("quantavane://problems", name="problems", title="Problem index", mime_type="text/markdown")
     def problems_index() -> str:
@@ -468,38 +670,48 @@ def build_server(settings: Settings | None = None, store: Store | None = None) -
         except CheckError as e:
             raise ValueError(str(e)) from None
 
+    def checker_files() -> list[Path]:
+        """The benchmark's checkers, then the collections' own (collections/NAME/checkers/)."""
+        files = sorted(f for f in bench.checkers_dir.iterdir() if f.suffix in (".py", ".c"))
+        for c in bench.collections.values():
+            d = c.root / "checkers"
+            files += sorted(f for f in d.iterdir() if f.suffix == ".py") if d.is_dir() else []
+        return files
+
     @mcp.resource("quantavane://checkers", name="checkers", title="The exact checkers", mime_type="text/markdown")
     def checkers_index() -> str:
         """The benchmark's checkers: what each checks and which problems use it."""
         users: dict[str, list[str]] = {}
-        for p in bench.problems.values():
-            users.setdefault(p.checker["program"], []).append(p.id)
+        for p in list(bench.problems.values()) + list(bench.collection_problems.values()):
+            users.setdefault(p.checker["program"].rsplit("/", 1)[-1], []).append(p.id)
         out = ["# The exact checkers", "",
                "Quantavane's own code (MIT), standard library only (the Ramsey checker is C). Each prints its exact "
                "result and exits 0 only for a valid certificate. Resources: quantavane://checkers/NAME (documentation) "
                "and quantavane://checkers/NAME/source.", ""]
-        for f in sorted(bench.checkers_dir.iterdir()):
-            if f.suffix in (".py", ".c"):
-                doc = checker_doc(f).split("\n\n")[0].replace("\n", " ")
-                name = f.stem if f.suffix == ".c" else f.name
-                used = users.get(name, [])
-                out.append(f"- **{f.name}**: {doc[:300]}" + (f" Used by {len(used)} problem(s)." if used else ""))
+        for f in checker_files():
+            doc = checker_doc(f).split("\n\n")[0].replace("\n", " ")
+            name = f.stem if f.suffix == ".c" else f.name
+            used = users.get(name, [])
+            where = "" if f.parent == bench.checkers_dir else f" ({f.parent.parent.name})"
+            out.append(f"- **{f.name}**{where}: {doc[:300]}" + (f" Used by {len(used)} problem(s)." if used else ""))
         return "\n".join(out) + "\n"
 
     def checker_file(program: str) -> Path:
-        name = program if program.endswith((".py", ".c")) else program + ".c"
-        path = bench.checkers_dir / name
-        if not re.fullmatch(r"[\w.\-]+", name) or not path.is_file():
-            raise ValueError(f"No checker {program!r}; quantavane://checkers lists them.")
-        return path
+        name = program.rsplit("/", 1)[-1]
+        name = name if name.endswith((".py", ".c")) else name + ".c"
+        if re.fullmatch(r"[\w.\-]+", name):
+            for f in checker_files():
+                if f.name == name:
+                    return f
+        raise ValueError(f"No checker {program!r}; quantavane://checkers lists them.")
 
     @mcp.resource("quantavane://checkers/{program}", name="checker-docs", title="Checker documentation",
                   mime_type="text/markdown")
     def checker_docs(program: str) -> str:
         """A checker's documentation, its SHA-256 and the problems that use it."""
         path = checker_file(program)
-        used = [p.id for p in bench.problems.values()
-                if p.checker["program"] in (path.name, path.stem)]
+        used = [p.id for p in list(bench.problems.values()) + list(bench.collection_problems.values())
+                if p.checker["program"].rsplit("/", 1)[-1] in (path.name, path.stem)]
         return (f"# {path.name}\n\nSHA-256 {sha256_file(path)} ({bench.describe()})\n\n"
                 f"Used by: {', '.join(used) if used else 'helper of another checker'}\n\n{checker_doc(path)}\n")
 
@@ -590,16 +802,35 @@ How to work:
 Quote every number exactly as the tool gives it.
 """
 
+    @mcp.prompt(name="prepare_claim", title="Prepare a claim")
+    def prepare_claim(problem_id: str, certificate_path: str = "") -> str:
+        """Run the claim pipeline on an object and say what a claim still needs before it is sent."""
+        p = find_problem(bench, problem_id)
+        arg = f'certificate_path="{certificate_path}"' if certificate_path else "the certificate (a file path)"
+        return f"""Prepare a claim for the problem {p.id} ({p.raw['title']}).
+
+1. Call run_claim_checks with problem_id="{p.id}" and {arg}.
+2. Report the verdict exactly (RECORD, NOT-A-RECORD or NOT VERIFIED), the exact value, the keeper's value on file and
+   when it was read, and every check: the two checkers' values and each red control and whether it was refused.
+3. If it is NOT VERIFIED, say which check failed or what is missing (a second checker, a red control).
+4. If it is a RECORD: the keeper's page must be re-read today before anything is sent (the tool is offline); list the
+   literature queries to run; name the keeper from keeper.name and keeper.url as the place to send it; and give
+   cite(target="problem", id="{p.id}").
+5. Never call it a record unless the verdict says RECORD, and never round a value in your favour.
+"""
+
     @mcp.completion()
     async def complete(ref: Any, argument: Any, context: Any) -> Completion | None:
         name, prefix = getattr(argument, "name", ""), (getattr(argument, "value", "") or "").lower()
         if name == "problem_id":
             fam = bench.family_of(prefix)
-            pool = list(bench.problems) + (list(bench.cells(fam)) if fam else [])
+            pool = list(bench.problems) + list(bench.collection_problems) + (list(bench.cells(fam)) if fam else [])
         elif name == "program":
-            pool = sorted(f.name for f in bench.checkers_dir.iterdir() if f.suffix in (".py", ".c"))
+            pool = sorted(f.name for f in checker_files())
         elif name == "filename":
             pool = sorted(r.file for rs in bench.references.values() for r in rs)
+        elif name == "name":
+            pool = list(bench.collections)
         else:
             return None
         hits = [x for x in pool if x.lower().startswith(prefix)]
@@ -652,6 +883,21 @@ def selftest(settings: Settings) -> int:
         print(f"  {'ok  ' if good else 'FAIL'} cw-8-6-4 family cell: {r.verdict} {r.value or ''} "
               f"({store.benchmark.total_problems():,} problems in {len(store.benchmark.families)} families and "
               f"{len(store.benchmark.problems)} single problems)")
+    originals = store.benchmark.collections.get("originals")
+    if originals is not None and "qr-sumfree" in originals.problems:   # a collection problem and its own checker
+        ref = store.benchmark.references["qr-sumfree"][0]
+        r = checker.check_data("qr-sumfree", ref.path.read_bytes())
+        good = r.verdict == "certified" and r.value == "174" and obb_verdicts(r) == ["does not improve"]
+        ok &= good
+        print(f"  {'ok  ' if good else 'FAIL'} qr-sumfree (Originals, {len(originals.problems)} problems): "
+              f"{r.verdict} {r.value or ''} {','.join(obb_verdicts(r))}")
+    path = store.benchmark.reference_file("ours_covering_17-7-4-6.txt")
+    if path is not None:                                                 # the claim pipeline, offline
+        c = run_claim(checker, "covering-17-7-4-6", path.read_bytes())
+        good = c.verified and not c.record and c.verdict.startswith("NOT-A-RECORD") and c.red_controls >= 1
+        ok &= good
+        print(f"  {'ok  ' if good else 'FAIL'} claim checks on covering-17-7-4-6: {c.verdict.split(' (')[0]} "
+              f"({sum(1 for x in c.checks if x.kind == 'check')} checkers, {c.red_controls} red control(s) refused)")
     print("selftest: " + ("ok" if ok else "FAILED"))
     return 0 if ok else 1
 
@@ -667,6 +913,11 @@ def main(argv: list[str] | None = None) -> int:
     pc.add_argument("problem_id")
     pc.add_argument("file")
     pc.add_argument("--timeout", type=int, default=None)
+    pl = sub.add_parser("claim", help="run the claim pipeline's checks on one certificate file and print the result "
+                                      "as JSON (exit 0 RECORD, 1 NOT-A-RECORD, 2 NOT VERIFIED or an error)")
+    pl.add_argument("problem_id")
+    pl.add_argument("file")
+    pl.add_argument("--timeout", type=int, default=None)
     args = ap.parse_args(argv)
     try:
         settings = Settings.from_env()
@@ -685,6 +936,16 @@ def main(argv: list[str] | None = None) -> int:
             return 2
         print(r.model_dump_json(indent=1))
         return 0 if r.verdict == "certified" else 1 if r.verdict == "not_certified" else 2
+    if args.command == "claim":
+        store = Store(benchmark=Benchmark(settings.benchmark_dir))
+        try:
+            data = Path(args.file).read_bytes()
+            c = run_claim(Checker(store, settings), args.problem_id, data, args.timeout)
+        except (OSError, CheckError, DataError) as e:
+            print(f"quantavane-mcp: {e}", file=sys.stderr)
+            return 2
+        print(c.model_dump_json(indent=1))
+        return 0 if c.record else 1 if c.verified else 2
     try:
         server = build_server(settings)
     except (DataError, gym.GymError) as e:

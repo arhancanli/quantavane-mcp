@@ -48,8 +48,8 @@ path = "src/quantavane_mcp/__init__.py"
 packages = ["src/quantavane_mcp"]
 
 [tool.hatch.build.targets.sdist]
-include = ["src", "tests", "scripts", "README.md", "LICENSE", "LICENSE-DATA.md", "CITATION.cff", "RELEASE_CHECKLIST.md",
-           "pyproject.toml"]
+include = ["src", "tests", "scripts", "README.md", "CHANGELOG.md", "LICENSE", "LICENSE-DATA.md", "CITATION.cff",
+           "RELEASE_CHECKLIST.md", "pyproject.toml"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

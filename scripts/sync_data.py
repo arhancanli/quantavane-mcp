@@ -8,7 +8,10 @@
 
 Sources (all Quantavane's own):
 - the Open Problems Benchmark (github.com/arhancanli/quantavane-benchmark): problems/, checkers/, refs/,
-  families/*/family.json, index.json, VERSION, README.md and LICENSE, copied byte for byte with `git show REF:PATH`;
+  families/*/family.json, index.json, VERSION, README.md, CHANGELOG.md and LICENSE, and the collections of our own
+  (collections/NAME/: README, index, leaderboard, dropped list, problem files and pages, checkers, reference
+  certificates, instances and novelty checks; not their search tools or tests), copied byte for byte with
+  `git show REF:PATH`;
   each families/*/cells.jsonl gzipped, checked against index.json's SHA-256 and its expansion against the file; plus
   the CVRPLIB instance hashes from fetch.sh and the expected verdicts of test.sh;
 - the verified-results open data (the Kaggle dataset arhancanli12/quantavane-verified-results): records.json,
@@ -78,11 +81,17 @@ def dump_json(obj):
 def sync_benchmark(repo, ref, out):
     commit = git_text(repo, "rev-parse", ref)
     files = git_text(repo, "ls-tree", "-r", "--name-only", commit).splitlines()
-    keep = [f for f in files if f in ("README.md", "LICENSE", "VERSION", "index.json")
+    keep = [f for f in files if f in ("README.md", "LICENSE", "VERSION", "index.json", "CHANGELOG.md")
             or re.fullmatch(r"problems/[^/]+\.json", f)
             or re.fullmatch(r"checkers/[^/]+\.(py|c)", f)
             or re.fullmatch(r"families/[^/]+/family\.json", f)
-            or f.startswith("refs/")]
+            or f.startswith("refs/")
+            # collections of our own (benchmark 2.1): Prestige 100 (pages over single problems, with the keepers'
+            # records and our leaderboard) and the Quantavane Originals (new problems with their own checkers,
+            # certificates, instances and novelty checks); their search tools and tests stay in the benchmark
+            or re.fullmatch(r"collections/[^/]+/(README\.md|index\.json|leaderboard\.json|dropped\.json)", f)
+            or re.fullmatch(r"collections/[^/]+/problems/[^/]+\.(json|md)", f)
+            or re.fullmatch(r"collections/[^/]+/(checkers|refs|instances|novelty)/[^/]+", f)]
     for f in keep:
         write(os.path.join(out, "benchmark", f), git(repo, "show", f"{commit}:{f}"))
 
@@ -119,17 +128,44 @@ def sync_benchmark(repo, ref, out):
             pid = json.loads(git(repo, "show", f"{commit}:{f}"))["id"]
             problem_dates[pid] = dates[f]
 
+    # collections: what each holds, and the date each collection problem file was last written
+    collections = {}
+    for name in sorted({f.split("/")[1] for f in keep if f.startswith("collections/")}):
+        prefix = f"collections/{name}/"
+        idx = json.loads(git(repo, "show", f"{commit}:{prefix}index.json")) if prefix + "index.json" in keep else {}
+        own = [f for f in keep if re.fullmatch(re.escape(prefix) + r"problems/[^/]+\.json", f)]
+        pages = [f for f in keep if re.fullmatch(re.escape(prefix) + r"problems/[^/]+\.md", f)]
+        cdates, day = {}, None
+        for line in git_text(repo, "log", "--format=@%cs", "--name-only", commit, "--", prefix + "problems").splitlines():
+            if line.startswith("@"):
+                day = line[1:]
+            elif line.endswith(".json") and line not in cdates:
+                cdates[line] = day
+        collections[name] = {
+            "title": idx.get("title") or idx.get("collection") or name,
+            "version": idx.get("version"),
+            "date": idx.get("date"),
+            "problems": len(own) or len(idx.get("problems") or []),
+            "own_problem_files": len(own),
+            "pages": len(pages),
+            "problem_file_dates": {json.loads(git(repo, "show", f"{commit}:{f}"))["id"]: cdates.get(f) for f in own},
+        }
+
     # CVRPLIB instances: fetched by fetch.sh, never bundled; their SHA-256 lets the server verify a local copy
-    instances = {}
+    instances, pinned = {}, {}
     for line in git(repo, "show", f"{commit}:fetch.sh").decode().splitlines():
         m = re.match(r"^slow (\S+\.vrp) (\S+) ([0-9a-f]{64})$", line.strip())
         if m:
             instances[m.group(1)] = {"url": m.group(2), "sha256": m.group(3)}
+        # other instance files fetch.sh pins (benchmark 2.1: the Mona Lisa TSP instance), by their path in instances/
+        m = re.match(r"^get \.\./instances/(\S+) (\S+) ([0-9a-f]{64})$", line.strip())
+        if m:
+            pinned[m.group(1)] = {"url": m.group(2), "sha256": m.group(3)}
 
     # expected verdicts on the reference submissions (test.sh): ours are bundled, the others are fetched by fetch.sh
     expected, external = [], []
     for line in git(repo, "show", f"{commit}:test.sh").decode().splitlines():
-        m = re.match(r'^t (\S+) (\S+) "([^"]*)"$', line.strip())
+        m = re.match(r'^t (\S+) (\S+) "([^"]*)"(?:\s+#.*)?$', line.strip())
         if not m:
             continue
         pid, path, verdicts = m.group(1), m.group(2), [v for v in m.group(3).split(",") if v]
@@ -145,15 +181,18 @@ def sync_benchmark(repo, ref, out):
         "problems_total": index.get("problems", len(problem_dates)),
         "by_family": index.get("by_family", {}),
         "families": families,
+        "collections": collections,
         "problem_file_dates": problem_dates,
         "cvrplib_instances": instances,
+        "pinned_instances": pinned,
         "reference_expected": expected,
         "external_expected": external,
     }
     write(os.path.join(out, "benchmark", "meta.json"), dump_json(meta))
     return {"repository": BENCHMARK_URL, "commit": commit, "commit_date": meta["commit_date"],
             "version": meta["version"], "files": len(keep) + len(families), "problems": meta["problems_total"],
-            "single_problems": len(problem_dates), "family_cells": sum(f["count"] for f in families.values())}
+            "single_problems": len(problem_dates), "family_cells": sum(f["count"] for f in families.values()),
+            "collections": {k: v["problems"] for k, v in collections.items()}}
 
 
 # ---------------------------------------------------------------------------------------------------- open data

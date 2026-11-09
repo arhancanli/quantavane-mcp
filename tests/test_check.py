@@ -114,7 +114,8 @@ def test_spherical_code_with_a_repeated_point_scores_one(checker):
 
 def test_autocorrelation_1a_flat_and_negative(checker):
     r = check_text(checker, "1a-upper", '{"values": [1, 1, 1, 1]}')
-    assert r.verdict == "certified" and r.value == "2" and obb_verdicts(r) == ["does not improve", "does not improve"]
+    assert r.verdict == "certified" and r.value == "2" and r.standing == "below the best known"
+    assert obb_verdicts(r) == ["does not improve", "does not improve", "does not improve"]   # v2.1: two in review
     r = check_text(checker, "1a-upper", '{"values": [1, -1, 1, 1]}')
     assert r.verdict == "not_certified" and "non-negative" in r.reason
 

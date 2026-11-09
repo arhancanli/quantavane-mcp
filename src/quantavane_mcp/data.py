@@ -71,9 +71,17 @@ class Reference:
     path: Path
     expected: list[str]
     ours: bool
+    uri: str = ""
+
+    @property
+    def resource_uri(self) -> str:
+        return self.uri or f"quantavane://refs/{self.file}"
 
     @property
     def description(self) -> str:
+        if self.uri.startswith("quantavane://collections/originals/"):
+            return ("Quantavane's own first value for this new problem (the Originals): the best known entry, found "
+                    "and checked by us")
         if self.ours:
             return ("Quantavane's own result, the best known entry of its source table when the problem file was "
                     "written")
@@ -105,8 +113,13 @@ class Problem:
         return self.raw["checker"]["value"]
 
     @property
+    def collection(self) -> str | None:
+        """The collection of our own the problem belongs to (benchmark 2.1: 'originals'), if any."""
+        return self.raw.get("collection")
+
+    @property
     def family(self) -> str:
-        return str(self.raw.get("family") or FAMILIES.get(self.kind, "other"))
+        return str(self.raw.get("family") or self.collection or FAMILIES.get(self.kind, "other"))
 
     @property
     def best_known(self) -> dict[str, Any]:
@@ -150,16 +163,107 @@ def _parse_fetch_sh(text: str) -> dict[str, dict[str, str]]:
     return out
 
 
+def _parse_pinned(text: str) -> dict[str, dict[str, str]]:
+    """Other instance files fetch.sh pins, by their path under instances/ (the Mona Lisa TSP instance)."""
+    out = {}
+    for line in text.splitlines():
+        m = re.match(r"^get \.\./instances/(\S+) (\S+) ([0-9a-f]{64})$", line.strip())
+        if m:
+            out[m.group(1)] = {"url": m.group(2), "sha256": m.group(3)}
+    return out
+
+
 def _parse_test_sh(text: str) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     ours: list[dict[str, Any]] = []
     others: list[dict[str, Any]] = []
     for line in text.splitlines():
-        m = re.match(r'^t (\S+) (\S+) "([^"]*)"$', line.strip())
+        m = re.match(r'^t (\S+) (\S+) "([^"]*)"(?:\s+#.*)?$', line.strip())
         if m:
             row = {"problem": m.group(1), "file": Path(m.group(2)).name,
                    "expected": [v for v in m.group(3).split(",") if v]}
             (ours if m.group(2).startswith("refs/") else others).append(row)
     return ours, others
+
+
+class Collection:
+    """A collection of our own (collections/NAME/): README, index.json, and either problem files of its own
+    (problems/ID.json with a page problems/ID.md: the Originals) or pages over single problems of the benchmark
+    (problems/NN-ID.md, with leaderboard.json: Prestige 100)."""
+
+    def __init__(self, name: str, root: Path, file_dates: dict[str, str | None] | None = None):
+        self.name = name
+        self.root = root
+        self.file_dates = file_dates or {}
+
+    @cached_property
+    def index(self) -> dict[str, Any]:
+        path = self.root / "index.json"
+        return json.loads(path.read_text("utf-8")) if path.is_file() else {}
+
+    @cached_property
+    def leaderboard(self) -> dict[str, Any]:
+        path = self.root / "leaderboard.json"
+        return json.loads(path.read_text("utf-8")) if path.is_file() else {}
+
+    @cached_property
+    def dropped(self) -> list[dict[str, Any]]:
+        path = self.root / "dropped.json"
+        return json.loads(path.read_text("utf-8")) if path.is_file() else []
+
+    @property
+    def title(self) -> str:
+        return str(self.index.get("title") or self.index.get("collection") or self.name)
+
+    @cached_property
+    def readme(self) -> str:
+        path = self.root / "README.md"
+        return path.read_text("utf-8") if path.is_file() else ""
+
+    @cached_property
+    def problems(self) -> dict[str, Problem]:
+        """Problem files of the collection's own (the Originals), by id."""
+        out: dict[str, Problem] = {}
+        d = self.root / "problems"
+        for f in sorted(d.glob("*.json")) if d.is_dir() else []:
+            raw = json.loads(f.read_text("utf-8"))
+            out[raw["id"]] = Problem(raw=raw, file_date=self.file_dates.get(raw["id"]))
+        return out
+
+    @cached_property
+    def entries(self) -> list[dict[str, Any]]:
+        """The collection's list: index.json's problems (Prestige 100: one entry per slot) or items (Originals)."""
+        for key in ("problems", "items"):            # Prestige 100: "problems"; the Originals: "items" (a count in
+            if isinstance(self.index.get(key), list):    # "problems")
+                return list(self.index[key])
+        return [{"id": pid, "title": p.raw.get("title", pid)} for pid, p in self.problems.items()]
+
+    def entry(self, key: str) -> dict[str, Any] | None:
+        """An entry by problem id, or by slot number for a collection with slots."""
+        k = key.strip()
+        for e in self.entries:
+            if e.get("id") == k or (k.isdigit() and e.get("slot") == int(k)):
+                return e
+        return None
+
+    def page(self, pid: str) -> str | None:
+        """The problem's page (Markdown): problems/ID.md, or problems/NN-ID.md for a slotted collection."""
+        e = self.entry(pid)
+        if e is None:
+            return None
+        names = [str(e["page"])] if isinstance(e.get("page"), str) else []
+        names += [f"problems/{e['id']}.md"] + ([f"problems/{e['slot']:02d}-{e['id']}.md"]
+                                               if isinstance(e.get("slot"), int) else [])
+        for n in names:
+            path = self.root / n
+            if re.fullmatch(r"problems/[\w.\-]+\.md", n) and path.is_file():
+                return path.read_text("utf-8")
+        return None
+
+    def board(self, pid: str) -> dict[str, Any] | None:
+        for row in self.leaderboard.get("problems", []):
+            if row.get("id") == pid:
+                return dict(row)
+        return None
 
 
 class Benchmark:
@@ -185,10 +289,12 @@ class Benchmark:
         except (OSError, subprocess.SubprocessError):
             pass
         if (self.root / "fetch.sh").is_file():
-            meta["cvrplib_instances"] = _parse_fetch_sh((self.root / "fetch.sh").read_text("utf-8"))
+            fetch = (self.root / "fetch.sh").read_text("utf-8")
+            meta["cvrplib_instances"], meta["pinned_instances"] = _parse_fetch_sh(fetch), _parse_pinned(fetch)
         else:  # fall back on the hashes bundled with the server
-            meta["cvrplib_instances"] = json.loads(
-                (self.data_dir / "benchmark" / "meta.json").read_text("utf-8"))["cvrplib_instances"]
+            bundled = json.loads((self.data_dir / "benchmark" / "meta.json").read_text("utf-8"))
+            meta["cvrplib_instances"] = bundled["cvrplib_instances"]
+            meta["pinned_instances"] = bundled.get("pinned_instances", {})
         if (self.root / "test.sh").is_file():
             meta["reference_expected"], meta["external_expected"] = _parse_test_sh(
                 (self.root / "test.sh").read_text("utf-8"))
@@ -227,7 +333,54 @@ class Benchmark:
             if p.is_file():
                 out.setdefault(row["problem"], []).append(
                     Reference(file=row["file"], path=p, expected=row["expected"], ours=row["file"].startswith("ours_")))
+        # a collection problem's own certificate (provenance.certificate) is its best known entry, so the benchmark's
+        # tests expect "does not improve" for it (collections/originals/tests/test_originals.py)
+        for c in self.collections.values():
+            for pid, prob in c.problems.items():
+                cert = (prob.best_known.get("provenance") or {}).get("certificate")
+                if cert and cert.startswith(f"collections/{c.name}/refs/") and (self.root / cert).is_file():
+                    name = cert.rsplit("/", 1)[1]
+                    out.setdefault(pid, []).append(Reference(file=name, path=self.root / cert,
+                                                             expected=["does not improve"], ours=True,
+                                                             uri=f"quantavane://collections/{c.name}/refs/{name}"))
         return out
+
+    # ------------------------------------------------------------------------------------------- collections
+
+    @cached_property
+    def collections(self) -> dict[str, Collection]:
+        """Collections of our own (collections/NAME/, benchmark 2.1): Prestige 100, pages over single problems, and
+        the Quantavane Originals, new problems with their own checkers."""
+        out: dict[str, Collection] = {}
+        base = self.root / "collections"
+        if not base.is_dir():
+            return out
+        dates = self.meta.get("collections", {})
+        for d in sorted(p for p in base.iterdir() if p.is_dir() and not p.name.startswith(".")):
+            out[d.name] = Collection(d.name, d, dates.get(d.name, {}).get("problem_file_dates", {}))
+        return out
+
+    @cached_property
+    def collection_problems(self) -> dict[str, Problem]:
+        """The problems with a file of their own in a collection (the Originals), as obb.py finds them: by id, the
+        collections taken in name order."""
+        out: dict[str, Problem] = {}
+        for c in self.collections.values():
+            for pid, p in c.problems.items():
+                out.setdefault(pid, p)
+        return out
+
+    def program_path(self, program: str) -> Path:
+        """A checker program: checkers/PROGRAM, or a path inside the benchmark for a collection's own checkers
+        (collections/NAME/checkers/X), as obb.py's checker_path; never outside the benchmark."""
+        return self.inside(program) if "/" in program else self.checkers_dir / program
+
+    def inside(self, rel: str) -> Path:
+        """ROOT/rel for a relative path that stays inside the benchmark (collections/... arguments and programs)."""
+        p = Path(rel)
+        if p.is_absolute() or ".." in p.parts or not rel.startswith("collections/"):
+            raise DataError(f"refusing the path {rel!r}: only files under collections/ of the benchmark are read")
+        return self.root / p
 
     # ------------------------------------------------------------------------------------------- families
 
@@ -270,6 +423,8 @@ class Benchmark:
         """A single problem or a family cell (written out as obb.py's materialize writes it), or None."""
         if pid in self.problems:
             return self.problems[pid]
+        if pid in self.collection_problems:
+            return self.collection_problems[pid]
         name = self.family_of(pid)
         if name is None:
             return None
@@ -299,10 +454,15 @@ class Benchmark:
                 counts[p.family] = counts.get(p.family, 0) + 1
         return dict(sorted(counts.items()))
 
-    def reference_file(self, name: str) -> Path | None:
+    def reference_file(self, name: str, collection: str | None = None) -> Path | None:
         if not re.fullmatch(r"[\w.\-]+", name) or name.startswith("."):
             return None
-        p = self.refs_dir / name
+        if collection is not None:
+            if collection not in self.collections:
+                return None
+            p = self.collections[collection].root / "refs" / name
+        else:
+            p = self.refs_dir / name
         return p if p.is_file() else None
 
     def describe(self) -> str:

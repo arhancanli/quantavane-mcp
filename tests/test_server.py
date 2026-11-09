@@ -10,7 +10,8 @@ from mcp.types import PromptReference, ResourceTemplateReference
 from quantavane_mcp.config import Settings
 from quantavane_mcp.server import build_server
 
-TOOLS = {"list_problems", "get_problem", "check_candidate", "compare_to_record", "search_results", "get_replay", "cite"}
+TOOLS = {"list_problems", "get_problem", "check_candidate", "compare_to_record", "search_results", "get_replay", "cite",
+         "list_collection", "get_collection_problem", "run_claim_checks"}
 
 
 @pytest.fixture
@@ -44,7 +45,7 @@ async def test_list_and_get_problem(server):
     r = await call(server, "list_problems", {"family": "ramsey", "limit": 5})
     s = r.structuredContent
     assert not r.isError and s["total"] == 133 and s["count"] == 5 and s["has_more"]
-    assert s["families"]["spherical-code"] == 14793 and s["total_problems"] == 149351
+    assert s["families"]["spherical-code"] == 14793 and s["total_problems"] == 149372
     r = await call(server, "get_problem", {"problem_id": "sphere-d3-n952"})
     s = r.structuredContent
     assert s["checker"]["program"] == "sph_check.py" and s["objective"] == "minimize"
@@ -103,8 +104,10 @@ async def test_resources(server):
     assert {"quantavane://about", "quantavane://problems", "quantavane://checkers", "quantavane://benchmark/readme",
             "quantavane://open-data/readme"} <= listed
     assert "quantavane://problems/{problem_id}" in templates and "quantavane://refs/{filename}" in templates
-    assert about["network"].startswith("none") and about["counts"]["problems"] == 149351
-    assert about["counts"]["single_problems"] == 374 and about["counts"]["family_cells"] == 148977
+    assert about["network"].startswith("none") and about["counts"]["problems"] == 149372
+    assert about["counts"]["single_problems"] == 395 and about["counts"]["family_cells"] == 148977
+    assert about["counts"]["collections"] == {"originals": 39, "prestige100": 100}
+    assert "ramsey" in about["claim_checks"]["second_checkers"]
     assert prob["id"] == "1c-lower"
     assert "Used by: cw-" in docs and "SHA-256" in docs and "constant weight code" in docs
     assert "Bron-Kerbosch" in src and len(refc.splitlines()) == 17
@@ -128,7 +131,7 @@ async def test_prompts(server):
         verify = await client.get_prompt("verify_certificate", {"problem_id": "cw-34-6-5",
                                                                  "certificate_path": "/tmp/c.txt"})
         explain = await client.get_prompt("explain_replay", {"pr": "#292"})
-    assert names == {"attack_problem", "verify_certificate", "explain_replay"}
+    assert names == {"attack_problem", "verify_certificate", "explain_replay", "prepare_claim"}
     text = attack.messages[0].content.text
     assert "check_candidate" in text and "quantavane://refs/ours_sphere_d3_n952.txt" in text and "never" in text.lower()
     assert 'certificate_path="/tmp/c.txt"' in verify.messages[0].content.text

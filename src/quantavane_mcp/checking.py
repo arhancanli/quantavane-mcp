@@ -14,12 +14,13 @@ import tempfile
 import threading
 from decimal import Decimal
 from fractions import Fraction
+from collections.abc import Callable
 from pathlib import Path
 from typing import Any
 
 from . import sandbox
 from .config import Settings
-from .data import Benchmark, Problem, Store, sha256_file
+from .data import Benchmark, DataError, Problem, Store, sha256_file
 from .exact import better, decimal_text, fraction_text, threshold
 from .models import CheckerRun, CheckResult, CompareResult, Comparison, LimitsInfo, ReferenceValue
 
@@ -124,24 +125,40 @@ def score_meaning(p: Problem) -> str:
 
 
 def standalone_command(p: Problem) -> str:
+    """The checker run by hand in a benchmark checkout (collection checkers by their path in the benchmark)."""
     c = p.checker
     args = " ".join(shlex.quote(a) for a in c["args"])
+    program = c["program"] if "/" in c["program"] else f"checkers/{c['program']}"
     if p.kind == "ramsey":
         return f"cc -O3 -o ramsey_check checkers/ramsey_check.c && ./ramsey_check {args} FILE"
     if p.kind == "spherical":
-        return f"python3 -I checkers/{c['program']} FILE {args}"
-    return f"python3 -I checkers/{c['program']} {args} FILE".replace("  ", " ")
+        return f"python3 -I {program} FILE {args}"
+    return f"python3 -I {program} {args} FILE".replace("  ", " ")
+
+
+def standing(p: Problem, value: Fraction) -> str:
+    """Where a certified value stands against the best known value on the page (Prestige 100's leaderboard words)."""
+    page = threshold(p.objective, p.best_known)
+    if better(p.objective, value, page):
+        return "above the best known"
+    exact = p.best_known.get("exact")
+    if exact is not None and value == Fraction(exact):
+        return "equals the best known"
+    if exact is None and value == Fraction(p.best_known["value"]):
+        return "equals the best known as printed"
+    return "below the best known"
 
 
 CELL_ID_FORMS = ("covering-V-K-T or covering-V-K-T-M, sphere-dD-nN, code-qQ-nN-kK, ca-T-K-V, cw-N-D-W, "
-                 "rcpsp-SET-ID")
+                 "rcpsp-SET-ID; the Quantavane Originals have ids such as qr-sumfree (list_collection)")
 
 
 def find_problem(bench: Benchmark, problem_id: str) -> Problem:
     pid = problem_id.strip()
     p = bench.find(pid)
     if p is None:
-        close = difflib.get_close_matches(pid.lower(), list(bench.problems), n=5, cutoff=0.6)
+        close = difflib.get_close_matches(pid.lower(), list(bench.problems) + list(bench.collection_problems), n=5,
+                                          cutoff=0.6)
         hint = f" Did you mean {', '.join(close)}?" if close else ""
         fam = bench.family_of(pid)
         where = (f" No cell of the {fam} family has this id." if fam else
@@ -241,11 +258,18 @@ class Checker:
 
     # ------------------------------------------------------------------------------------------- programs
 
-    def verify_checkers(self) -> None:
-        """The bundled checkers must be byte for byte those of the benchmark commit in the manifest."""
+    def verify_checkers(self, p: Problem | None = None) -> None:
+        """The bundled checkers (and a collection problem's checker and data files) must be byte for byte those of the
+        benchmark commit in the manifest."""
         if not self.bench.bundled:
             return
         bad = self.store.manifest.verify(self.bench.data_dir, only="benchmark/checkers/")
+        if p is not None:
+            own = [a for a in [p.checker["program"], *p.checker["args"]] if a.startswith("collections/")]
+            for rel in own:
+                bad += self.store.manifest.verify(self.bench.data_dir, only="benchmark/" + rel)
+                if "benchmark/" + rel not in self.store.manifest.files:
+                    bad.append("benchmark/" + rel + " (not in the manifest)")
         if bad:
             raise CheckError("The bundled checkers differ from the benchmark release (" + ", ".join(bad) +
                              "); reinstall quantavane-mcp.")
@@ -284,7 +308,8 @@ class Checker:
         rel = Path(arg[len("instances/"):])
         if rel.is_absolute() or ".." in rel.parts:
             raise CheckError(f"Refusing the instance path {arg!r}.")
-        info = self.bench.meta.get("cvrplib_instances", {}).get(rel.name) if rel.suffix == ".vrp" else None
+        info = (self.bench.meta.get("cvrplib_instances", {}).get(rel.name) if rel.suffix == ".vrp" else
+                self.bench.meta.get("pinned_instances", {}).get(rel.as_posix()))
         candidates = []
         if self.settings.instances_dir:
             candidates.append(self.settings.instances_dir / rel)
@@ -299,7 +324,7 @@ class Checker:
                 digest = self._instance_ok.get(key) or sha256_file(c)
                 if info and digest != info["sha256"]:
                     raise CheckError(f"{rel.name} in {c.parent} does not match the SHA-256 pinned by the benchmark "
-                                     f"({info['sha256'][:12]}...); fetch CVRPLIB's file again.")
+                                     f"({info['sha256'][:12]}...); fetch the file again (fetch.sh).")
                 self._instance_ok[key] = digest
                 return c
         if rel.suffix == ".vrp":
@@ -308,6 +333,12 @@ class Checker:
                              f"(third-party data) and is never downloaded by the server. Get it{url} (or run fetch.sh "
                              "in a clone of github.com/arhancanli/quantavane-benchmark), then set "
                              "QUANTAVANE_MCP_INSTANCES to the folder that holds it.")
+        if info:
+            raise CheckError(f"This problem needs the instance file {arg}, which is not bundled (third-party data) "
+                             f"and is never downloaded by the server. Get it from {info['url']} (SHA-256 "
+                             f"{info['sha256'][:12]}...; fetch.sh in a clone of github.com/arhancanli/quantavane-"
+                             f"benchmark does this), then set QUANTAVANE_MCP_INSTANCES to the folder that plays the "
+                             f"part of instances/ (it holds {rel.as_posix()}).")
         how = (self.bench.families.get(p.family, {}).get("instances", "") if p is not None else "")
         raise CheckError(f"This problem needs the instance file {arg}, which is not bundled (third-party data) and is "
                          f"never downloaded by the server. {how} Then set QUANTAVANE_MCP_INSTANCES to the folder that "
@@ -319,7 +350,8 @@ class Checker:
             return None
         out: dict[str, str] = {}
         for i, arg in enumerate(wanted):
-            info = self.bench.meta.get("cvrplib_instances", {}).get(Path(arg).name, {})
+            info = (self.bench.meta.get("cvrplib_instances", {}).get(Path(arg).name) or
+                    self.bench.meta.get("pinned_instances", {}).get(arg[len("instances/"):]) or {})
             try:
                 where = str(self.instance(arg, p).parent)
             except CheckError:
@@ -332,21 +364,36 @@ class Checker:
                 out["url" + suffix] = info["url"]
         return out
 
+    def data_arg(self, arg: str) -> str:
+        """A checker argument naming a file of a collection (collections/NAME/instances/X): its path in the benchmark,
+        as obb.py passes it."""
+        try:
+            path = self.bench.inside(arg)
+        except DataError as e:
+            raise CheckError(str(e)) from None
+        if not path.is_file():
+            raise CheckError(f"The benchmark data file {arg} is missing; reinstall quantavane-mcp.")
+        return str(path)
+
     def argv(self, p: Problem, candidate: Path) -> list[str]:
         """The command obb.py runs for this problem (Python flags: isolated, no bytecode, UTF-8, no digit limit)."""
         c = p.checker
-        args = [str(self.instance(a, p)) if a.startswith("instances/") else a for a in c["args"]]
+        args = [str(self.instance(a, p)) if a.startswith("instances/") else
+                self.data_arg(a) if a.startswith("collections/") else a for a in c["args"]]
         if p.kind == "ramsey":
             return [str(self.ramsey_binary()), *args, str(candidate)]
-        program = str(self.bench.checkers_dir / c["program"])
+        try:
+            program = str(self.bench.program_path(c["program"]))
+        except DataError as e:
+            raise CheckError(str(e)) from None
         if p.kind == "spherical":
             return [sys.executable, *PYTHON_FLAGS, program, str(candidate), *args]
         return [sys.executable, *PYTHON_FLAGS, program, *args, str(candidate)]
 
     def clean(self, text: str, *extra: tuple[str, str]) -> str:
         """Remove local paths from checker output."""
-        pairs = list(extra) + [(str(self.bench.checkers_dir), "checkers"), (str(self.settings.cache_dir), "<cache>"),
-                               (str(Path.home()), "~")]
+        pairs = list(extra) + [(str(self.bench.checkers_dir), "checkers"), (str(self.bench.root), "<benchmark>"),
+                               (str(self.settings.cache_dir), "<cache>"), (str(Path.home()), "~")]
         for old, new in pairs:
             if old:
                 text = text.replace(old, new)
@@ -386,6 +433,45 @@ class Checker:
         find_problem(self.bench, problem_id)
         return self.check_data(problem_id, self.read_certificate(certificate, certificate_path), timeout_s)
 
+    def candidate_suffix(self, p: Problem) -> str:
+        return ".json" if p.raw["submission"].lstrip().upper().startswith("JSON") else ".sol" if p.kind == "cvrp" else \
+            ".tour" if p.checker["program"] == "tsp_check.py" else ".txt"
+
+    def run_on(self, data: bytes, suffix: str, timeout: int,
+               make_argv: Callable[[Path], list[str]]) -> tuple[sandbox.RunResult, str, str]:
+        """Write the certificate into a fresh empty folder and run make_argv(its path) there in the sandbox, in one of
+        the check slots; returns the run and its output with local paths removed."""
+        if not self._slots.acquire(timeout=timeout):
+            raise CheckError("Every check slot stayed busy for the whole timeout; try again "
+                             "(QUANTAVANE_MCP_MAX_CONCURRENT sets the number of slots).")
+        try:
+            workdir = tempfile.mkdtemp(prefix="quantavane-check-")
+            try:
+                candidate = Path(workdir) / f"candidate{suffix}"
+                candidate.write_bytes(data)
+                argv = make_argv(candidate)
+                run = sandbox.run(argv, cwd=workdir, limits=sandbox.Limits(timeout_s=timeout,
+                                                                           memory_mb=self.settings.memory_mb),
+                                  allow_uncapped=self.settings.allow_uncapped)
+            finally:
+                shutil.rmtree(workdir, ignore_errors=True)
+        except sandbox.SandboxUnavailable as e:
+            raise CheckError(str(e)) from None
+        finally:
+            self._slots.release()
+        swaps = ((str(candidate), "<candidate>"), (workdir, "<workdir>"))
+        return run, self.clean(run.stdout, *swaps), self.clean(run.stderr, *swaps)
+
+    def limit_reason(self, run: sandbox.RunResult, timeout: int) -> str:
+        return {
+            "timeout": f"stopped at the {timeout} s timeout; nothing was proved (raise timeout_s, up to "
+                       f"{self.settings.max_timeout_s}, or run the checker yourself: see reproduce)",
+            "memory": f"stopped at the {self.settings.memory_mb} MB memory cap; nothing was proved "
+                      "(QUANTAVANE_MCP_MEMORY_MB raises it)",
+            "cpu-time": "stopped at the CPU-time limit; nothing was proved",
+            "sandbox": f"the sandbox could not be set up: {run.sandbox_error}",
+        }[run.limit_hit or "sandbox"]
+
     def check_data(self, problem_id: str, data: bytes, timeout_s: int | None = None) -> CheckResult:
         """Check a certificate given as bytes (the command line and the gym hook use this directly)."""
         p = find_problem(self.bench, problem_id)
@@ -399,7 +485,7 @@ class Checker:
         base: dict[str, Any] = dict(
             problem_id=p.id, objective=p.objective, exactness=EXACTNESS[p.kind], score_meaning=score_meaning(p),
             certificate_sha256=digest, certificate_bytes=len(data), limits=self.limits_info(timeout),
-            reproduce=self.reproduce(p, digest), data_as_of=self.data_as_of(p))
+            reproduce=self.reproduce(p, digest), data_as_of=self.data_as_of(p), collection=p.collection)
         program = p.checker["program"]
         if p.kind == "ramsey":
             why = ramsey_precheck(data)
@@ -407,44 +493,15 @@ class Checker:
                 return CheckResult(verdict="not_certified", reason=why, comparisons=[],
                                    checker=CheckerRun(program=program, exit_code=None, seconds=0.0,
                                                       output_tail="(not run: rejected before the check)"), **base)
-        self.verify_checkers()
-        if not self._slots.acquire(timeout=timeout):
-            raise CheckError("Every check slot stayed busy for the whole timeout; try again "
-                             "(QUANTAVANE_MCP_MAX_CONCURRENT sets the number of slots).")
-        try:
-            workdir = tempfile.mkdtemp(prefix="quantavane-check-")
-            try:
-                suffix = ".json" if p.raw["submission"].lstrip().upper().startswith("JSON") else \
-                    ".sol" if p.kind == "cvrp" else ".txt"
-                candidate = Path(workdir) / f"candidate{suffix}"
-                candidate.write_bytes(data)
-                argv = self.argv(p, candidate)
-                run = sandbox.run(argv, cwd=workdir, limits=sandbox.Limits(timeout_s=timeout,
-                                                                           memory_mb=self.settings.memory_mb),
-                                  allow_uncapped=self.settings.allow_uncapped)
-            finally:
-                shutil.rmtree(workdir, ignore_errors=True)
-        except sandbox.SandboxUnavailable as e:
-            raise CheckError(str(e)) from None
-        finally:
-            self._slots.release()
-        swaps = ((str(candidate), "<candidate>"), (workdir, "<workdir>"))
-        out = self.clean(run.stdout, *swaps)
-        err = self.clean(run.stderr, *swaps)
+        self.verify_checkers(p)
+        run, out, err = self.run_on(data, self.candidate_suffix(p), timeout, lambda c: self.argv(p, c))
         tail_lines = (out + ("\n" if out and err else "") + err).strip().splitlines()[-12:]
         tail = "\n".join(tail_lines)[-1500:]
         checker_run = CheckerRun(program=program, exit_code=run.exit_code, seconds=run.seconds,
                                  peak_memory_mb=run.peak_memory_mb, output_tail=tail)
         if run.limit_hit:
-            reason = {
-                "timeout": f"stopped at the {timeout} s timeout; nothing was proved (raise timeout_s, up to "
-                           f"{self.settings.max_timeout_s}, or run the checker yourself: see reproduce)",
-                "memory": f"stopped at the {self.settings.memory_mb} MB memory cap; nothing was proved "
-                          "(QUANTAVANE_MCP_MEMORY_MB raises it)",
-                "cpu-time": "stopped at the CPU-time limit; nothing was proved",
-                "sandbox": f"the sandbox could not be set up: {run.sandbox_error}",
-            }[run.limit_hit]
-            return CheckResult(verdict="no_verdict", reason=reason, comparisons=[], checker=checker_run, **base)
+            return CheckResult(verdict="no_verdict", reason=self.limit_reason(run, timeout), comparisons=[],
+                               checker=checker_run, **base)
         value = value_from_output(p.kind, run.exit_code, run.stdout, run.stderr)
         if value is None:
             return CheckResult(verdict="not_certified", reason=self.failure_reason(p, run.exit_code, out, err),
@@ -452,7 +509,7 @@ class Checker:
         comps = comparisons_for(p, value)
         return CheckResult(verdict="certified", value=fraction_text(value), value_decimal=decimal_text(value),
                            improves_page_best=comps[0].improves, improves_verified_in_review=_verified_flag(comps),
-                           comparisons=comps, checker=checker_run, **base)
+                           standing=standing(p, value), comparisons=comps, checker=checker_run, **base)
 
     @staticmethod
     def failure_reason(p: Problem, exit_code: int | None, out: str, err: str) -> str:

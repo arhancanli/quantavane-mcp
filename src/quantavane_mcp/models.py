@@ -89,6 +89,11 @@ class ProblemDetail(BaseModel):
         "Who keeps the table, its address, the date and revision read, and who holds the value"))
     quantavane_record: bool = Field(default=False, description="The best known entry is Quantavane's own")
     added: str | None = Field(default=None, description="Benchmark version that added the problem")
+    collection: str | None = Field(default=None, description="The collection of our own it belongs to (originals)")
+    collection_info: dict[str, Any] | None = Field(default=None, description=(
+        "Originals: the field, status, context, references, novelty check, exact first values and baseline"))
+    second_checker: str | None = Field(default=None, description=(
+        "The second checker run_claim_checks uses for this problem (second_check.py KIND), if it has one"))
     data_as_of: str
 
 
@@ -128,6 +133,9 @@ class CheckResult(BaseModel):
     improves_page_best: bool | None = None
     improves_verified_in_review: bool | None = Field(default=None, description="Beats every verified value still in "
                                                                           "review (None when there is none)")
+    standing: str | None = Field(default=None, description=(
+        "A certified value against the best known one: above the best known, equals the best known, or below the "
+        "best known (Prestige 100's leaderboard words: record, above the listed record, below the record)"))
     comparisons: list[Comparison]
     certificate_sha256: str
     certificate_bytes: int
@@ -135,6 +143,8 @@ class CheckResult(BaseModel):
     limits: LimitsInfo
     reproduce: str = Field(description="Commands that re-run this check with the public benchmark")
     data_as_of: str
+    collection: str | None = Field(default=None, description="The collection of our own the problem belongs to "
+                                                             "(originals), if any")
 
 
 class CompareResult(BaseModel):
@@ -240,3 +250,116 @@ class GymVerdict(BaseModel):
     verdict: str = Field(description="The gym's exact verdict")
     score: str | None = Field(default=None, description="The exact score, if the object passed")
     details: dict[str, str] = Field(default_factory=dict)
+
+
+# ------------------------------------------------------------------------------------------------- collections
+
+
+class CollectionSummary(BaseModel):
+    name: str = Field(description="prestige100 or originals")
+    title: str
+    problems: int
+    about: str
+
+
+class CollectionEntry(BaseModel):
+    id: str = Field(description="The problem id: check_candidate, run_claim_checks and get_problem take it")
+    title: str
+    slot: int | None = Field(default=None, description="Prestige 100: the slot, 1 to 100")
+    family: str | None = Field(default=None, description="Prestige 100: the problem's family (Ramsey numbers, ...)")
+    field: str | None = Field(default=None, description="Originals: the field (Number theory, Physics, ...)")
+    objective: str | None = None
+    record: str | None = Field(default=None, description="The record as its keeper lists it (Prestige 100), or the "
+                                                         "best known value (Originals)")
+    holders: str | None = None
+    status: str | None = Field(default=None, description="Originals: open or closed")
+    flagship: bool | None = None
+    quantavane: bool | None = Field(default=None, description="The best known value is Quantavane's")
+
+
+class CollectionList(Page):
+    collection: str
+    title: str
+    entries: list[CollectionEntry]
+    collections: list[CollectionSummary]
+    data_as_of: str
+
+
+class CollectionProblem(BaseModel):
+    collection: str
+    id: str
+    title: str
+    entry: dict[str, Any] = Field(description="The collection's own record of the problem: for Prestige 100 the "
+                                              "keeper, history, why it matters, what to beat and the check command; "
+                                              "for the Originals the statement, context, novelty check, first values "
+                                              "and references")
+    leaderboard: dict[str, Any] | None = Field(default=None, description="Prestige 100: the record as listed and the "
+                                                                         "certificates we replayed, with standing")
+    page_uri: str = Field(description="Resource URI of the problem's page (Markdown)")
+    check_with: str = Field(description="How to check a certificate for it")
+    data_as_of: str
+
+
+# ------------------------------------------------------------------------------------------------- claim checks
+
+
+class ClaimCheck(BaseModel):
+    kind: Literal["check", "red"] = Field(description="check: a checker run on the object; red: a red control, a "
+                                                      "broken copy of the object that must be refused")
+    name: str
+    program: str
+    passed: bool = Field(description="The program accepted the object (for a red control: did not refuse it)")
+    as_expected: bool = Field(description="A check passed, or a red control was refused")
+    verdict: str = Field(description="certified, not_certified or no_verdict")
+    value: str | None = None
+    seconds: float
+    output_tail: str
+
+
+class KeeperOnFile(BaseModel):
+    name: str
+    url: str | None
+    value: str = Field(description="The keeper's value on file (the best known value), as printed")
+    exact: str | None
+    source: str
+    read: str = Field(description="When the value on file was read")
+    revision: str | None = None
+    holder: str | None = None
+    re_read: str = Field(description="Whether the keeper's page was re-read for this claim (never, offline)")
+
+
+class LiteratureQuery(BaseModel):
+    query: str
+    backend: str = Field(description="stub: recorded, not searched")
+    results: list[dict[str, Any]]
+    note: str
+
+
+class ClaimResult(BaseModel):
+    problem_id: str
+    verdict: str = Field(description="The claim pipeline's verdict: RECORD (both checks OK, red controls all refused "
+                                     "and the value beats the keeper's value on file), NOT-A-RECORD (verified, but "
+                                     "it does not beat it) or NOT VERIFIED (a check failed, a red control passed, or "
+                                     "the problem lacks a second checker or a red control)")
+    record: bool
+    verified: bool = Field(description="Two separately written checkers passed and every red control was refused")
+    value: str | None = Field(default=None, description="The exact value the benchmark's checker proved")
+    value_decimal: str | None = None
+    objective: Literal["maximize", "minimize"]
+    beats_keeper_value_on_file: bool | None = Field(default=None, description="The value strictly beats the keeper's "
+                                                                              "value on file (exactly)")
+    improves_verified_in_review: bool | None = None
+    threshold: str | None = Field(default=None, description="The exact value to beat")
+    keeper: KeeperOnFile
+    comparisons: list[Comparison]
+    second_checker: str | None = Field(default=None, description="The second checker used, if the problem has one")
+    red_controls: int = Field(description="How many red controls were built from the object")
+    checks: list[ClaimCheck]
+    literature: list[LiteratureQuery] = Field(description="The literature queries the pipeline records (not run "
+                                                          "offline)")
+    notes: list[str]
+    packet: dict[str, str] = Field(description="The pipeline's packet files as text: VERDICT, checks.txt, keeper.txt, "
+                                               "literature.json, README.md")
+    certificate_sha256: str
+    reproduce: str
+    data_as_of: str

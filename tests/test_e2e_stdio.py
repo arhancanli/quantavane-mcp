@@ -7,7 +7,8 @@ from helpers import ref
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
 
-TOOLS = {"list_problems", "get_problem", "check_candidate", "compare_to_record", "search_results", "get_replay", "cite"}
+TOOLS = {"list_problems", "get_problem", "check_candidate", "compare_to_record", "search_results", "get_replay", "cite",
+         "list_collection", "get_collection_problem", "run_claim_checks"}
 
 
 @pytest.mark.anyio
@@ -59,3 +60,20 @@ async def test_stdio_server_end_to_end(tmp_path, cache_dir):
 
             pr = await session.get_prompt("attack_problem", {"problem_id": "covering-17-7-4-6"})
             assert "check_candidate" in pr.messages[0].content.text
+
+            lc = await session.call_tool("list_collection", {"collection": "prestige100", "query": "R(5,5)"})
+            assert lc.structuredContent["entries"][0]["id"] == "ramsey-5-5"
+            gc = await session.call_tool("get_collection_problem", {"collection": "originals",
+                                                                    "problem": "qr-sumfree"})
+            assert gc.structuredContent["entry"]["best_known"]["value"] == "174"
+            orig = await session.call_tool("check_candidate", {
+                "problem_id": "qr-sumfree", "certificate": (gc_ref := await session.read_resource(
+                    "quantavane://collections/originals/refs/qr-sumfree.txt")).contents[0].text})
+            assert orig.structuredContent["verdict"] == "certified" and orig.structuredContent["value"] == "174"
+            assert gc_ref.contents[0].text.strip()
+
+            cl = await session.call_tool("run_claim_checks", {"problem_id": "covering-17-7-4-6",
+                                                              "certificate_path": str(cert)})
+            c = cl.structuredContent
+            assert not cl.isError and c["verified"] is True and c["record"] is False
+            assert c["verdict"].startswith("NOT-A-RECORD") and set(c["packet"]) >= {"VERDICT", "checks.txt"}
