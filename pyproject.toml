@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
 license-files = ["LICENSE", "LICENSE-DATA.md"]
-authors = [{ name = "Arhan Canli" }]
+authors = [{ name = "Arhan Canli", email = "arhan@quantavane.com" }]
 keywords = ["mcp", "model-context-protocol", "open-problems", "benchmark", "exact-verification", "combinatorics",
             "ramsey", "spherical-codes", "covering-designs", "mathematics"]
 classifiers = [

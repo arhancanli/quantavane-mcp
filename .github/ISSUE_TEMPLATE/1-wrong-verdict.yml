@@ -1,0 +1,38 @@
+name: Wrong verdict or value
+description: A certificate the server accepts or refuses wrongly, or a value that differs from the benchmark's own obb.py.
+title: "Verdict: PROBLEM_ID"
+body:
+  - type: input
+    id: problem
+    attributes:
+      label: Problem id
+      placeholder: covering-17-7-4-6
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Output of quantavane-mcp --version
+    validations:
+      required: true
+  - type: textarea
+    id: certificate
+    attributes:
+      label: Certificate
+      description: Attach the file (drag it here; gzip or xz for large ones) or link to it.
+    validations:
+      required: true
+  - type: textarea
+    id: server
+    attributes:
+      label: Output of quantavane-mcp check PROBLEM FILE (or the check_candidate result)
+      render: json
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected, and why
+      description: For example the output of `python3 -I obb.py check PROBLEM FILE` in the benchmark, or the property the object has.
+    validations:
+      required: true

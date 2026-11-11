@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: A result or a correction to a problem
+    url: https://github.com/arhancanli/quantavane-benchmark/issues/new/choose
+    about: Results, best known values, holders and statements live in the Open Problems Benchmark; it has forms for both.
+  - name: Quantavane Open Research
+    url: https://quantavane.com/open-research/
+    about: Work on these problems with us; accepted results carry your name.

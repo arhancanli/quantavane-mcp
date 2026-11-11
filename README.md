@@ -25,8 +25,38 @@ of certificates in the optimization constants repository, and gives citations fo
 - **Honest.** A check that hits a limit says "no verdict", not "invalid". A value is a record only when it is certified
   and beats the best known value. Best known values credited to other people say so, with their source.
 
+## Five-minute start
+
+You need [uv](https://docs.astral.sh/uv/getting-started/installation/); it fetches Python 3.10 or later if your system
+lacks it. The first command downloads the server from GitHub (about 15 seconds); the rest take a second or two each.
+
+```sh
+# 1. Check the install: every bundled file against its SHA-256, then reference certificates through the checkers
+uvx --from git+https://github.com/arhancanli/quantavane-mcp quantavane-mcp selftest
+
+# 2. Check a covering design C(17,7,4,6) with 17 blocks (ours, listed by the Covering Repository)
+curl -sSLO https://raw.githubusercontent.com/arhancanli/quantavane-benchmark/main/refs/ours_covering_17-7-4-6.txt
+uvx --from git+https://github.com/arhancanli/quantavane-mcp quantavane-mcp check covering-17-7-4-6 ours_covering_17-7-4-6.txt
+#    "verdict": "certified", "value": "17", "standing": "equals the best known"
+
+# 3. Remove one block and check again: refused, with the 6-subset that is no longer covered
+sed 1d ours_covering_17-7-4-6.txt > broken.txt
+uvx --from git+https://github.com/arhancanli/quantavane-mcp quantavane-mcp check covering-17-7-4-6 broken.txt || true
+#    "verdict": "not_certified", "reason": "the 6-subset [2, 3, 5, 8, 9, 11] meets every block in fewer than 4 points"
+```
+
+Then give the tools to an agent, for example Claude Code (other clients: [connect a client](#connect-a-client)):
+
+```sh
+claude mcp add quantavane -- uvx --from git+https://github.com/arhancanli/quantavane-mcp quantavane-mcp
+```
+
+and ask it to pick an open problem, build candidates in code and check them. `check` and `claim` print JSON, so they
+also work in any scoring pipeline without an MCP client.
+
 ## Contents
 
+- [Five-minute start](#five-minute-start)
 - [Install](#install) and [connect a client](#connect-a-client)
 - [Tools, resources and prompts](#tools-resources-and-prompts)
 - [Examples](#examples)
@@ -45,7 +75,9 @@ quantavane-mcp selftest               # checks the bundled data and runs referen
 ```
 
 From the source: `uvx --from git+https://github.com/arhancanli/quantavane-mcp quantavane-mcp`, or in a clone,
-`pip install .`.
+`pip install .`. A client can start the server from GitHub the same way: wherever this README says `uvx
+quantavane-mcp`, write `uvx --from git+https://github.com/arhancanli/quantavane-mcp quantavane-mcp` (in JSON,
+`"args": ["--from", "git+https://github.com/arhancanli/quantavane-mcp", "quantavane-mcp"]`).
 
 `selftest` verifies every bundled file against its SHA-256, then runs a covering design, a constant weight code, a
 spherical code, a constant, a Ramsey colouring and one of the Originals through the sandboxed checkers, compares the

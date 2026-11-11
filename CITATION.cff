@@ -7,6 +7,7 @@ authors:
   - family-names: Canli
     given-names: Arhan
     affiliation: Quantavane
+    email: arhan@quantavane.com
 license: MIT
 url: "https://quantavane.com"
 repository-code: "https://github.com/arhancanli/quantavane-mcp"
@@ -21,7 +22,7 @@ references:
       - family-names: Canli
         given-names: Arhan
     url: "https://github.com/arhancanli/quantavane-benchmark"
-  - type: dataset
+  - type: data
     title: "Quantavane verified results"
     authors:
       - family-names: Canli
