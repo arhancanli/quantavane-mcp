@@ -444,3 +444,6 @@ To cite the benchmark, a problem, a result, the dataset or a replay, use `cite` 
 also gives the source of its best known value, which should be cited as well. See also [CITATION.cff](CITATION.cff).
 
 Quantavane: https://quantavane.com. Questions and corrections: open an issue.
+
+Known uses of this work are listed in [USED_BY.md](USED_BY.md). If you use it, please open an issue or a pull request
+with a link so that yours can be added.
